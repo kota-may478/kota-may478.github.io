@@ -1,7 +1,7 @@
 # Configuration of Hugo
-# Guide: https://wowchemy.com/docs/getting-started/
+# Guide: https://wowchemy.com/content/getting-started/
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/content/yaml/
 
 title: Kota Fujimoto # Website name
 baseURL: 'https://example.com/' # Website URL

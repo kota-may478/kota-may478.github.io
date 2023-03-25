@@ -6,7 +6,7 @@ type: landing
 
 sections:
   # - block: hero
-  #   content:
+  #   docs:
   #     title: Hugo Academic Theme
   #     image:
   #       filename: hero-academic.png
@@ -37,13 +37,13 @@ sections:
   #       text_color_light: true
   - block: about.avatar
     id: about
-    content:
-      # Choose a user profile to display (a folder name within `content/authors/`)
+    docs:
+      # Choose a user profile to display (a folder name within `docs/authors/`)
       username: kota
       # Override your bio text from `authors/admin/_index.md`?
       text:
   # - block: features
-  #   content:
+  #   docs:
   #     title: Skills
   #     items:
   #       - name: R
@@ -59,7 +59,7 @@ sections:
   #         icon: camera-retro
   #         icon_pack: fas
   # - block: experience
-  #   content:
+  #   docs:
   #     title: Experience
   #     # Date format for experience
   #     #   Refer to https://wowchemy.com/docs/customization/#date-format
@@ -94,7 +94,7 @@ sections:
   #   design:
   #     columns: '2'
   # - block: accomplishments
-  #   content:
+  #   docs:
   #     # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
   #     title: 'Accomplish&shy;ments'
   #     subtitle:
@@ -135,11 +135,11 @@ sections:
 
   - block: collection
     id: Publication
-    content:
+    docs:
       title: Publications
       # text: |-
       #   {{% callout note %}}
-      #   Quickly discover relevant content by [filtering publications](./publication/).
+      #   Quickly discover relevant docs by [filtering publications](./publication/).
       #   {{% /callout %}}
       filters:
         folders:
@@ -151,7 +151,7 @@ sections:
 
   - block: collection
     id: posts
-    content:
+    docs:
       title: Recent Posts
       subtitle: ''
       text: ''
@@ -178,7 +178,7 @@ sections:
       columns: '2'
   # - block: portfolio
   #   id: projects
-  #   content:
+  #   docs:
   #     title: Projects
   #     filters:
   #       folders:
@@ -204,7 +204,7 @@ sections:
   #     # For Showcase view, flip alternate rows?
   #     flip_alt_rows: false
   # - block: markdown
-  #   content:
+  #   docs:
   #     title: Gallery
   #     subtitle: ''
   #     text: |-
@@ -213,7 +213,7 @@ sections:
   #     columns: '1'
   # - block: collection
   #   id: featured
-  #   content:
+  #   docs:
   #     title: Featured Publications
   #     filters:
   #       folders:
@@ -224,7 +224,7 @@ sections:
   #     view: card
   # - block: collection
   #   id: talks
-  #   content:
+  #   docs:
   #     title: Recent & Upcoming Talks
   #     filters:
   #       folders:
@@ -233,13 +233,13 @@ sections:
   #     columns: '2'
   #     view: compact
   # - block: tag_cloud
-  #   content:
+  #   docs:
   #     title: Popular Topics
   #   design:
   #     columns: '2'
   # - block: contact
   #   id: contact
-  #   content:
+  #   docs:
   #     title: Contact
   #     subtitle:
   #     text: |-
