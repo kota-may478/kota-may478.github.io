@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">About Me</button></li>
-                <li><button onclick="navigateTo('research')">Research</button></li>
+                <li><button onclick="navigateTo('projects')">Projects</button></li>
                 <li><button onclick="navigateTo('publications')">Publications</button></li>
                 <li><button onclick="navigateTo('contact')">Contact</button></li>
                 <li><button onclick="toggleLanguage('en')">日本語/English</button></li>
@@ -23,26 +23,45 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <ul>
-            <li>Affiliation: Graduate School of Engineering, Department of Electrical Engineering, University of Tokyo</li>
-            <li>Lab: Fujimoto Lab</li>
-        </ul>
-    </section>
+        <div class="profile-container">
+            <img src="./fig/202204_enlarged.JPG" alt="Kota Fujimoto's Photo" class="profile-image">
+            <ul>
+                <li>Affiliation: Graduate School of Engineering, Department of Electrical Engineering, University of Tokyo</li>
+                <li>Lab: Fujimoto Lab</li>
+            </ul>
+        </div>
+    </section>     
 
-    <section id="research">
-        <h2>Research</h2>
-        <p>Here, I describe an overview of my research and information about specific projects.</p>
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>Doctoral Research: Integration of Aircraft Motion and Power Electronics for In-Flight Power Supply to Drones</li>
+            <li>Open Sourcing the Research and Development Environment for Drones</li>
+        </ul>
     </section>
 
     <section id="publications">
         <h2>Publications</h2>
         <h3>International Conferences (Peer-reviewed)</h3>
         <ul>
-            <!-- Add publications for international conferences -->
+            <li>K. Fujimoto, T. Hamada and H. Fujimoto, "Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System," <i>in IEEE 2022 Wireless Power Week (WPW)</i>, Bordeaux, France, 2022, pp. 235-239, doi: 10.1109/WPW54272.2022.9854039.</li>
+            <li>K. Fujimoto, S. Nagai, B. M. Nguyen, H. Fujimoto "Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones" <i>in IEEE IECON 2023 The 49th Annual Conference of the IEEE Industrial Electronics Society</i>, Singapore, 2023 (To be presented)</li>
         </ul>
         <h3>Domestic Conferences (Non-peer-reviewed)</h3>
         <ul>
-            <!-- Add publications for domestic conferences -->
+            <li>Kota Fujimoto, Kentaro Yokota, Eiji Nagai, Hiroshi Fujimoto: "Modeling of the Coupling Coefficient of the Receiving Coil Depending on the Pitch Angle Assuming Wireless Power Transmission to a Drone in Flight," The Institute of Electrical Engineers of Japan, Industrial Applications Conference, Paper No: 48, Nagaoka University of Technology, 2021.</li>
+            <li>Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Hitoshi Katsuya, Satoshi Sato: "Performance Requirement Analysis for In-Drive Charging Using Vehicle Big Data," The Institute of Electrical Engineers of Japan, Power Technology, Power System Technology, Semiconductor Power Conversion Joint Research Meeting, Paper No: SPC23140, Okinawa, 2023.</li>
+            <li>Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada: "High Precision Control of Twin Drive Mechanism of Machine Tool Based on Mode Separation of Sum and Difference by Virtual Viscosity: Basic Study on 2 Inertia Mechanism," The Institute of Electrical Engineers of Japan, Industrial Applications Division, Mechatronics Control Research Meeting, Paper No: MEC23011, Tokyo, 2023</li>
+        </ul>
+        <h3>Awards</h3>
+        <ul>
+            <li>2021 The Institute of Electrical Engineers of Japan, Industrial Applications Division Conference Excellent Paper Presentation Award</li>
+        </ul>
+        <h3>Supports</h3>
+        <ul>
+            <li>University of Tokyo SPRING GX (From April 2023)</li>
+            <li>Suzuki Foundation 2022 Researcher Overseas Training Grant</li>
+            <li>Telecommunications Advancement Foundation August 2023 Overseas Travel Expense Assistance</li>
         </ul>
     </section>
 

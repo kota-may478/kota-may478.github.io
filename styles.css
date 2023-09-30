@@ -78,3 +78,15 @@ header button {
 header button:hover {
     background-color: #777;       /* ヘッダー内のボタンにマウスを乗せたときの背景色を#777に設定 */
 }
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    border: 2px solid #333;
+}
