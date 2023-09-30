@@ -1,79 +1,80 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif; /* ページ全体のフォントをArialまたはsans-serifに設定 */
+    margin: 0;                      /* ページ全体の外側の余白を0に設定 */
+    padding: 0;                     /* ページ全体の内側の余白を0に設定 */
+    background-color: #f4f4f4;     /* ページ全体の背景色を#f4f4f4に設定 */
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
+    background-color: #333;        /* ヘッダーの背景色を#333に設定 */
+    color: #fff;                   /* ヘッダー内のテキストの色を白に設定 */
+    text-align: center;            /* ヘッダー内のテキストを中央揃えに設定 */
+    padding: 1rem 0 0 0; /* 上側に1rem、右側と左側に0、下側に0の余白を設定 */
 }
 
 header h1 {
-    margin: 0;
+    margin: 0;                     /* ヘッダー内のh1要素の外側の余白を0に設定 */
 }
 
 nav ul {
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
+    padding: 0;                    /* ナビゲーション内のul要素の内側の余白を0に設定 */
+    list-style-type: none;         /* ナビゲーション内のul要素のリストマーカーを非表示に設定 */
+    overflow: hidden;              /* ナビゲーション内のul要素のオーバーフローを非表示に設定 */
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: inline;               /* ナビゲーション内のli要素をインライン要素として表示 */
+    margin-right: 0px;            /* ナビゲーション内のli要素の右側に20pxの外側の余白を設定 */
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s;
+    text-decoration: none;         /* ナビゲーション内のa要素の下線を非表示に設定 */
+    color: #fff;                   /* ナビゲーション内のa要素のテキストの色を白に設定 */
+    transition: color 0.3s;        /* ナビゲーション内のa要素の色の変化を0.3秒で遷移させる */
 }
 
 nav ul li a:hover {
-    color: #ddd;
+    color: #ddd;                   /* ナビゲーション内のa要素にマウスを乗せたときのテキストの色を#dddに設定 */
 }
 
 section {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    padding: 20px;                 /* セクションの内側の余白を20pxに設定 */
+    margin: 20px 0;                /* セクションの上下に20pxの外側の余白を設定 */
+    background-color: #fff;       /* セクションの背景色を白に設定 */
+    border: 1px solid #ddd;       /* セクションの境界線を1pxの#dddの線に設定 */
 }
 
 footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #333;
-    color: #fff;
+    text-align: center;            /* フッター内のテキストを中央揃えに設定 */
+    padding: 1rem 0;               /* フッターの上下に1remの内側の余白を設定 */
+    background-color: #333;       /* フッターの背景色を#333に設定 */
+    color: #fff;                   /* フッター内のテキストの色を白に設定 */
 }
 
 nav ul li button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #333;       /* ナビゲーション内のボタンの背景色を#333に設定 */
+    color: #fff;                   /* ナビゲーション内のボタンのテキストの色を白に設定 */
+    border: none;                  /* ナビゲーション内のボタンの境界線を非表示に設定 */
+    padding: 10px 20px;            /* ナビゲーション内のボタンの内側の余白を上下10px、左右20pxに設定 */
+    cursor: pointer;               /* ナビゲーション内のボタンのカーソルをポインタに設定 */
+    transition: background-color 0.3s; /* ナビゲーション内のボタンの背景色の変化を0.3秒で遷移させる */
 }
 
 nav ul li button:hover {
-    background-color: #555;
+    background-color: #555;       /* ナビゲーション内のボタンにマウスを乗せたときの背景色を#555に設定 */
 }
 
 header button {
-    margin-top: 10px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    margin-top: 0px;              /* ヘッダー内のボタンの上側に10pxの外側の余白を設定 */
+    margin-bottom: 0;              /* ヘッダー内のボタンの下側の外側の余白を0に設定 */
+    background-color: #555;       /* ヘッダー内のボタンの背景色を#555に設定 */
+    color: #fff;                   /* ヘッダー内のボタンのテキストの色を白に設定 */
+    border: none;                  /* ヘッダー内のボタンの境界線を非表示に設定 */
+    padding: 5px 10px;             /* ヘッダー内のボタンの内側の余白を上下5px、左右10pxに設定 */
+    cursor: pointer;               /* ヘッダー内のボタンのカーソルをポインタに設定 */
+    transition: background-color 0.3s; /* ヘッダー内のボタンの背景色の変化を0.3秒で遷移させる */
 }
 
 header button:hover {
-    background-color: #777;
+    background-color: #777;       /* ヘッダー内のボタンにマウスを乗せたときの背景色を#777に設定 */
 }

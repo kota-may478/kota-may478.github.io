@@ -9,21 +9,25 @@
 </head>
 <body>
     <header>
-        <h1>研究者の名前</h1>
+        <h1>藤本浩太</h1>
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">自己紹介</button></li>
                 <li><button onclick="navigateTo('research')">研究内容</button></li>
                 <li><button onclick="navigateTo('publications')">業績</button></li>
                 <li><button onclick="navigateTo('contact')">連絡先</button></li>
+                <li><button onclick="toggleLanguage('en')">日本語/English</button></li>
             </ul>
         </nav>
-        <button onclick="toggleLanguage()">日本語/English</button>
+        <!-- <button onclick="toggleLanguage()">日本語/English</button> -->
     </header>
 
     <section id="about">
         <h2>自己紹介</h2>
-        <p>ここに研究者の自己紹介や背景を記述します。</p>
+        <ul>
+            <li>所属：東京大学大学院工学系研究科電気系工学専攻</li>
+            <li>研究室：藤本研究室</li>
+        </ul>
     </section>
 
     <section id="research">
@@ -33,30 +37,29 @@
 
     <section id="publications">
         <h2>業績</h2>
-        <h3>国際会議（査読付き）</h3>
+        <h3>国際会議（査読あり）</h3>
         <ul>
             <!-- 国際会議の業績を追加 -->
         </ul>
-        <h3>国内会議（査読無し）</h3>
+        <h3>国内会議（査読なし）</h3>
         <ul>
             <!-- 国内会議の業績を追加 -->
         </ul>
-        <h3>ジャーナル論文</h3>
+        <!-- <h3>ジャーナル論文</h3>
         <ul>
             <li>論文1のタイトル, ジャーナル名, 年</li>
             <li>論文2のタイトル, ジャーナル名, 年</li>
-            <!-- 他の業績を追加 -->
-        </ul>
+        </ul>  -->
     </section>
 
     <section id="contact">
         <h2>連絡先</h2>
-        <p>Email: example@example.com</p>
-        <p>所属機関: 例大学</p>
+        <p>Email: fujimoto.kota21 [at] ae.u-tokyo.ac.jp</p>
+        <!-- <p>所属機関: 例大学</p> -->
     </section>
 
     <footer>
-        <p>&copy; 2023 研究者の名前. All rights reserved.</p>
+        <p>&copy; 2023 Kota Fujimoto. All rights reserved.</p>
     </footer>
 </body>
 </html>

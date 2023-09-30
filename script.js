@@ -5,8 +5,10 @@ function navigateTo(sectionId) {
     }
 }
 
-function toggleLanguage() {
-    // ここではサンプルとしてアラートを表示しますが、
-    // 実際には日本語と英語のコンテンツを切り替えるロジックを実装します。
-    alert('言語を切り替える機能はまだ実装されていません。');
+function toggleLanguage(currentLang) {
+    if (currentLang === 'en') {
+        window.location.href = 'index.html';
+    } else {
+        window.location.href = 'index_en.html';
+    }
 }
