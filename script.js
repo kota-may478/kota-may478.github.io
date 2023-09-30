@@ -12,3 +12,20 @@ function toggleLanguage(currentLang) {
         window.location.href = 'index_en.html';
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.fade-in');
+
+    function checkVisibility() {
+        const triggerBottom = window.innerHeight * 0.8;
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < triggerBottom) {
+                section.classList.add('is-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility();
+});

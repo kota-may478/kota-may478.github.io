@@ -24,7 +24,7 @@ nav ul {
 
 nav ul li {
     display: inline;               /* ナビゲーション内のli要素をインライン要素として表示 */
-    margin-right: 0px;            /* ナビゲーション内のli要素の右側に20pxの外側の余白を設定 */
+    margin-right: -5px;            /* ナビゲーション内のli要素の右側に20pxの外側の余白を設定 */
 }
 
 nav ul li a {
@@ -38,10 +38,39 @@ nav ul li a:hover {
 }
 
 section {
-    padding: 20px;                 /* セクションの内側の余白を20pxに設定 */
-    margin: 20px 0;                /* セクションの上下に20pxの外側の余白を設定 */
-    background-color: #fff;       /* セクションの背景色を白に設定 */
-    border: 1px solid #ddd;       /* セクションの境界線を1pxの#dddの線に設定 */
+    margin: 20px auto; /* 上下のマージンを20pxに統一 */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    animation: fadeIn 1.5s;
+}
+
+section h2 {
+    position: relative;
+    display: inline-block;  /* h2要素の幅を内容に合わせる */
+}
+
+/* 日本語版の蛍光線の位置 */
+.lang-ja section h2::after {
+    bottom: 5px;  /* 文字の少し上から開始 */
+}
+
+/* 英語版の蛍光線の位置 */
+.lang-en section h2::after {
+    bottom: 1px;  /* 英語版の位置調整（例として4pxに設定。必要に応じて調整してください） */
+}
+
+/* 共通の蛍光線のスタイル */
+section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;  /* 蛍光線の太さ */
+    background-color: #80E7E8;  /* 明るくしたTiffany Blue */
+    z-index: -1;  /* テキストの下に表示 */
 }
 
 footer {
@@ -55,6 +84,7 @@ nav ul li button {
     background-color: #333;       /* ナビゲーション内のボタンの背景色を#333に設定 */
     color: #fff;                   /* ナビゲーション内のボタンのテキストの色を白に設定 */
     border: none;                  /* ナビゲーション内のボタンの境界線を非表示に設定 */
+    height: 40px; /* ボタンの高さを40pxに固定 */
     padding: 10px 20px;            /* ナビゲーション内のボタンの内側の余白を上下10px、左右20pxに設定 */
     cursor: pointer;               /* ナビゲーション内のボタンのカーソルをポインタに設定 */
     transition: background-color 0.3s; /* ナビゲーション内のボタンの背景色の変化を0.3秒で遷移させる */
@@ -81,10 +111,28 @@ header button:hover {
 
 .profile-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* 中央揃え */
+    justify-content: flex-start;
+    margin-bottom: 20px; /* 写真の下端からsectionタブの下端のマージンを20pxに設定 */
 }
 
 .profile-image {
-    width: 150px;
+    height: 150px;  /* 高さを150pxに固定 */
+    display: block;
     margin-right: 20px;
+    object-fit: cover;  /* 画像のアスペクト比を保ちつつ、指定されたサイズに収める */
 }
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+

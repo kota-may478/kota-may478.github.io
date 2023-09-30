@@ -3,56 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>藤本浩太 - ホーム</title>
+    <title>藤本 浩太 - ホーム</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body class="lang-ja">
     <header>
-        <h1>藤本浩太</h1>
+        <h1>藤本 浩太</h1>
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">自己紹介</button></li>
                 <li><button onclick="navigateTo('projects')">プロジェクト</button></li>
                 <li><button onclick="navigateTo('publications')">業績</button></li>
                 <li><button onclick="navigateTo('contact')">連絡先</button></li>
-                <li><button onclick="toggleLanguage('ja')">日本語/English</button></li>
+                <li><button onclick="toggleLanguage('ja')">Japanese/English</button></li>
             </ul>
         </nav>
     </header>
 
-    <section id="about">
+    <section id="about" class="fade-in">
         <h2>自己紹介</h2>
         <div class="profile-container">
             <img src="./fig/202204_enlarged.JPG" alt="藤本浩太の写真" class="profile-image">
             <ul>
                 <li>所属：東京大学大学院工学系研究科電気系工学専攻</li>
-                <li>研究室：藤本研究室</li>
+                <li>研究室：<a href="https://hflab-jp.edu.k.u-tokyo.ac.jp/" target="_blank">藤本研究室</a></li>
             </ul>
         </div>
     </section>    
 
-    <section id="projects">
+    <section id="projects" class="fade-in">
         <h2>プロジェクト</h2>
-        <ul>
-            <li>博士研究：ドローンへの飛行中給電を実現する機体運動とパワーエレクトロニクスの統合制御</li>
-            <li>ドローンの研究開発環境構築のオープンソース化</li>
-        </ul>
+        <h3>高効率なドローンへの飛行中給電を実現する機体運動とパワーエレクトロニクスの統合制御</h3>
+        <!-- <h3>ドローンの研究開発環境構築のオープンソース化</h3> -->
     </section>
 
-    <section id="publications">
+    <section id="publications" class="fade-in">
         <h2>業績</h2>
         <h3>国際会議（査読あり）</h3>
         <ul>
-            <li>K. Fujimoto, T. Hamada and H. Fujimoto, "Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System," <i>in IEEE 2022 Wireless Power Week (WPW)</i>, Bordeaux, France, 2022, pp. 235-239, doi: 10.1109/WPW54272.2022.9854039.</li>
-            <li>K. Fujimoto, S. Nagai, B. M. Nguyen, H. Fujimoto "Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones" <i>in IEEE IECON 2023 The 49th Annual Conference of the IEEE Industrial Electronics Society</i>, Singapore, 2023 (発表予定)</li>
+            <li><u>K. Fujimoto</u>, T. Hamada and H. Fujimoto, "Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System," <i>in IEEE 2022 Wireless Power Week (WPW)</i>, Bordeaux, France, 2022, pp. 235-239, doi: 10.1109/WPW54272.2022.9854039.</li>
+            <li><u>K. Fujimoto</u>, S. Nagai, B. M. Nguyen, H. Fujimoto, "Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones," <i>in IEEE IECON 2023 The 49th Annual Conference of the IEEE Industrial Electronics Society</i>, Singapore, 2023 (発表予定).</li>
+            <li>Y. Sato, <u>K. Fujimoto</u>, R. Matsumoto, S. Nagai, B. M. Nguyen, H. Fujimoto, "Basic Study on Received Power Control of In-Flight Inductive Power Transfer for Drones by Active Rectifier Switching and Altitude Regulation," <i>in IEEE IECON 2023 The 49th Annual Conference of the IEEE Industrial Electronics Society</i>, Singapore, 2023 (発表予定).</li>
         </ul>
         <h3>国内会議（査読なし）</h3>
         <ul>
-            <li>藤本浩太 ，横田健太朗，永井栄寿，藤本博志：「飛行中ドローンへの無線電力伝送を想定した 受電コイル のピッ チ角依存の結合係数のモデル化とその検証」，電気学会産業応用部門大会，論文番号: 48 ，長岡技術科学大学，2021.</li>
-            <li>藤本浩太，清水修，藤本博志，勝谷仁，佐藤哲 ：「車両ビッグデータを活用した走行中給電への要求性能分析」，電気学会 電力技術 電力系統技術 半導体電力変換合同研究会，論文番号: SPC23140 ，沖縄，2023.</li>
-            <li>藤本浩太，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系機構における基礎検討」，電気学会 産業応用部門 メカトロニクス制御研究会，論文番号: MEC23011，東京，2023</li>
+            <li><u>藤本浩太</u> ，横田健太朗，永井栄寿，藤本博志：「飛行中ドローンへの無線電力伝送を想定した 受電コイル のピッ チ角依存の結合係数のモデル化とその検証」，電気学会産業応用部門大会，論文番号: 48 ，長岡技術科学大学，2021.</li>
+            <li><u>藤本浩太</u>，清水修，藤本博志，勝谷仁，佐藤哲 ：「車両ビッグデータを活用した走行中給電への要求性能分析」，電気学会 電力技術 電力系統技術 半導体電力変換合同研究会，論文番号: SPC23140 ，沖縄，2023.</li>
+            <li>佐藤悠介，<u>藤本浩太</u>，松本諒，永井栄寿，グエンビンミン，藤本博志 ：「ドローンへの飛行中非接触給電における飛行高度とバッテリ電流の制御に関する基礎検討」，電気学会 電力技術 電力系統技術 半導体電力変換合同研究会，論文番号: SPC23141 ，沖縄，2023.</li>
+            <li><u>藤本浩太</u>，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系機構における基礎検討」，電気学会 産業応用部門 メカトロニクス制御研究会，論文番号: MEC23011，東京，2023.</li>
         </ul>
+        
         <h3>受賞</h3>
         <ul>
             <li>2021年度電気学会産業応用部門大会優秀論文発表賞</li>
@@ -65,7 +66,7 @@
         </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="fade-in">
         <h2>連絡先</h2>
         <p>Email: fujimoto.kota21 [at] ae.u-tokyo.ac.jp</p>
     </section>
