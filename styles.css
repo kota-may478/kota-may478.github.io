@@ -40,8 +40,8 @@ nav ul li a:hover {
 }
 
 section {
-    margin: 20px auto; /* 上下のマージンを20pxに統一 */
-    padding: 20px;
+    margin: 20px auto; 
+    padding: 20px 40px 20px 40px;  /* 上下のpaddingを20pxに統一 */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -52,6 +52,18 @@ section {
 section h2 {
     position: relative;
     display: inline-block;  /* h2要素の幅を内容に合わせる */
+    margin-top: 20px;
+}
+
+/* 共通の蛍光線のスタイル */
+section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;  /* 蛍光線の太さ */
+    background-color: #80E7E8;  /* 明るくしたTiffany Blue */
+    z-index: -1;  /* テキストの下に表示 */
 }
 
 /* 日本語版の蛍光線の位置 */
@@ -64,15 +76,26 @@ section h2 {
     bottom: 1px;  /* 英語版の位置調整（例として4pxに設定。必要に応じて調整してください） */
 }
 
-/* 共通の蛍光線のスタイル */
-section h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 6px;  /* 蛍光線の太さ */
-    background-color: #80E7E8;  /* 明るくしたTiffany Blue */
-    z-index: -1;  /* テキストの下に表示 */
+section#contact h2 {
+    margin-bottom: 20px; /* この値は例です。実際の値はデザインや他の要素のマージンに応じて調整してください。 */
+}
+
+.contact-icons {
+    margin-bottom: 20px; /* h2の下マージンと同じ値を指定して、セクションの下のマージンと揃える */
+}
+
+section h3 {
+    margin: 0;
+}
+
+section p {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;  /* h2の下のマージンと一致させるために20pxを指定 */
+}
+
+section ul:last-of-type {
+    margin-bottom: 20px; /* 最後のulの下マージンをh2の上マージンと同じにする */
 }
 
 footer {
@@ -138,3 +161,8 @@ header button:hover {
     visibility: visible;
 }
 
+.contact-icons {
+    display: flex;
+    gap: 20px; /* アイコン間のスペース */
+    justify-content: center; /* アイコンをセンタリング */
+}
