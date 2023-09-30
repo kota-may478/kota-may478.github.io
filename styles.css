@@ -13,7 +13,9 @@ header {
 }
 
 header h1 {
-    margin: 0;                     /* ヘッダー内のh1要素の外側の余白を0に設定 */
+    height: 50px; /* 例として50pxを指定していますが、実際の値は適切に調整してください */
+    line-height: 50px; /* heightと同じ値を指定してテキストを中央に配置 */
+    margin: 0; /* 余分なマージンを削除 */
 }
 
 nav ul {
