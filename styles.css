@@ -144,7 +144,7 @@ header button:hover {
 .profile-image {
     height: 150px;  /* 高さを150pxに固定 */
     display: block;
-    margin-right: 20px;
+    margin-right: 30px;
     object-fit: cover;  /* 画像のアスペクト比を保ちつつ、指定されたサイズに収める */
 }
 
@@ -165,4 +165,9 @@ header button:hover {
     display: flex;
     gap: 20px; /* アイコン間のスペース */
     justify-content: center; /* アイコンをセンタリング */
+}
+
+.no-bullet {
+    list-style-type: none;
+    padding-left: 0;
 }
