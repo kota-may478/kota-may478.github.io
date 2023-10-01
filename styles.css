@@ -192,8 +192,8 @@ header button:hover {
 #slide-menu {
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 300px;
+    right: -230px;
+    width: 230px;
     height: 100vh;
     background-color: #333;
     transition: right 0.3s;

@@ -58,7 +58,7 @@ function openSlideMenu() {
 }
 
 function closeSlideMenu(callback) {
-    document.getElementById('slide-menu').style.right = '-300px';
+    document.getElementById('slide-menu').style.right = '-230px';
     document.getElementById('overlay').style.display = 'none';
     // openedクラスを削除
     document.getElementById('slide-menu').classList.remove('opened');
