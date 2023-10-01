@@ -62,3 +62,13 @@ document.getElementById('hamburger-icon').addEventListener('click', function() {
 
 // メニューを閉じるボタンのクリックイベント
 document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
+
+function navigateAndClose(sectionId) {
+    closeSlideMenu(); // メニュータブを閉じる
+    setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' }); // smoothオプションを使用してスムーズなスクロールを実現
+        }
+    }, 300); // 300msの遅延を追加して、メニュータブが完全に閉じられた後にスクロールするようにします
+}
