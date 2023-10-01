@@ -5,11 +5,12 @@ function navigateTo(sectionId) {
     }
 }
 
-function toggleLanguage(currentLang) {
-    if (currentLang === 'en') {
-        window.location.href = 'index.html';
+function toggleLanguage() {
+    const currentURL = window.location.href;
+    if (currentURL.includes('index_en.html')) {
+        window.location.href = 'index.html'; // 日本語のページにリダイレクト
     } else {
-        window.location.href = 'index_en.html';
+        window.location.href = 'index_en.html'; // 英語のページにリダイレクト
     }
 }
 
@@ -28,24 +29,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
+
+    const menuOverlay = document.getElementById('overlay');
+
+    // メニュー以外の部分をクリックしたときの処理
+    menuOverlay.addEventListener("click", closeSlideMenu);
 });
 
-document.getElementById('menuButton').addEventListener('click', function() {
-    var menuContent = document.getElementById('menuContent');
-    if (menuContent.classList.contains('hidden')) {
-        menuContent.classList.remove('hidden');
-        menuContent.classList.add('open');
-    } else {
-        menuContent.classList.remove('open');
-        menuContent.classList.add('hidden');
-    }
-});
-
-function toggleMenu() {
-    const menuContent = document.getElementById('menuContent');
-    if (menuContent.style.right === '0px') {
-        menuContent.style.right = '-300px';
-    } else {
-        menuContent.style.right = '0px';
-    }
+function openSlideMenu() {
+    document.getElementById('slide-menu').style.right = '0';
+    document.getElementById('overlay').style.display = 'block';
+    // openedクラスを追加
+    document.getElementById('slide-menu').classList.add('opened');
 }
+
+function closeSlideMenu() {
+    document.getElementById('slide-menu').style.right = '-300px';
+    document.getElementById('overlay').style.display = 'none';
+    // openedクラスを削除
+    document.getElementById('slide-menu').classList.remove('opened');
+}
+
+// ハンバーガーアイコンをクリックしたときの動作
+document.getElementById('hamburger-icon').addEventListener('click', function() {
+    const menu = document.getElementById('slide-menu');
+    if (menu.style.right === '0px') {
+        closeSlideMenu();
+    } else {
+        openSlideMenu();
+    }
+});
+
+// メニューを閉じるボタンのクリックイベント
+document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);

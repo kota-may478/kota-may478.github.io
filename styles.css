@@ -1,47 +1,48 @@
 body {
-    font-family: Arial, sans-serif; /* ページ全体のフォントをArialまたはsans-serifに設定 */
-    margin: 0;                      /* ページ全体の外側の余白を0に設定 */
-    padding: 0;                     /* ページ全体の内側の余白を0に設定 */
-    background-color: #f4f4f4;     /* ページ全体の背景色を#f4f4f4に設定 */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #333;        /* ヘッダーの背景色を#333に設定 */
-    color: #fff;                   /* ヘッダー内のテキストの色を白に設定 */
-    text-align: center;            /* ヘッダー内のテキストを中央揃えに設定 */
-    padding: 1rem 0 0 0; /* 上側に1rem、右側と左側に0、下側に0の余白を設定 */
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0 0 0;
 }
 
 header h1 {
-    height: 50px; /* 例として50pxを指定していますが、実際の値は適切に調整してください */
-    line-height: 50px; /* heightと同じ値を指定してテキストを中央に配置 */
-    margin: 0; /* 余分なマージンを削除 */
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
 }
 
 nav ul {
-    padding: 0;                    /* ナビゲーション内のul要素の内側の余白を0に設定 */
-    list-style-type: none;         /* ナビゲーション内のul要素のリストマーカーを非表示に設定 */
-    overflow: hidden;              /* ナビゲーション内のul要素のオーバーフローを非表示に設定 */
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
 }
 
 nav ul li {
-    display: inline;               /* ナビゲーション内のli要素をインライン要素として表示 */
-    margin-right: -5px;            /* ナビゲーション内のli要素の右側に20pxの外側の余白を設定 */
+    display: inline;
+    margin-right: -5px;
 }
 
 nav ul li a {
-    text-decoration: none;         /* ナビゲーション内のa要素の下線を非表示に設定 */
-    color: #fff;                   /* ナビゲーション内のa要素のテキストの色を白に設定 */
-    transition: color 0.3s;        /* ナビゲーション内のa要素の色の変化を0.3秒で遷移させる */
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ddd;                   /* ナビゲーション内のa要素にマウスを乗せたときのテキストの色を#dddに設定 */
+    color: #ddd;
 }
 
 section {
-    margin: 20px auto; 
-    padding: 20px 40px 20px 40px;  /* 上下のpaddingを20pxに統一 */
+    margin: 20px auto;
+    padding: 20px 40px 20px 40px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -51,37 +52,34 @@ section {
 
 section h2 {
     position: relative;
-    display: inline-block;  /* h2要素の幅を内容に合わせる */
+    display: inline-block;
     margin-top: 20px;
 }
 
-/* 共通の蛍光線のスタイル */
 section h2::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    height: 6px;  /* 蛍光線の太さ */
-    background-color: #80E7E8;  /* 明るくしたTiffany Blue */
-    z-index: -1;  /* テキストの下に表示 */
+    height: 6px;
+    background-color: #80E7E8;
+    z-index: -1;
 }
 
-/* 日本語版の蛍光線の位置 */
 .lang-ja section h2::after {
-    bottom: 5px;  /* 文字の少し上から開始 */
+    bottom: 5px;
 }
 
-/* 英語版の蛍光線の位置 */
 .lang-en section h2::after {
-    bottom: 1px;  /* 英語版の位置調整（例として4pxに設定。必要に応じて調整してください） */
+    bottom: 1px;
 }
 
 section#contact h2 {
-    margin-bottom: 20px; /* この値は例です。実際の値はデザインや他の要素のマージンに応じて調整してください。 */
+    margin-bottom: 20px;
 }
 
 .contact-icons {
-    margin-bottom: 20px; /* h2の下マージンと同じ値を指定して、セクションの下のマージンと揃える */
+    margin-bottom: 20px;
 }
 
 section h3 {
@@ -91,61 +89,60 @@ section h3 {
 section p {
     margin: 0;
     margin-top: 20px;
-    margin-bottom: 20px;  /* h2の下のマージンと一致させるために20pxを指定 */
+    margin-bottom: 20px;
 }
 
 section ul:last-of-type {
-    margin-bottom: 20px; /* 最後のulの下マージンをh2の上マージンと同じにする */
+    margin-bottom: 20px;
 }
 
 footer {
-    text-align: center;            /* フッター内のテキストを中央揃えに設定 */
-    padding: 1rem 0;               /* フッターの上下に1remの内側の余白を設定 */
-    background-color: #333;       /* フッターの背景色を#333に設定 */
-    color: #fff;                   /* フッター内のテキストの色を白に設定 */
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
 }
 
 nav ul li button {
-    background-color: #333;       /* ナビゲーション内のボタンの背景色を#333に設定 */
-    color: #fff;                   /* ナビゲーション内のボタンのテキストの色を白に設定 */
-    border: none;                  /* ナビゲーション内のボタンの境界線を非表示に設定 */
-    height: 40px; /* ボタンの高さを40pxに固定 */
-    padding: 10px 20px;            /* ナビゲーション内のボタンの内側の余白を上下10px、左右20pxに設定 */
-    cursor: pointer;               /* ナビゲーション内のボタンのカーソルをポインタに設定 */
-    transition: background-color 0.3s; /* ナビゲーション内のボタンの背景色の変化を0.3秒で遷移させる */
+    background-color: #333;
+    color: #fff;
+    border: none;
+    height: 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 nav ul li button:hover {
-    background-color: #555;       /* ナビゲーション内のボタンにマウスを乗せたときの背景色を#555に設定 */
+    background-color: #555;
 }
 
 header button {
-    margin-top: 0px;              /* ヘッダー内のボタンの上側に10pxの外側の余白を設定 */
-    margin-bottom: 0;              /* ヘッダー内のボタンの下側の外側の余白を0に設定 */
-    background-color: #555;       /* ヘッダー内のボタンの背景色を#555に設定 */
-    color: #fff;                   /* ヘッダー内のボタンのテキストの色を白に設定 */
-    border: none;                  /* ヘッダー内のボタンの境界線を非表示に設定 */
-    padding: 5px 10px;             /* ヘッダー内のボタンの内側の余白を上下5px、左右10pxに設定 */
-    cursor: pointer;               /* ヘッダー内のボタンのカーソルをポインタに設定 */
-    transition: background-color 0.3s; /* ヘッダー内のボタンの背景色の変化を0.3秒で遷移させる */
+    margin-top: 0px;
+    margin-bottom: 0;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 header button:hover {
-    background-color: #777;       /* ヘッダー内のボタンにマウスを乗せたときの背景色を#777に設定 */
+    background-color: #777;
 }
 
 .profile-container {
     display: flex;
-    align-items: center; /* 中央揃え */
-    justify-content: flex-start;
-    margin-bottom: 20px; /* 写真の下端からsectionタブの下端のマージンを20pxに設定 */
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile-image {
-    height: 150px;  /* 高さを150pxに固定 */
+    height: 150px;
     display: block;
     margin-right: 30px;
-    object-fit: cover;  /* 画像のアスペクト比を保ちつつ、指定されたサイズに収める */
+    object-fit: cover;
 }
 
 .fade-in {
@@ -163,8 +160,8 @@ header button:hover {
 
 .contact-icons {
     display: flex;
-    gap: 20px; /* アイコン間のスペース */
-    justify-content: center; /* アイコンをセンタリング */
+    gap: 20px;
+    justify-content: center;
 }
 
 .no-bullet {
@@ -172,57 +169,113 @@ header button:hover {
     padding-left: 0;
 }
 
-/* デフォルトではメニュータブを非表示に */
-#menuContent {
+#hamburger-icon {
     display: none;
-}
-
-/* スマホの画面サイズのときのみメニューボタンを表示 */
-@media (max-width: 768px) {
-    #menuButton {
-        display: block;
-    }
-}
-
-/* メニュータブが開かれたときのスタイル */
-#menuContent.open {
-    display: block;
-}
-
-#menuButton {
-    cursor: pointer;
-    display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
     width: 30px;
     height: 20px;
-    z-index: 1000;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
 }
 
-.bar {
-    background-color: #333;
-    height: 4px;
+#hamburger-icon > div {
     width: 100%;
+    height: 4px;
+    background-color: white;
 }
 
-#menuContent {
+#slide-menu {
     position: fixed;
     top: 0;
     right: -300px;
     width: 300px;
-    height: 100%;
-    background-color: #fff;
+    height: 100vh;
+    background-color: #333;
     transition: right 0.3s;
-    z-index: 999;
+    z-index: 9999; /* overlayよりも上に表示 */
+    padding-top: 20px;
 }
 
-#menuContent a {
+#slide-menu a {
     display: block;
-    padding: 10px 20px;
+    color: #fff;
+    height: 40px; /* 一定の高さを設定 */
+    line-height: 40px; /* テキストを中央に配置 */
     text-decoration: none;
-    color: #333;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
 }
 
-#menuContent a:hover {
-    background-color: #eee;
+#slide-menu a:hover {
+    background-color: #555;
+}
+
+#slide-menu-close {
+    position: absolute; /* 絶対位置を使用 */
+    top: calc(10px + 40px); /* メニュータブの上部のパディング + 自己紹介のリンクの半分の高さ */
+    left: -40px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10001; /* メニュータブよりも上に表示 */
+    transform: translateY(-50%); /* Y軸方向に50%移動して、バツマークの中心をブロックの中心に合わせます */
+    display: none; /* メニューが開かれていないときは非表示 */
+}
+
+#slide-menu.opened #slide-menu-close {
+    display: block; /* メニューが開かれたときに表示 */
+}
+
+#slide-menu-close:before, #slide-menu-close:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+}
+#slide-menu-close:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+#slide-menu-close:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    #hamburger-icon {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+/* 追加するスタイル */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: none;
+    z-index: 9998; /* メニュータブよりも下に表示 */
+}
+
+#slide-menu .close-button {
+    position: absolute;
+    left: -40px;
+    top: 10px;
+    z-index: 10000; /* メニュータブの上に表示 */
 }

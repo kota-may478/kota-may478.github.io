@@ -9,8 +9,16 @@
     <link rel="icon" href="./fig/dolphin_circle.ico" type="image/x-icon">
 </head>
 <body class="lang-ja">
+    <!-- オーバーレイ -->
+    <div id="overlay" onclick="closeSlideMenu()"></div>
     <header>
         <h1>藤本 浩太</h1>
+        <!-- ハンバーガーアイコン -->
+        <div id="hamburger-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">自己紹介</button></li>
@@ -21,20 +29,14 @@
             </ul>
         </nav>
 
-        <!-- ハンバーガーメニューアイコン -->
-        <div id="menuButton" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-
-        <!-- メニュータブの内容 -->
-        <div id="menuContent" class="hidden">
-            <a href="#self-introduction">自己紹介</a>
-            <a href="#project">プロジェクト</a>
-            <a href="#achievement">業績</a>
+        <!-- メニュー項目 -->
+        <div id="slide-menu">
+            <div id="slide-menu-close" onclick="closeSlideMenu()"></div>
+            <a href="#about">自己紹介</a>
+            <a href="#projects">プロジェクト</a>
+            <a href="#publications">業績</a>
             <a href="#contact">連絡先</a>
-            <a href="#language">Japanese/English</a>
+            <a href="javascript:toggleLanguage();">Japanese/English</a>
         </div>
 
     </header>

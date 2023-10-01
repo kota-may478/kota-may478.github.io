@@ -9,17 +9,36 @@
     <link rel="icon" href="./fig/dolphin_circle.ico" type="image/x-icon">
 </head>
 <body class="lang-en">
+    <!-- オーバーレイ -->
+    <div id="overlay" onclick="closeSlideMenu()"></div>
     <header>
         <h1>Kota Fujimoto</h1>
+        <!-- ハンバーガーアイコン -->
+        <div id="hamburger-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">About Me</button></li>
                 <li><button onclick="navigateTo('projects')">Projects</button></li>
                 <li><button onclick="navigateTo('publications')">Publications</button></li>
-                <li><button onclick="navigateTo('contact')">Contact</button></li>
+                <li><button onclick="navigateTo('contact')">Contacts</button></li>
                 <li><button onclick="toggleLanguage('en')">Japanese/English</button></li>
             </ul>
         </nav>
+
+        <!-- メニュー項目 -->
+        <div id="slide-menu">
+            <div id="slide-menu-close" onclick="closeSlideMenu()"></div>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contacts</a>
+            <a href="javascript:toggleLanguage();">Japanese/English</a>
+        </div>
+
     </header>
 
     <section id="about" class="fade-in">
