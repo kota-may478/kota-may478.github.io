@@ -11,6 +11,7 @@ header {
     color: #fff;
     text-align: center;
     padding: 1rem 0 0 0;
+    z-index: 9999;
 }
 
 header h1 {
@@ -196,7 +197,7 @@ header button:hover {
     height: 100vh;
     background-color: #333;
     transition: right 0.3s;
-    z-index: 9999; /* overlayよりも上に表示 */
+    z-index: 20000; /* overlayよりも上に表示 */
     padding-top: 20px;
 }
 
@@ -207,6 +208,7 @@ header button:hover {
     line-height: 40px; /* テキストを中央に配置 */
     text-decoration: none;
     padding: 10px 20px;
+    padding-left: 40px;
     transition: background-color 0.3s;
 }
 
@@ -221,7 +223,6 @@ header button:hover {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    z-index: 10001; /* メニュータブよりも上に表示 */
     transform: translateY(-50%); /* Y軸方向に50%移動して、バツマークの中心をブロックの中心に合わせます */
     display: none; /* メニューが開かれていないときは非表示 */
 }
@@ -258,6 +259,16 @@ header button:hover {
     header {
         padding-top: 20px;
         padding-bottom: 20px;
+        position: fixed; /* ヘッダーを固定 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影を追加して立体感を出す */
+    }
+
+    body {
+        padding-top: 70px; /* ヘッダーの高さ分だけ本文を下にずらす */
     }
 }
 
@@ -266,16 +277,15 @@ header button:hover {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10000; /* headerよりも上、menu-tabよりも下に表示 */
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.7);
     display: none;
-    z-index: 9998; /* メニュータブよりも下に表示 */
 }
 
 #slide-menu .close-button {
     position: absolute;
     left: -40px;
     top: 10px;
-    z-index: 10000; /* メニュータブの上に表示 */
 }

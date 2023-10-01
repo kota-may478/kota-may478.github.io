@@ -1,9 +1,23 @@
-function navigateTo(sectionId) {
+function navigateTo(sectionId, adjustForHeader = false) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        // ヘッダーの高さを取得
+        const headerHeight = document.querySelector("header").offsetHeight;
+
+        // 目的の遷移位置を計算
+        let scrollToPosition = section.offsetTop-10;
+        if (adjustForHeader) {
+            scrollToPosition -= headerHeight;
+        }
+
+        // その位置にスクロール
+        window.scrollTo({
+            top: scrollToPosition,
+            behavior: "smooth"
+        });
     }
 }
+
 
 function toggleLanguage() {
     const currentURL = window.location.href;
@@ -43,11 +57,12 @@ function openSlideMenu() {
     document.getElementById('slide-menu').classList.add('opened');
 }
 
-function closeSlideMenu() {
+function closeSlideMenu(callback) {
     document.getElementById('slide-menu').style.right = '-300px';
     document.getElementById('overlay').style.display = 'none';
     // openedクラスを削除
     document.getElementById('slide-menu').classList.remove('opened');
+    setTimeout(callback, 0); // 300msの遅延を追加して、メニュータブが完全に閉じられた後にコールバック関数を実行します
 }
 
 // ハンバーガーアイコンをクリックしたときの動作
@@ -64,11 +79,7 @@ document.getElementById('hamburger-icon').addEventListener('click', function() {
 document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
 
 function navigateAndClose(sectionId) {
-    closeSlideMenu(); // メニュータブを閉じる
-    setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' }); // smoothオプションを使用してスムーズなスクロールを実現
-        }
-    }, 300); // 300msの遅延を追加して、メニュータブが完全に閉じられた後にスクロールするようにします
+    closeSlideMenu(() => {
+        navigateTo(sectionId, true); // ヘッダーの高さを考慮せずに遷移
+    });
 }
