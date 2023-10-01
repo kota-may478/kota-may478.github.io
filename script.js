@@ -29,3 +29,23 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 });
+
+document.getElementById('menuButton').addEventListener('click', function() {
+    var menuContent = document.getElementById('menuContent');
+    if (menuContent.classList.contains('hidden')) {
+        menuContent.classList.remove('hidden');
+        menuContent.classList.add('open');
+    } else {
+        menuContent.classList.remove('open');
+        menuContent.classList.add('hidden');
+    }
+});
+
+function toggleMenu() {
+    const menuContent = document.getElementById('menuContent');
+    if (menuContent.style.right === '0px') {
+        menuContent.style.right = '-300px';
+    } else {
+        menuContent.style.right = '0px';
+    }
+}
