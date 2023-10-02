@@ -309,7 +309,7 @@ header button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     align-items: flex-end; /* この行を追加 */
 }
 
