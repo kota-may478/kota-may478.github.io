@@ -15,8 +15,8 @@ header {
 }
 
 header h1 {
-    height: 50px;
-    line-height: 50px;
+    height: 30px;
+    line-height: 30px;
     margin: 0;
 }
 
@@ -250,6 +250,10 @@ header button:hover {
 @media (max-width: 768px) {
     #hamburger-icon {
         display: flex;
+    }
+
+    section {
+        margin: 20px 10px;
     }
 
     nav {

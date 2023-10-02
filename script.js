@@ -18,7 +18,6 @@ function navigateTo(sectionId, adjustForHeader = false) {
     }
 }
 
-
 function toggleLanguage() {
     const currentURL = window.location.href;
     if (currentURL.includes('index_en.html')) {
@@ -48,6 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // メニュー以外の部分をクリックしたときの処理
     menuOverlay.addEventListener("click", closeSlideMenu);
+
+    // ヘッダータイトルをクリックしたときの動作
+    document.getElementById('header-title').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 });
 
 function openSlideMenu() {
