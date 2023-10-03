@@ -90,3 +90,44 @@ function navigateAndClose(sectionId) {
         navigateTo(sectionId, true); // ヘッダーの高さを考慮せずに遷移
     });
 }
+
+// script.js
+
+let startX = 0; // タッチ開始時のX座標
+let currentX = 0; // タッチ中のX座標
+const slideMenu = document.getElementById('slide-menu');
+
+slideMenu.addEventListener('touchstart', function(event) {
+    startX = event.touches[0].clientX;
+    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -230;
+}, false);
+
+slideMenu.addEventListener('touchmove', function(event) {
+    let touchX = event.touches[0].clientX;
+    let diffX = startX - touchX;
+    let newRight = currentX + diffX;
+
+    // メニュータブの位置を制限
+    if (newRight < 0) newRight = 0;
+    if (newRight > 230) newRight = 230;
+
+    slideMenu.style.right = newRight + 'px';
+}, false);
+
+slideMenu.addEventListener('touchend', function(event) {
+    // タッチ終了時のメニュータブの位置に応じて、メニュータブを開くか閉じるかを決定
+    if (parseInt(slideMenu.style.right) > 115) { // 115はメニュータブの幅の半分
+        closeSlideMenu();
+    } else {
+        openSlideMenu();
+    }
+}, false);
+
+// script.js の中で
+
+slideMenu.addEventListener('touchmove', function(event) {
+    // ... 既存のコード ...
+
+    // ×印がメニュータブに追従するようにleftプロパティを設定
+    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
+}, false);
