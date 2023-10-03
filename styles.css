@@ -135,14 +135,18 @@ header button:hover {
 
 .profile-container {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column; /* 追加: 要素を縦に並べる */
+    align-items: center; /* 追加: 要素を中央に配置 */
+    margin-bottom: 5px;
 }
 
 .profile-image {
-    height: 150px;
+    width: 330px; /* 追加: 写真の横幅を2.2倍に */
+    height: 330px; /* 変更: 写真の高さを2.2倍に */
     display: block;
-    margin-right: 30px;
+    margin-right: 0; /* 変更: 右のマージンを0に */
+    margin-top: 10px;
+    margin-bottom: 10px; /* 追加: 写真の下のマージンを追加 */
     object-fit: cover;
 }
 
@@ -299,6 +303,7 @@ header button:hover {
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .project-description {

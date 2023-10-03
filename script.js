@@ -107,11 +107,15 @@ slideMenu.addEventListener('touchmove', function(event) {
     let diffX = startX - touchX;
     let newRight = currentX + diffX;
 
-    // メニュータブの位置を制限
-    if (newRight < 0) newRight = 0;
-    if (newRight > 230) newRight = 230;
+    // 新しい右端の位置が0より大きい場合は、0に制限
+    if (newRight > 0) {
+        newRight = 0;
+    }
 
     slideMenu.style.right = newRight + 'px';
+
+    // ×印がメニュータブに追従するようにleftプロパティを設定
+    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
 }, false);
 
 slideMenu.addEventListener('touchend', function(event) {
@@ -121,13 +125,4 @@ slideMenu.addEventListener('touchend', function(event) {
     } else {
         openSlideMenu();
     }
-}, false);
-
-// script.js の中で
-
-slideMenu.addEventListener('touchmove', function(event) {
-    // ... 既存のコード ...
-
-    // ×印がメニュータブに追従するようにleftプロパティを設定
-    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
 }, false);
