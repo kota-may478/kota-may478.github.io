@@ -113,9 +113,11 @@ slideMenu.addEventListener('touchmove', function(event) {
 
     slideMenu.style.right = newRight + 'px';
 
-    // ×印がメニュータブに追従するようにleftプロパティを設定
-    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
+    // ×印がメニュータブに完全に同期して追従するようにleftプロパティを設定
+    const closeButtonLeft = parseInt(slideMenu.style.right) - 40;
+    document.getElementById('slide-menu-close').style.left = closeButtonLeft + 'px';
 }, false);
+
 
 slideMenu.addEventListener('touchend', function(event) {
     // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
