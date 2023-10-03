@@ -141,8 +141,8 @@ header button:hover {
 }
 
 .profile-image {
-    width: 330px; /* 追加: 写真の横幅を2.2倍に */
-    height: 330px; /* 変更: 写真の高さを2.2倍に */
+    width: 280px; /* 追加: 写真の横幅を2.2倍に */
+    height: 280px; /* 変更: 写真の高さを2.2倍に */
     display: block;
     margin-right: 0; /* 変更: 右のマージンを0に */
     margin-top: 10px;
