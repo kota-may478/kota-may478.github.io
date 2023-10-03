@@ -99,7 +99,7 @@ const slideMenu = document.getElementById('slide-menu');
 
 slideMenu.addEventListener('touchstart', function(event) {
     startX = event.touches[0].clientX;
-    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -230;
+    currentX = parseInt(slideMenu.style.right) || -230; // ここで整数に変換
 }, false);
 
 slideMenu.addEventListener('touchmove', function(event) {
