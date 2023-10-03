@@ -108,13 +108,13 @@ slideMenu.addEventListener('touchmove', function(event) {
     let newRight = currentX + diffX;
 
     // メニュータブの位置を制限
-    if (newRight < 0) newRight = 0;
-    if (newRight > 230) newRight = 230;
+    if (newRight < -230) newRight = -230; // メニュータブが完全に閉じる位置を指定
+    if (newRight > 0) newRight = 0; // メニュータブが完全に開く位置を指定
 
     slideMenu.style.right = newRight + 'px';
 
     // ×印がメニュータブに追従するようにleftプロパティを設定
-    document.getElementById('slide-menu-close').style.left = (-40 + 230 - newRight) + 'px';
+    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
 }, false);
 
 
