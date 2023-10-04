@@ -78,25 +78,6 @@ function openSlideMenu() {
     const closeBtn = document.getElementById('slide-menu-close');
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
-
-    // Disable the hamburger icon while the overlay is transitioning
-    document.getElementById('hamburger-icon').style.pointerEvents = 'none';
-    // Disable the close button while the menu is transitioning
-    closeBtn.style.pointerEvents = 'none';
-
-    // // Disable all links inside the slide menu while the menu is transitioning
-    // const menuLinks = document.querySelectorAll('#slide-menu a');
-    // menuLinks.forEach(link => {
-    //     link.style.pointerEvents = 'none';
-    // });
-
-    // Wait for the menu open animation to complete, then re-enable the links
-    setTimeout(() => {
-        closeBtn.style.pointerEvents = 'auto';
-        // menuLinks.forEach(link => {
-        //     link.style.pointerEvents = 'auto';
-        // });
-    }, 300); // Assuming the menu open animation duration is 300ms
 }
 
 // Function to close the slide menu
@@ -110,8 +91,6 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
         if (callback) callback(); // Execute the callback if provided
-        // Re-enable the hamburger icon after the overlay transition is complete
-        document.getElementById('hamburger-icon').style.pointerEvents = 'auto';
     }, 300); // Wait for the fade out animation to complete
 }
 
