@@ -130,7 +130,7 @@ slideMenu.addEventListener('touchstart', function(event) {
 slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
     let diffX = startX - touchX;
-    let newRight = currentX + 2*diffX;
+    let newRight = currentX + 4*diffX;
     let newLeft = currentX_Btn;  // ×ボタンの位置を更新
 
     // Restrict the position of the slide menu
