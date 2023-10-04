@@ -91,7 +91,7 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
         if (callback) callback(); // Execute the callback if provided
-    }, 100); // Wait for the fade out animation to complete
+    }, 0); // Wait for the fade out animation to complete
 }
 
 // Event listener for clicking the hamburger icon
