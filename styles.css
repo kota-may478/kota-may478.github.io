@@ -1,337 +1,136 @@
+/* Base styling for the body element */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif; /* Set the default font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #f4f4f4; /* Set background color */
 }
 
+/* Styling for the header element */
 header {
-    position: relative;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0 0 0;
-    z-index: 9999;
+    position: relative; /* Set position to relative for child absolute positioning */
+    background-color: #333; /* Set background color */
+    color: #fff; /* Set text color */
+    text-align: center; /* Center the text */
+    padding: 1rem 0 0 0; /* Set padding */
+    z-index: 9999; /* Set z-index to ensure it's on top */
 }
 
+/* Styling for the h1 element inside the header */
 header h1 {
-    height: 30px;
-    line-height: 30px;
-    margin: 0;
+    height: 30px; /* Set height */
+    line-height: 30px; /* Set line height for vertical alignment */
+    margin: 0; /* Remove default margin */
 }
 
+/* Styling for the unordered list inside the navigation */
 nav ul {
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
+    padding: 0; /* Remove default padding */
+    list-style-type: none; /* Remove bullet points */
+    overflow: hidden; /* Hide overflow content */
 }
 
+/* Styling for list items inside the navigation unordered list */
 nav ul li {
-    display: inline;
-    margin-right: -5px;
+    display: inline; /* Display list items inline */
+    margin-right: -5px; /* Set right margin */
 }
 
+/* Styling for anchor tags inside the navigation list items */
 nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s;
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* Set text color */
+    transition: color 0.3s; /* Transition effect for color change */
 }
 
+/* Styling for anchor tags inside the navigation list items on hover */
 nav ul li a:hover {
-    color: #ddd;
+    color: #ddd; /* Change text color on hover */
 }
 
+/* Base styling for section elements */
 section {
-    margin: 20px auto;
-    padding: 20px 40px 20px 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    animation: fadeIn 1.5s;
+    margin: 20px auto; /* Set margin */
+    padding: 20px 40px 20px 40px; /* Set padding */
+    background-color: #fff; /* Set background color */
+    border-radius: 10px; /* Set border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    max-width: 800px; /* Set maximum width */
+    animation: fadeIn 1.5s; /* Add fade-in animation */
 }
 
+/* Styling for h2 elements inside sections */
 section h2 {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
+    position: relative; /* Set position to relative for child absolute positioning */
+    display: inline-block; /* Display as inline-block */
+    margin-top: 20px; /* Set top margin */
 }
 
+/* Styling for the pseudo-element after h2 elements inside sections */
 section h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background-color: #80E7E8;
-    z-index: -1;
+    content: ""; /* Set content to empty */
+    position: absolute; /* Set position to absolute */
+    left: 0; /* Set left position */
+    right: 0; /* Set right position */
+    height: 6px; /* Set height */
+    background-color: #80E7E8; /* Set background color */
+    z-index: -1; /* Place it below the h2 element */
 }
 
+/* Adjust the position of the pseudo-element for Japanese language sections */
 .lang-ja section h2::after {
-    bottom: 5px;
+    bottom: 5px; /* Adjust bottom position */
 }
 
+/* Adjust the position of the pseudo-element for English language sections */
 .lang-en section h2::after {
-    bottom: 1px;
+    bottom: 1px; /* Adjust bottom position */
 }
 
+/* Styling for h2 elements inside the contact section */
 section#contact h2 {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Set bottom margin */
 }
 
+/* Base styling for contact icons */
 .contact-icons {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Set bottom margin */
 }
 
+/* Styling for h3 elements inside sections */
 section h3 {
-    margin: 0;
+    margin: 0; /* Remove default margin */
 }
 
+/* Styling for paragraph elements inside sections */
 section p {
-    margin: 0;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 0; /* Remove default margin */
+    margin-top: 20px; /* Set top margin */
+    margin-bottom: 20px; /* Set bottom margin */
 }
 
+/* Styling for the last unordered list inside sections */
 section ul:last-of-type {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Set bottom margin */
 }
 
+/* Base styling for the footer */
 footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #333;
-    color: #fff;
+    text-align: center; /* Center the text */
+    padding: 1rem 0; /* Set padding */
+    background-color: #333; /* Set background color */
+    color: #fff; /* Set text color */
 }
 
+/* Styling for buttons inside the navigation list items */
 nav ul li button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    height: 40px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #333; /* Set background color */
+    color: #fff; /* Set text color */
+    border: none; /* Remove border */
+    height: 40px; /* Set height */
+    padding: 10px 20px; /* Set padding */
+    cursor: pointer; /* Set cursor to pointer */
+    transition: background-color 0.3s; /* Transition effect for background color change */
 }
 
-nav ul li button:hover {
-    background-color: #555;
-}
-
-header button {
-    margin-top: 0px;
-    margin-bottom: 0;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-header button:hover {
-    background-color: #777;
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: column; /* 追加: 要素を縦に並べる */
-    align-items: center; /* 追加: 要素を中央に配置 */
-    margin-bottom: 5px;
-}
-
-.profile-image {
-    width: 280px; /* 追加: 写真の横幅を2.2倍に */
-    height: 280px; /* 変更: 写真の高さを2.2倍に */
-    display: block;
-    margin-right: 0; /* 変更: 右のマージンを0に */
-    margin-top: 10px;
-    margin-bottom: 10px; /* 追加: 写真の下のマージンを追加 */
-    object-fit: cover;
-}
-
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    visibility: hidden;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out;
-}
-
-.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-.contact-icons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.no-bullet {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-#hamburger-icon {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-#hamburger-icon > div {
-    width: 100%;
-    height: 4px;
-    background-color: white;
-}
-
-#slide-menu {
-    position: fixed;
-    top: 0;
-    right: -230px;
-    width: 230px;
-    height: 100vh;
-    background-color: #333;
-    transition: right 0.3s;
-    z-index: 20000; /* overlayよりも上に表示 */
-    padding-top: 20px;
-}
-
-#slide-menu a {
-    display: block;
-    color: #fff;
-    height: 40px; /* 一定の高さを設定 */
-    line-height: 40px; /* テキストを中央に配置 */
-    text-decoration: none;
-    padding: 10px 20px;
-    padding-left: 40px;
-    transition: background-color 0.3s;
-}
-
-#slide-menu a:hover {
-    background-color: #555;
-}
-
-#slide-menu-close {
-    position: absolute; /* 絶対位置を使用 */
-    top: calc(10px + 40px); /* メニュータブの上部のパディング + 自己紹介のリンクの半分の高さ */
-    left: -40px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transform: translateY(-50%); /* Y軸方向に50%移動して、バツマークの中心をブロックの中心に合わせます */
-    display: none; /* メニューが開かれていないときは非表示 */
-}
-
-#slide-menu.opened #slide-menu-close {
-    display: block; /* メニューが開かれたときに表示 */
-}
-
-#slide-menu-close:before, #slide-menu-close:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 4px;
-    background-color: #333;
-}
-#slide-menu-close:before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-#slide-menu-close:after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-@media (max-width: 768px) {
-    #hamburger-icon {
-        display: flex;
-    }
-
-    section {
-        margin: 20px 10px;
-    }
-
-    nav {
-        display: none;
-    }
-
-    header {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        position: fixed; /* ヘッダーを固定 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 9999;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影を追加して立体感を出す */
-    }
-
-    body {
-        padding-top: 70px; /* ヘッダーの高さ分だけ本文を下にずらす */
-    }
-}
-
-/* 追加するスタイル */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10000; /* headerよりも上、menu-tabよりも下に表示 */
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    display: none;
-}
-
-#slide-menu .close-button {
-    position: absolute;
-    left: -40px;
-    top: 10px;
-}
-
-.project-content {
-    display: block;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.project-description {
-    padding-bottom: 20px;
-}
-
-.project-images {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-    align-items: flex-end; /* この行を追加 */
-}
-
-.image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.image-caption {
-    text-align: center;
-    margin-top: 5px;
-}
-
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+/* Styling for buttons inside the

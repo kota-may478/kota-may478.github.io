@@ -1,100 +1,108 @@
+// Function to navigate to a specific section on the page
 function navigateTo(sectionId, adjustForHeader = false) {
+    // Get the target section by its ID
     const section = document.getElementById(sectionId);
     if (section) {
-        // ヘッダーの高さを取得
+        // Get the height of the header
         const headerHeight = document.querySelector("header").offsetHeight;
 
-        // 目的の遷移位置を計算
+        // Calculate the target scroll position
         let scrollToPosition = section.offsetTop-10;
         if (adjustForHeader) {
-            scrollToPosition -= headerHeight;
+            scrollToPosition -= headerHeight; // Adjust for header height if needed
         }
 
-        // その位置にスクロール
+        // Scroll to the target position
         window.scrollTo({
             top: scrollToPosition,
-            behavior: "smooth"
+            behavior: "smooth" // Smooth scrolling effect
         });
     }
 }
 
+// Function to toggle between Japanese and English pages
 function toggleLanguage() {
     const currentURL = window.location.href;
     if (currentURL.includes('index_en.html')) {
-        window.location.href = 'index.html'; // 日本語のページにリダイレクト
+        window.location.href = 'index.html'; // Redirect to the Japanese page
     } else {
-        window.location.href = 'index_en.html'; // 英語のページにリダイレクト
+        window.location.href = 'index_en.html'; // Redirect to the English page
     }
 }
 
+// Event listener for when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Get all sections with the 'fade-in' class
     const sections = document.querySelectorAll('.fade-in');
 
+    // Function to check if a section is visible in the viewport
     function checkVisibility() {
         const triggerBottom = window.innerHeight * 0.8;
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             if (sectionTop < triggerBottom) {
-                section.classList.add('is-visible');
+                section.classList.add('is-visible'); // Add 'is-visible' class if section is visible
             }
         });
     }
 
+    // Event listeners for scrolling
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 
     const menuOverlay = document.getElementById('overlay');
 
-    // メニュー以外の部分をクリックしたときの処理
+    // Event listener for clicking outside the menu
     menuOverlay.addEventListener("click", closeSlideMenu);
 
-    // ヘッダータイトルをクリックしたときの動作
+    // Event listener for clicking the header title
     document.getElementById('header-title').addEventListener('click', function() {
+        // Scroll to the top of the page
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: "smooth" // Smooth scrolling effect
         });
     });
 });
 
+// Function to open the slide menu
 function openSlideMenu() {
-    document.getElementById('slide-menu').style.right = '0';
-    document.getElementById('overlay').style.display = 'block';
-    // openedクラスを追加
-    document.getElementById('slide-menu').classList.add('opened');
+    document.getElementById('slide-menu').style.right = '0'; // Move the slide menu to the right
+    document.getElementById('overlay').style.display = 'block'; // Display the overlay
+    document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
 }
 
+// Function to close the slide menu
 function closeSlideMenu(callback) {
-    document.getElementById('slide-menu').style.right = '-230px';
-    document.getElementById('overlay').style.display = 'none';
-    // openedクラスを削除
-    document.getElementById('slide-menu').classList.remove('opened');
-    setTimeout(callback, 0); // 300msの遅延を追加して、メニュータブが完全に閉じられた後にコールバック関数を実行します
+    document.getElementById('slide-menu').style.right = '-230px'; // Move the slide menu to the left
+    document.getElementById('overlay').style.display = 'none'; // Hide the overlay
+    document.getElementById('slide-menu').classList.remove('opened'); // Remove 'opened' class from the slide menu
+    setTimeout(callback, 0); // Execute the callback after a short delay
 }
 
-// ハンバーガーアイコンをクリックしたときの動作
+// Event listener for clicking the hamburger icon
 document.getElementById('hamburger-icon').addEventListener('click', function() {
     const menu = document.getElementById('slide-menu');
     if (menu.style.right === '0px') {
-        closeSlideMenu();
+        closeSlideMenu(); // Close the slide menu if it's open
     } else {
-        openSlideMenu();
+        openSlideMenu(); // Open the slide menu if it's closed
     }
 });
 
-// メニューを閉じるボタンのクリックイベント
+// Event listener for clicking the close button of the slide menu
 document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
 
+// Function to navigate to a section and close the slide menu
 function navigateAndClose(sectionId) {
     closeSlideMenu(() => {
-        navigateTo(sectionId, true); // ヘッダーの高さを考慮せずに遷移
+        navigateTo(sectionId, true);
     });
 }
 
-// script.js
-
-let startX = 0; // タッチ開始時のX座標
-let currentX = 0; // タッチ中のX座標
+// Event listeners for touch interactions with the slide menu
+let startX = 0; // Initial touch X-coordinate
+let currentX = 0; // Current touch X-coordinate
 const slideMenu = document.getElementById('slide-menu');
 
 slideMenu.addEventListener('touchstart', function(event) {
@@ -107,28 +115,20 @@ slideMenu.addEventListener('touchmove', function(event) {
     let diffX = startX - touchX;
     let newRight = currentX + diffX;
 
-    // メニュータブの位置を制限
-    if (newRight < -230) newRight = -230; // メニュータブが完全に閉じる位置を指定
-    if (newRight > 0) newRight = 0; // メニュータブが完全に開く位置を指定
+    // Restrict the position of the slide menu
+    if (newRight < -230) newRight = -230;
+    if (newRight > 0) newRight = 0;
 
     slideMenu.style.right = newRight + 'px';
 
-    // ×印がメニュータブに追従するようにleftプロパティを設定
+    // Make the close button follow the slide menu
     const closeBtn = document.getElementById('slide-menu-close');
-    closeBtn.style.left = (190 + newRight) + 'px';  // 190はメニュータブの幅(230px)から×ボタンの幅(40px)を引いた値
+    closeBtn.style.left = (0 + newRight) + 'px';
 }, false);
 
-
 slideMenu.addEventListener('touchend', function(event) {
-    // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
-    closeSlideMenu();
-}, false);
-
-
-
-slideMenu.addEventListener('touchend', function(event) {
-    // タッチ終了時のメニュータブの位置に応じて、メニュータブを開くか閉じるかを決定
-    if (parseInt(slideMenu.style.right) < -115) { // 115はメニュータブの幅の半分
+    // Decide whether to open or close the slide menu based on its position
+    if (parseInt(slideMenu.style.right) < -115) {
         closeSlideMenu();
     } else {
         openSlideMenu();
