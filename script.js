@@ -83,16 +83,16 @@ function openSlideMenu() {
 // Function to close the slide menu
 function closeSlideMenu(callback) {
     document.getElementById('slide-menu').style.right = '-280px'; // Move the slide menu to the left
-    document.getElementById('overlay').style.display = 'none'; // Hide the overlay
-    document.getElementById('slide-menu').classList.remove('opened'); // Remove 'opened' class from the slide menu
-    closeBtn.style.display = 'none'; // Hide the close button
-
-    // Execute the callback immediately after starting the overlay fade-out
-    if (callback) {
-        callback();
-    }
+    const overlay = document.getElementById('overlay');
+    overlay.style.opacity = '0'; // Fade out the overlay
+    setTimeout(() => {
+        overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
+        const closeBtn = document.getElementById('slide-menu-close');
+        // closeBtn.style.left = '-40px'; // Move the close button further out of view
+        closeBtn.style.display = 'none'; // Hide the close button
+        if (callback) callback(); // Execute the callback if provided
+    }, 500); // Wait for the fade out animation to complete
 }
-
 
 // Event listener for clicking the hamburger icon
 document.getElementById('hamburger-icon').addEventListener('click', function() {
@@ -109,9 +109,8 @@ document.getElementById('slide-menu-close').addEventListener('click', closeSlide
 
 // Function to navigate to a section and close the slide menu
 function navigateAndClose(sectionId) {
-    closeSlideMenu(() => {
-        navigateTo(sectionId, true);
-    });
+    navigateTo(sectionId, true); // Navigate to the section immediately
+    closeSlideMenu(); // Close the slide menu and start fading out the overlay
 }
 
 // Event listeners for touch interactions with the slide menu
