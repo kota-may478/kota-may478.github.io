@@ -68,16 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to open the slide menu
 function openSlideMenu() {
     document.getElementById('slide-menu').style.right = '0'; // Move the slide menu to the right
-    document.getElementById('overlay').style.display = 'block'; // Display the overlay
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'block'; // Display the overlay
+    setTimeout(() => {
+        overlay.style.opacity = '1'; // Fade in the overlay
+    }, 0);
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
 }
 
 // Function to close the slide menu
 function closeSlideMenu(callback) {
     document.getElementById('slide-menu').style.right = '-230px'; // Move the slide menu to the left
-    document.getElementById('overlay').style.display = 'none'; // Hide the overlay
-    document.getElementById('slide-menu').classList.remove('opened'); // Remove 'opened' class from the slide menu
-    setTimeout(callback, 0); // Execute the callback after a short delay
+    const overlay = document.getElementById('overlay');
+    overlay.style.opacity = '0'; // Fade out the overlay
+    setTimeout(() => {
+        overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
+        if (callback) callback(); // Execute the callback if provided
+    }, 500); // Wait for the fade out animation to complete
 }
 
 // Event listener for clicking the hamburger icon
@@ -115,7 +122,7 @@ slideMenu.addEventListener('touchstart', function(event) {
 slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
     let diffX = startX - touchX;
-    let newRight = currentX + diffX;
+    let newRight = currentX + 2*diffX;
     let newLeft = currentX_Btn;  // ×ボタンの位置を更新
 
     // Restrict the position of the slide menu
@@ -149,3 +156,4 @@ slideMenu.addEventListener('touchend', function(event) {
     // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
     closeSlideMenu();
 }, false);
+
