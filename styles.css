@@ -1,136 +1,390 @@
-/* Base styling for the body element */
+/* Styling for the entire body of the webpage */
 body {
-    font-family: Arial, sans-serif; /* Set the default font */
+    font-family: Arial, sans-serif; /* Set the default font for the webpage */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
-    background-color: #f4f4f4; /* Set background color */
+    background-color: #f4f4f4; /* Set a light gray background color */
 }
 
-/* Styling for the header element */
+/* Styling for the header section */
 header {
-    position: relative; /* Set position to relative for child absolute positioning */
-    background-color: #333; /* Set background color */
-    color: #fff; /* Set text color */
-    text-align: center; /* Center the text */
-    padding: 1rem 0 0 0; /* Set padding */
-    z-index: 9999; /* Set z-index to ensure it's on top */
+    position: relative; /* Set position context for child elements */
+    background-color: #333; /* Set a dark gray background color */
+    color: #fff; /* Set text color to white */
+    text-align: center; /* Center-align the text */
+    padding: 1rem 0 0 0; /* Add padding to the top */
+    z-index: 9999; /* Ensure the header is on top of other elements */
 }
 
-/* Styling for the h1 element inside the header */
+/* Styling for the main title in the header */
 header h1 {
-    height: 30px; /* Set height */
-    line-height: 30px; /* Set line height for vertical alignment */
+    height: 30px; /* Set a fixed height */
+    line-height: 30px; /* Vertically center the text */
     margin: 0; /* Remove default margin */
 }
 
-/* Styling for the unordered list inside the navigation */
+/* Styling for the navigation list */
 nav ul {
     padding: 0; /* Remove default padding */
     list-style-type: none; /* Remove bullet points */
-    overflow: hidden; /* Hide overflow content */
+    overflow: hidden; /* Hide overflowing content */
 }
 
-/* Styling for list items inside the navigation unordered list */
+/* Styling for each list item in the navigation */
 nav ul li {
-    display: inline; /* Display list items inline */
-    margin-right: -5px; /* Set right margin */
+    display: inline; /* Display list items in a line */
+    margin-right: -5px; /* Adjust spacing between items */
 }
 
-/* Styling for anchor tags inside the navigation list items */
+/* Styling for the links in the navigation */
 nav ul li a {
-    text-decoration: none; /* Remove underline */
-    color: #fff; /* Set text color */
-    transition: color 0.3s; /* Transition effect for color change */
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Set text color to white */
+    transition: color 0.3s; /* Smooth transition for color changes */
 }
 
-/* Styling for anchor tags inside the navigation list items on hover */
+/* Styling for the links when hovered over */
 nav ul li a:hover {
-    color: #ddd; /* Change text color on hover */
+    color: #ddd; /* Change color to a lighter gray on hover */
 }
 
-/* Base styling for section elements */
+/* Styling for general sections on the webpage */
 section {
-    margin: 20px auto; /* Set margin */
-    padding: 20px 40px 20px 40px; /* Set padding */
-    background-color: #fff; /* Set background color */
-    border-radius: 10px; /* Set border radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
-    max-width: 800px; /* Set maximum width */
-    animation: fadeIn 1.5s; /* Add fade-in animation */
+    margin: 20px auto; /* Add margin to top and bottom, center horizontally */
+    padding: 20px 40px 20px 40px; /* Add padding on all sides */
+    background-color: #fff; /* Set a white background color */
+    border-radius: 10px; /* Round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    max-width: 800px; /* Limit the maximum width */
+    animation: fadeIn 1.5s; /* Apply a fade-in animation */
 }
 
-/* Styling for h2 elements inside sections */
+/* Styling for the h2 headers inside sections */
 section h2 {
-    position: relative; /* Set position to relative for child absolute positioning */
-    display: inline-block; /* Display as inline-block */
-    margin-top: 20px; /* Set top margin */
+    position: relative; /* Set position context for pseudo-elements */
+    display: inline-block; /* Allow for width to fit content */
+    margin-top: 20px; /* Add margin to the top */
 }
 
-/* Styling for the pseudo-element after h2 elements inside sections */
+/* Styling for a decorative line under h2 headers */
 section h2::after {
-    content: ""; /* Set content to empty */
-    position: absolute; /* Set position to absolute */
-    left: 0; /* Set left position */
-    right: 0; /* Set right position */
-    height: 6px; /* Set height */
-    background-color: #80E7E8; /* Set background color */
-    z-index: -1; /* Place it below the h2 element */
+    content: ""; /* Necessary for pseudo-elements */
+    position: absolute; /* Position relative to the h2 */
+    left: 0; /* Start from the left edge */
+    right: 0; /* End at the right edge */
+    height: 6px; /* Set a fixed height */
+    background-color: #80E7E8; /* Set a teal background color */
+    z-index: -1; /* Place it behind the text */
 }
 
-/* Adjust the position of the pseudo-element for Japanese language sections */
+/* Adjust the position of the decorative line for Japanese language */
 .lang-ja section h2::after {
-    bottom: 5px; /* Adjust bottom position */
+    bottom: 5px; /* Position it 5px from the bottom */
 }
 
-/* Adjust the position of the pseudo-element for English language sections */
+/* Adjust the position of the decorative line for English language */
 .lang-en section h2::after {
-    bottom: 1px; /* Adjust bottom position */
+    bottom: 1px; /* Position it 1px from the bottom */
 }
 
-/* Styling for h2 elements inside the contact section */
+/* Styling for the h2 header in the contact section */
 section#contact h2 {
-    margin-bottom: 20px; /* Set bottom margin */
+    margin-bottom: 20px; /* Add margin to the bottom */
 }
 
-/* Base styling for contact icons */
+/* Styling for the icons in the contact section */
 .contact-icons {
-    margin-bottom: 20px; /* Set bottom margin */
+    margin-bottom: 20px; /* Add margin to the bottom */
 }
 
-/* Styling for h3 elements inside sections */
+/* Styling for h3 headers inside sections */
 section h3 {
     margin: 0; /* Remove default margin */
 }
 
-/* Styling for paragraph elements inside sections */
+/* Styling for paragraphs inside sections */
 section p {
     margin: 0; /* Remove default margin */
-    margin-top: 20px; /* Set top margin */
-    margin-bottom: 20px; /* Set bottom margin */
+    margin-top: 20px; /* Add margin to the top */
+    margin-bottom: 20px; /* Add margin to the bottom */
 }
 
 /* Styling for the last unordered list inside sections */
 section ul:last-of-type {
-    margin-bottom: 20px; /* Set bottom margin */
+    margin-bottom: 20px; /* Add margin to the bottom */
 }
 
-/* Base styling for the footer */
+/* Styling for the footer */
 footer {
-    text-align: center; /* Center the text */
-    padding: 1rem 0; /* Set padding */
-    background-color: #333; /* Set background color */
-    color: #fff; /* Set text color */
+    text-align: center; /* Center-align the text */
+    padding: 1rem 0; /* Add padding to the top and bottom */
+    background-color: #333; /* Set a dark gray background color */
+    color: #fff; /* Set text color to white */
 }
 
-/* Styling for buttons inside the navigation list items */
+/* Styling for buttons inside the navigation */
 nav ul li button {
-    background-color: #333; /* Set background color */
-    color: #fff; /* Set text color */
-    border: none; /* Remove border */
-    height: 40px; /* Set height */
-    padding: 10px 20px; /* Set padding */
-    cursor: pointer; /* Set cursor to pointer */
-    transition: background-color 0.3s; /* Transition effect for background color change */
+    background-color: #333; /* Set a dark gray background color */
+    color: #fff; /* Set text color to white */
+    border: none; /* Remove borders */
+    height: 40px; /* Set a fixed height */
+    padding: 10px 20px; /* Add padding on all sides */
+    cursor: pointer; /* Change cursor to a hand when hovering */
+    transition: background-color 0.3s; /* Smooth transition for background color changes */
 }
 
-/* Styling for buttons inside the
+/* Styling for buttons inside the navigation when hovered over */
+nav ul li button:hover {
+    background-color: #555; /* Change background color to a medium gray on hover */
+}
+
+/* Styling for buttons inside the header */
+header button {
+    margin-top: 0px; /* Remove margin from the top */
+    margin-bottom: 0; /* Remove margin from the bottom */
+    background-color: #555; /* Set a medium gray background color */
+    color: #fff; /* Set text color to white */
+    border: none; /* Remove borders */
+    padding: 5px 10px; /* Add padding on all sides */
+    cursor: pointer; /* Change cursor to a hand when hovering */
+    transition: background-color 0.3s; /* Smooth transition for background color changes */
+}
+
+/* Styling for buttons inside the header when hovered over */
+header button:hover {
+    background-color: #777; /* Change background color to a lighter gray on hover */
+}
+
+/* Styling for the container holding the profile image */
+.profile-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    margin-bottom: 5px; /* Add margin to the bottom */
+}
+
+/* Styling for the profile image */
+.profile-image {
+    width: 280px; /* Set a fixed width */
+    height: 280px; /* Set a fixed height */
+    display: block; /* Display as a block element */
+    margin-right: 0; /* Remove margin from the right */
+    margin-top: 10px; /* Add margin to the top */
+    margin-bottom: 10px; /* Add margin to the bottom */
+    object-fit: cover; /* Resize image to cover the container without distortion */
+}
+
+/* Initial styling for elements that will fade in */
+.fade-in {
+    opacity: 0; /* Make it fully transparent */
+    transform: translateY(20px); /* Move it 20px down */
+    visibility: hidden; /* Hide it from view */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out; /* Smooth transitions for opacity, position, and visibility */
+}
+
+/* Styling for elements that have fully faded in */
+.is-visible {
+    opacity: 1; /* Make it fully visible */
+    transform: translateY(0); /* Reset its position */
+    visibility: visible; /* Make it visible */
+}
+
+/* Styling for the contact icons container */
+.contact-icons {
+    display: flex; /* Use flexbox for layout */
+    gap: 20px; /* Add space between children */
+    justify-content: center; /* Center children horizontally */
+}
+
+/* Styling to remove bullet points from lists */
+.no-bullet {
+    list-style-type: none; /* Remove bullet points */
+    padding-left: 0; /* Remove default padding on the left */
+}
+
+/* Styling for the hamburger menu icon (hidden by default) */
+#hamburger-icon {
+    display: none; /* Hide it by default */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Evenly space children */
+    width: 30px; /* Set a fixed width */
+    height: 20px; /* Set a fixed height */
+    cursor: pointer; /* Change cursor to a hand when hovering */
+    position: absolute; /* Position it relative to its nearest positioned ancestor */
+    top: 50%; /* Position it at the vertical center */
+    right: 20px; /* 20px from the right edge */
+    transform: translateY(-50%); /* Vertically center it */
+}
+
+/* Styling for the lines inside the hamburger icon */
+#hamburger-icon > div {
+    width: 100%; /* Take the full width of the parent */
+    height: 4px; /* Set a fixed height */
+    background-color: white; /* Set a white background color */
+}
+
+/* Styling for the slide-out menu (hidden by default) */
+#slide-menu {
+    position: fixed; /* Fix it to the viewport */
+    top: 0; /* Start from the top edge */
+    right: -230px; /* Start 230px to the right (hidden by default) */
+    width: 230px; /* Set a fixed width */
+    height: 100vh; /* Take the full height of the viewport */
+    background-color: #333; /* Set a dark gray background color */
+    transition: right 0.3s; /* Smooth transition for the right position */
+    z-index: 20000; /* Ensure it's on top of other elements */
+    padding-top: 20px; /* Add padding to the top */
+}
+
+/* Styling for the links inside the slide-out menu */
+#slide-menu a {
+    display: block; /* Display as a block element */
+    color: #fff; /* Set text color to white */
+    height: 40px; /* Set a fixed height */
+    line-height: 40px; /* Vertically center the text */
+    text-decoration: none; /* Remove underlines from links */
+    padding: 10px 20px; /* Add padding on all sides */
+    padding-left: 40px; /* Add more padding to the left */
+    transition: background-color 0.3s; /* Smooth transition for background color changes */
+}
+
+/* Styling for the links inside the slide-out menu when hovered over */
+#slide-menu a:hover {
+    background-color: #555; /* Change background color to a medium gray on hover */
+}
+
+/* Styling for the close button inside the slide-out menu */
+#slide-menu-close {
+    position: absolute; /* Position it relative to its nearest positioned ancestor */
+    top: calc(10px + 40px); /* Calculate its top position */
+    left: -40px; /* Position it 40px to the left (partially hidden) */
+    width: 30px; /* Set a fixed width */
+    height: 30px; /* Set a fixed height */
+    cursor: pointer; /* Change cursor to a hand when hovering */
+    transform: translateY(-50%); /* Vertically center it */
+    display: none; /* Hide it by default */
+}
+
+/* Display the close button when the menu is opened */
+#slide-menu.opened #slide-menu-close {
+    display: block; /* Display it as a block element */
+}
+
+/* Styling for the diagonal lines of the close button */
+#slide-menu-close:before, #slide-menu-close:after {
+    content: ''; /* Necessary for pseudo-elements */
+    position: absolute; /* Position relative to the close button */
+    top: 50%; /* Position it at the vertical center */
+    left: 50%; /* Position it at the horizontal center */
+    width: 100%; /* Take the full width of the parent */
+    height: 4px; /* Set a fixed height */
+    background-color: #333; /* Set a dark gray background color */
+}
+
+/* Rotate the first diagonal line of the close button to form an "X" */
+#slide-menu-close:before {
+    transform: translate(-50%, -50%) rotate(45deg); /* Center it and rotate it 45 degrees */
+}
+
+/* Rotate the second diagonal line of the close button to form an "X" */
+#slide-menu-close:after {
+    transform: translate(-50%, -50%) rotate(-45deg); /* Center it and rotate it -45 degrees */
+}
+
+/* Media query for screens with a maximum width of 768px (e.g., mobile devices) */
+@media (max-width: 768px) {
+    /* Display the hamburger icon on small screens */
+    #hamburger-icon {
+        display: flex; /* Display it using flexbox */
+    }
+
+    /* Adjust the margins for sections on small screens */
+    section {
+        margin: 20px 10px; /* Add margin to the top and bottom, reduce horizontal margins */
+    }
+
+    /* Hide the navigation on small screens */
+    nav {
+        display: none; /* Hide it */
+    }
+
+    /* Adjust the styling for the header on small screens */
+    header {
+        padding-top: 20px; /* Add padding to the top */
+        padding-bottom: 20px; /* Add padding to the bottom */
+        position: fixed; /* Fix it to the viewport */
+        top: 0; /* Start from the top edge */
+        left: 0; /* Start from the left edge */
+        width: 100%; /* Take the full width of the viewport */
+        z-index: 9999; /* Ensure it's on top of other elements */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    }
+
+    /* Adjust the padding for the body on small screens */
+    body {
+        padding-top: 70px; /* Add padding to the top to account for the fixed header */
+    }
+}
+
+/* Styling for an overlay (presumably used when the slide-out menu is open) */
+#overlay {
+    position: fixed; /* Fix it to the viewport */
+    top: 0; /* Start from the top edge */
+    left: 0; /* Start from the left edge */
+    z-index: 10000; /* Ensure it's below the slide-out menu but above other elements */
+    width: 100%; /* Take the full width of the viewport */
+    height: 100%; /* Take the full height of the viewport */
+    background-color: rgba(255, 255, 255, 0.7); /* Set a semi-transparent white background */
+    display: none; /* Hide it by default */
+}
+
+/* Styling for the close button inside the slide-out menu */
+#slide-menu .close-button {
+    position: absolute; /* Position it relative to its nearest positioned ancestor */
+    left: -40px; /* Position it 40px to the left (partially hidden) */
+    top: 10px; /* Position it 10px from the top */
+}
+
+/* Styling for the content of a project */
+.project-content {
+    display: block; /* Display as a block element */
+    justify-content: space-between; /* Evenly space children horizontally */
+    align-items: flex-start; /* Align children to the start vertically */
+    margin-top: 10px; /* Add margin to the top */
+    margin-bottom: 5px; /* Add margin to the bottom */
+}
+
+/* Styling for the description of a project */
+.project-description {
+    padding-bottom: 20px; /* Add padding to the bottom */
+}
+
+/* Styling for the images of a project */
+.project-images {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Stack children horizontally */
+    justify-content: center; /* Center children horizontally */
+    gap: 20px; /* Add space between children */
+    align-items: flex-end; /* Align children to the end vertically */
+}
+
+/* Styling for the container holding an image */
+.image-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    margin-bottom: 20px; /* Add margin to the bottom */
+}
+
+/* Styling for the caption of an image */
+.image-caption {
+    text-align: center; /* Center-align the text */
+    margin-top: 5px; /* Add margin to the top */
+}
+
+/* Styling to clear floats */
+.clearfix::after {
+    content: ""; /* Necessary for pseudo-elements */
+    display: table; /* Use table display */
+    clear: both; /* Clear both left and right floats */
+}
