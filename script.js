@@ -123,6 +123,7 @@ slideMenu.addEventListener('touchmove', function(event) {
     if (newRight > 0) newRight = 0;
     if (newLeft < -40) newLeft = -40;
     if (newLeft > 0) newLeft = 0;
+    if (newRight == -230) newLeft = -40;
 
     slideMenu.style.right = newRight + 'px';
     closeBtn.style.left = newLeft + 'px';
@@ -133,11 +134,16 @@ slideMenu.addEventListener('touchmove', function(event) {
 }, false);
 
 
+// slideMenu.addEventListener('touchend', function(event) {
+//     // Decide whether to open or close the slide menu based on its position
+//     if (parseInt(slideMenu.style.right) < -115) {
+//         closeSlideMenu();
+//     } else {
+//         openSlideMenu();
+//     }
+// }, false);
+
 slideMenu.addEventListener('touchend', function(event) {
-    // Decide whether to open or close the slide menu based on its position
-    if (parseInt(slideMenu.style.right) < -115) {
-        closeSlideMenu();
-    } else {
-        openSlideMenu();
-    }
+    // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
+    closeSlideMenu();
 }, false);
