@@ -151,17 +151,17 @@ slideMenu.addEventListener('touchmove', function(event) {
 }, false);
 
 
-slideMenu.addEventListener('touchend', function(event) {
-    // Decide whether to open or close the slide menu based on its position
-    if (parseInt(slideMenu.style.right) < -115) {
-        closeSlideMenu();
-    } else {
-        openSlideMenu();
-    }
-}, false);
-
 // slideMenu.addEventListener('touchend', function(event) {
-//     // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
-//     closeSlideMenu();
+//     // Decide whether to open or close the slide menu based on its position
+//     if (parseInt(slideMenu.style.right) < -115) {
+//         closeSlideMenu();
+//     } else {
+//         openSlideMenu();
+//     }
 // }, false);
+
+slideMenu.addEventListener('touchend', function(event) {
+    // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
+    closeSlideMenu();
+}, false);
 
