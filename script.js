@@ -74,6 +74,9 @@ function openSlideMenu() {
         overlay.style.opacity = '1'; // Fade in the overlay
     }, 0);
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
+
+    const closeBtn = document.getElementById('slide-menu-close');
+    closeBtn.style.display = 'block'; // Display the close button
 }
 
 // Function to close the slide menu
@@ -84,11 +87,12 @@ function closeSlideMenu(callback) {
     setTimeout(() => {
         overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
         const closeBtn = document.getElementById('slide-menu-close');
-        closeBtn.style.left = '-40px'; // Move the close button out of view
+        closeBtn.style.left = '-70px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
         if (callback) callback(); // Execute the callback if provided
     }, 500); // Wait for the fade out animation to complete
 }
+
 
 // Event listener for clicking the hamburger icon
 document.getElementById('hamburger-icon').addEventListener('click', function() {
