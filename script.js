@@ -84,18 +84,18 @@ function openSlideMenu() {
     // Disable the close button while the menu is transitioning
     closeBtn.style.pointerEvents = 'none';
 
-    // Disable all links inside the slide menu while the menu is transitioning
-    const menuLinks = document.querySelectorAll('#slide-menu a');
-    menuLinks.forEach(link => {
-        link.style.pointerEvents = 'none';
-    });
+    // // Disable all links inside the slide menu while the menu is transitioning
+    // const menuLinks = document.querySelectorAll('#slide-menu a');
+    // menuLinks.forEach(link => {
+    //     link.style.pointerEvents = 'none';
+    // });
 
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
         closeBtn.style.pointerEvents = 'auto';
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';
-        });
+        // menuLinks.forEach(link => {
+        //     link.style.pointerEvents = 'auto';
+        // });
     }, 300); // Assuming the menu open animation duration is 300ms
 }
 
