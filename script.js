@@ -85,8 +85,9 @@ function openSlideMenu() {
         link.style.pointerEvents = 'none';
     });
 
-    // Disable the hamburger icon while the menu is transitioning
-    document.getElementById('hamburger-icon').style.pointerEvents = 'none';
+    // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    hamburgerIcon.style.pointerEvents = 'none';
 
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
@@ -103,8 +104,9 @@ function closeSlideMenu(callback) {
     const overlay = document.getElementById('overlay');
     overlay.style.opacity = '0'; // Fade out the overlay
 
-    // // Disable the hamburger icon while the menu is transitioning
-    // document.getElementById('hamburger-icon').style.pointerEvents = 'none';
+    // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    hamburgerIcon.style.pointerEvents = 'none';
 
     setTimeout(() => {
         overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
@@ -112,8 +114,8 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
 
-        // Re-enable the hamburger icon after the menu close animation completes
-        document.getElementById('hamburger-icon').style.pointerEvents = 'auto';
+        // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
+        hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
     }, 300); // Wait for the fade out animation to complete
