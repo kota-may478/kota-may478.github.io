@@ -116,14 +116,16 @@ slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
     let diffX = startX - touchX;
     let newRight = currentX + diffX;
-    let newLeft = currentX_Btn;
+    let newLeft = currentX_Btn - diffX;  // ×ボタンの位置を更新
 
     // Restrict the position of the slide menu
-    if (newRight < -230) newRight = -230;
+    if (newRight < -230) {
+        newRight = -230;
+        newLeft = -40;  // メニュータブが完全に閉じる位置にある場合、×ボタンも初期位置に戻します
+    }
     if (newRight > 0) newRight = 0;
     if (newLeft < -40) newLeft = -40;
     if (newLeft > 0) newLeft = 0;
-    if (newRight == -230) newLeft = -40;
 
     slideMenu.style.right = newRight + 'px';
     closeBtn.style.left = newLeft + 'px';
