@@ -134,7 +134,9 @@ slideMenu.addEventListener('touchmove', function(event) {
     // Restrict the position of the slide menu
     if (newRight < -280) {
         newRight = -280;
-        newLeft = -90;  // メニュータブが完全に閉じる位置にある場合、×ボタンも初期位置に戻します
+    }
+    if (newLeft < -90) {
+        newLeft = -90;
     }
     if (newRight > 0) newRight = 0;
     if (newLeft > 0) newLeft = 0;
