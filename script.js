@@ -114,7 +114,8 @@ slideMenu.addEventListener('touchmove', function(event) {
     slideMenu.style.right = newRight + 'px';
 
     // ×印がメニュータブに追従するようにleftプロパティを設定
-    document.getElementById('slide-menu-close').style.left = (-40 + newRight) + 'px';
+    const closeBtn = document.getElementById('slide-menu-close');
+    closeBtn.style.left = (190 + newRight) + 'px';  // 190はメニュータブの幅(230px)から×ボタンの幅(40px)を引いた値
 }, false);
 
 
