@@ -7,7 +7,7 @@ function navigateTo(sectionId, adjustForHeader = false) {
         const headerHeight = document.querySelector("header").offsetHeight;
 
         // Calculate the target scroll position
-        let scrollToPosition = section.offsetTop-10;
+        let scrollToPosition = section.offsetTop-20;
         if (adjustForHeader) {
             scrollToPosition -= headerHeight; // Adjust for header height if needed
         }
@@ -151,17 +151,17 @@ slideMenu.addEventListener('touchmove', function(event) {
 }, false);
 
 
-// slideMenu.addEventListener('touchend', function(event) {
-//     // Decide whether to open or close the slide menu based on its position
-//     if (parseInt(slideMenu.style.right) < -115) {
-//         closeSlideMenu();
-//     } else {
-//         openSlideMenu();
-//     }
-// }, false);
-
 slideMenu.addEventListener('touchend', function(event) {
-    // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
-    closeSlideMenu();
+    // Decide whether to open or close the slide menu based on its position
+    if (parseInt(slideMenu.style.right) < -115) {
+        closeSlideMenu();
+    } else {
+        openSlideMenu();
+    }
 }, false);
+
+// slideMenu.addEventListener('touchend', function(event) {
+//     // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
+//     closeSlideMenu();
+// }, false);
 
