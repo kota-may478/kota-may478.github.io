@@ -81,12 +81,23 @@ function openSlideMenu() {
 
     // Disable the hamburger icon while the overlay is transitioning
     document.getElementById('hamburger-icon').style.pointerEvents = 'none';
-
     // Disable the close button while the menu is transitioning
     closeBtn.style.pointerEvents = 'none';
-    // Wait for the menu open animation to complete, then re-enable the close button
-    setTimeout(() => {}, 300); // Assuming the menu open animation duration is 300ms
-    closeBtn.style.pointerEvents = 'auto';
+
+    // Disable all links inside the slide menu while the menu is transitioning
+    const menuLinks = document.querySelectorAll('#slide-menu a');
+    menuLinks.forEach(link => {
+        link.style.pointerEvents = 'none';
+    });
+
+    // Wait for the menu open animation to complete, then re-enable the links
+    setTimeout(() => {
+    }, 300); // Assuming the menu open animation duration is 300ms
+    
+    button.style.pointerEvents = 'auto';
+    menuLinks.forEach(link => {
+        link.style.pointerEvents = 'auto';
+    });
 }
 
 // Function to close the slide menu
