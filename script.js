@@ -77,6 +77,7 @@ function openSlideMenu() {
 
     const closeBtn = document.getElementById('slide-menu-close');
     closeBtn.style.display = 'block'; // Display the close button
+    closeBtn.style.left = '-40px';
 }
 
 // Function to close the slide menu
@@ -87,7 +88,7 @@ function closeSlideMenu(callback) {
     setTimeout(() => {
         overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
         const closeBtn = document.getElementById('slide-menu-close');
-        closeBtn.style.left = '-70px'; // Move the close button further out of view
+        // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
         if (callback) callback(); // Execute the callback if provided
     }, 500); // Wait for the fade out animation to complete
@@ -137,9 +138,9 @@ slideMenu.addEventListener('touchmove', function(event) {
         newRight = -230;
         newLeft = -40;  // メニュータブが完全に閉じる位置にある場合、×ボタンも初期位置に戻します
     }
-    if (newRight > 0) newRight = 0;
+    if (newRight > 40) newRight = 40;
     if (newLeft < -40) newLeft = -40;
-    if (newLeft > 0) newLeft = 0;
+    if (newLeft > 40) newLeft = 40;
 
     slideMenu.style.right = newRight + 'px';
     closeBtn.style.left = newLeft + 'px';
