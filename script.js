@@ -82,7 +82,7 @@ function openSlideMenu() {
 
 // Function to close the slide menu
 function closeSlideMenu(callback) {
-    document.getElementById('slide-menu').style.right = '-230px'; // Move the slide menu to the left
+    document.getElementById('slide-menu').style.right = '-280px'; // Move the slide menu to the left
     const overlay = document.getElementById('overlay');
     overlay.style.opacity = '0'; // Fade out the overlay
     setTimeout(() => {
@@ -123,8 +123,8 @@ const closeBtn = document.getElementById('slide-menu-close');
 
 slideMenu.addEventListener('touchstart', function(event) {
     startX = event.touches[0].clientX;
-    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -230;
-    currentX_Btn = closeBtn.style.left ? parseInt(closeBtn.style.left) : -40;
+    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -280;
+    currentX_Btn = closeBtn.style.left ? parseInt(closeBtn.style.left) : -90;
 }, false);
 
 slideMenu.addEventListener('touchmove', function(event) {
@@ -134,13 +134,13 @@ slideMenu.addEventListener('touchmove', function(event) {
     let newLeft = currentX_Btn;  // ×ボタンの位置を更新
 
     // Restrict the position of the slide menu
-    if (newRight < -230) {
-        newRight = -230;
-        newLeft = -40;  // メニュータブが完全に閉じる位置にある場合、×ボタンも初期位置に戻します
+    if (newRight < -280) {
+        newRight = -280;
+        newLeft = -90;  // メニュータブが完全に閉じる位置にある場合、×ボタンも初期位置に戻します
     }
-    if (newRight > 40) newRight = 40;
-    if (newLeft < -40) newLeft = -40;
-    if (newLeft > 40) newLeft = 40;
+    if (newRight > 0) newRight = 0;
+    if (newLeft > 0) newLeft = 0;
+    // if (newLeft > 40) newLeft = 40;
 
     slideMenu.style.right = newRight + 'px';
     closeBtn.style.left = newLeft + 'px';
