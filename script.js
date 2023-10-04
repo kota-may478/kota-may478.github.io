@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for clicking outside the menu
     menuOverlay.addEventListener("click", closeSlideMenu);
+    menuOverlay.addEventListener("touchend", closeSlideMenu);
+
 
     // Event listener for clicking the header title
     document.getElementById('header-title').addEventListener('click', function() {
@@ -123,6 +125,15 @@ function closeSlideMenu(callback) {
 
 // Event listener for clicking the hamburger icon
 document.getElementById('hamburger-icon').addEventListener('click', function() {
+    const menu = document.getElementById('slide-menu');
+    if (menu.style.right === '0px') {
+        closeSlideMenu(); // Close the slide menu if it's open
+    } else {
+        openSlideMenu(); // Open the slide menu if it's closed
+    }
+});
+
+document.getElementById('hamburger-icon').addEventListener('touchend', function() {
     const menu = document.getElementById('slide-menu');
     if (menu.style.right === '0px') {
         closeSlideMenu(); // Close the slide menu if it's open
