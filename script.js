@@ -20,6 +20,8 @@ function navigateTo(sectionId, adjustForHeader = false) {
     }
 }
 
+const isTouchDevice = 'ontouchstart' in window;
+
 // Function to toggle between Japanese and English pages
 function toggleLanguage() {
     const currentURL = window.location.href;
@@ -65,6 +67,27 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: "smooth" // Smooth scrolling effect
         });
     });
+
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
+    function toggleMenu() {
+        const menu = document.getElementById('slide-menu');
+        if (menu.style.right === '0px') {
+            closeSlideMenu();
+        } else {
+            openSlideMenu();
+        }
+    }
+    
+    if (isTouchDevice) {
+        hamburgerIcon.addEventListener('touchend', function(event) {
+            event.preventDefault();
+            toggleMenu();
+        });
+    } else {
+        hamburgerIcon.addEventListener('click', toggleMenu);
+    }
+
 });
 
 // Function to open the slide menu
@@ -123,24 +146,24 @@ function closeSlideMenu(callback) {
     }, 300); // Wait for the fade out animation to complete
 }
 
-// Event listener for clicking the hamburger icon
-document.getElementById('hamburger-icon').addEventListener('click', function() {
-    const menu = document.getElementById('slide-menu');
-    if (menu.style.right === '0px') {
-        closeSlideMenu(); // Close the slide menu if it's open
-    } else {
-        openSlideMenu(); // Open the slide menu if it's closed
-    }
-});
+// // Event listener for clicking the hamburger icon
+// document.getElementById('hamburger-icon').addEventListener('click', function() {
+//     const menu = document.getElementById('slide-menu');
+//     if (menu.style.right === '0px') {
+//         closeSlideMenu(); // Close the slide menu if it's open
+//     } else {
+//         openSlideMenu(); // Open the slide menu if it's closed
+//     }
+// });
 
-document.getElementById('hamburger-icon').addEventListener('touchend', function() {
-    const menu = document.getElementById('slide-menu');
-    if (menu.style.right === '0px') {
-        closeSlideMenu(); // Close the slide menu if it's open
-    } else {
-        openSlideMenu(); // Open the slide menu if it's closed
-    }
-});
+// document.getElementById('hamburger-icon').addEventListener('touchend', function() {
+//     const menu = document.getElementById('slide-menu');
+//     if (menu.style.right === '0px') {
+//         closeSlideMenu(); // Close the slide menu if it's open
+//     } else {
+//         openSlideMenu(); // Open the slide menu if it's closed
+//     }
+// });
 
 // Event listener for clicking the close button of the slide menu
 document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
