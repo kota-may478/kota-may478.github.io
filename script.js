@@ -107,24 +107,26 @@ const slideMenu = document.getElementById('slide-menu');
 
 slideMenu.addEventListener('touchstart', function(event) {
     startX = event.touches[0].clientX;
-    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -230;
+    // 左位置を基準として初期位置を取得
+    currentX = slideMenu.style.left ? parseInt(slideMenu.style.left) : 0;
 }, false);
 
 slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
-    let diffX = startX - touchX;
-    let newRight = currentX + diffX;
+    let diffX = touchX - startX; // 左位置を基準とするので、計算を逆にします
+    let newLeft = currentX + diffX;
 
     // Restrict the position of the slide menu
-    if (newRight < -230) newRight = -230;
-    if (newRight > 0) newRight = 0;
+    if (newLeft > 230) newLeft = 230; // 230pxを超えないように制限
+    if (newLeft < 0) newLeft = 0; // 0px未満にならないように制限
 
-    slideMenu.style.right = newRight + 'px';
+    slideMenu.style.left = newLeft + 'px'; // 左位置を更新
 
     // Make the close button follow the slide menu
     const closeBtn = document.getElementById('slide-menu-close');
-    closeBtn.style.left = (0 + newRight) + 'px';
+    closeBtn.style.left = (newLeft - 40) + 'px'; // ×ボタンの位置も左基準で更新
 }, false);
+
 
 slideMenu.addEventListener('touchend', function(event) {
     // Decide whether to open or close the slide menu based on its position
