@@ -116,7 +116,7 @@ slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
     let diffX = startX - touchX;
     let newRight = currentX + diffX;
-    let newLeft = currentX_Btn + diffX;
+    let newLeft = currentX_Btn;
 
     // Restrict the position of the slide menu
     if (newRight < -230) newRight = -230;
