@@ -79,8 +79,13 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-    // Disable the hamburger icon while the overlay is transitioning
-    document.getElementById('hamburger-icon').style.pointerEvents = 'none';
+    // Disable the close button while the menu is transitioning
+    closeBtn.style.pointerEvents = 'none';
+
+    // Wait for the menu open animation to complete, then re-enable the close button
+    setTimeout(() => {
+        closeBtn.style.pointerEvents = 'auto';
+    }, 300); // Assuming the menu open animation duration is 300ms
 }
 
 // Function to close the slide menu
