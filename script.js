@@ -79,11 +79,11 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-    // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-    const menuLinks = document.querySelectorAll('#slide-menu a');
-    menuLinks.forEach(link => {
-        link.style.pointerEvents = 'none';
-    });
+    // // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    // const menuLinks = document.querySelectorAll('#slide-menu a');
+    // menuLinks.forEach(link => {
+    //     link.style.pointerEvents = 'none';
+    // });
 
     // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
     const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -91,9 +91,9 @@ function openSlideMenu() {
 
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';
-        });
+        // menuLinks.forEach(link => {
+        //     link.style.pointerEvents = 'auto';
+        // });
         hamburgerIcon.style.pointerEvents = 'auto';
     }, 300); // Assuming the menu open animation duration is 300ms
 }
