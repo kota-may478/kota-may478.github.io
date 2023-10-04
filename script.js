@@ -104,27 +104,32 @@ function navigateAndClose(sectionId) {
 let startX = 0; // Initial touch X-coordinate
 let currentX = 0; // Current touch X-coordinate
 const slideMenu = document.getElementById('slide-menu');
+const closeBtn = document.getElementById('slide-menu-close');
 
 slideMenu.addEventListener('touchstart', function(event) {
     startX = event.touches[0].clientX;
-    // 左位置を基準として初期位置を取得
-    currentX = slideMenu.style.left ? parseInt(slideMenu.style.left) : 0;
+    currentX = slideMenu.style.right ? parseInt(slideMenu.style.right) : -230;
+    currentX_Btn = closeBtn.style.left ? parseInt(closeBtn.style.left) : -40;
 }, false);
 
 slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
-    let diffX = touchX - startX; // 左位置を基準とするので、計算を逆にします
-    let newLeft = currentX + diffX;
+    let diffX = startX - touchX;
+    let newRight = currentX + diffX;
+    let newLeft = currentX_Btn + diffX;
 
     // Restrict the position of the slide menu
-    if (newLeft > 230) newLeft = 230; // 230pxを超えないように制限
-    if (newLeft < 0) newLeft = 0; // 0px未満にならないように制限
+    if (newRight < -230) newRight = -230;
+    if (newRight > 0) newRight = 0;
+    if (newLeft < -40) newLeft = -40;
+    if (newLeft > 0) newLeft = 0;
 
-    slideMenu.style.left = newLeft + 'px'; // 左位置を更新
+    slideMenu.style.right = newRight + 'px';
+    closeBtn.style.left = newLeft + 'px';
 
     // Make the close button follow the slide menu
-    const closeBtn = document.getElementById('slide-menu-close');
-    closeBtn.style.left = (newLeft - 40) + 'px'; // ×ボタンの位置も左基準で更新
+    // const closeBtn = document.getElementById('slide-menu-close');
+    // closeBtn.style.left = (0 + newRight) + 'px';
 }, false);
 
 
