@@ -80,19 +80,19 @@ function openSlideMenu() {
     closeBtn.style.left = '-40px';
 
     // Disable all links inside the slide menu while the menu is transitioning
-    const menuLinks = document.querySelectorAll('#slide-menu a');
-    menuLinks.forEach(link => {
-        link.style.pointerEvents = 'none';
-    });
+    // const menuLinks = document.querySelectorAll('#slide-menu a');
+    // menuLinks.forEach(link => {
+    //     link.style.pointerEvents = 'none';
+    // });
 
     // Disable the hamburger icon while the menu is transitioning
     document.getElementById('hamburger-icon').style.pointerEvents = 'none';
 
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';
-        });
+        // menuLinks.forEach(link => {
+        //     link.style.pointerEvents = 'auto';
+        // });
         // document.getElementById('hamburger-icon').style.pointerEvents = 'auto';
     }, 300); // Assuming the menu open animation duration is 300ms
 }
@@ -113,6 +113,9 @@ function closeSlideMenu(callback) {
         closeBtn.style.display = 'none'; // Hide the close button
         if (callback) callback(); // Execute the callback if provided
     }, 300); // Wait for the fade out animation to complete
+
+        // Re-enable the hamburger icon after the menu close animation completes
+        document.getElementById('hamburger-icon').style.pointerEvents = 'auto';
 }
 
 // Event listener for clicking the hamburger icon
