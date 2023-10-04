@@ -135,9 +135,9 @@ slideMenu.addEventListener('touchmove', function(event) {
     if (newRight < -280) {
         newRight = -280;
     }
-    if (newLeft < -90) {
-        newLeft = -90;
-    }
+    // if (newLeft < -90) {
+    //     newLeft = -90;
+    // }
     if (newRight > 0) newRight = 0;
     if (newLeft > 0) newLeft = 0;
     // if (newLeft > 40) newLeft = 40;
