@@ -85,11 +85,15 @@ function openSlideMenu() {
         link.style.pointerEvents = 'none';
     });
 
+    // Disable the hamburger icon while the menu is transitioning
+    document.getElementById('hamburger-icon').style.pointerEvents = 'none';
+
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
         menuLinks.forEach(link => {
             link.style.pointerEvents = 'auto';
         });
+        // document.getElementById('hamburger-icon').style.pointerEvents = 'auto';
     }, 300); // Assuming the menu open animation duration is 300ms
 }
 
@@ -98,6 +102,10 @@ function closeSlideMenu(callback) {
     document.getElementById('slide-menu').style.right = '-280px'; // Move the slide menu to the left
     const overlay = document.getElementById('overlay');
     overlay.style.opacity = '0'; // Fade out the overlay
+
+    // // Disable the hamburger icon while the menu is transitioning
+    // document.getElementById('hamburger-icon').style.pointerEvents = 'none';
+
     setTimeout(() => {
         overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
         const closeBtn = document.getElementById('slide-menu-close');
