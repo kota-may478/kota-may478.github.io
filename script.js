@@ -153,7 +153,7 @@ slideMenu.addEventListener('touchmove', function(event) {
 
 slideMenu.addEventListener('touchend', function(event) {
     // Decide whether to open or close the slide menu based on its position
-    if (parseInt(slideMenu.style.right) < -115) {
+    if (parseInt(slideMenu.style.right) < -50) { // center: -115
         closeSlideMenu();
     } else {
         openSlideMenu();
