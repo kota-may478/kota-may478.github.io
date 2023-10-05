@@ -26,7 +26,7 @@ function navigateAndClose(sectionId) {
     closeSlideMenu(); // Close the slide menu and start fading out the overlay
 }
 
-const isTouchDevice = 'ontouchstart' in window;
+// const isTouchDevice = 'ontouchstart' in window;
 
 // Event listener for when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -75,14 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    if (isTouchDevice) {
-        hamburgerIcon.addEventListener('touchend', function(event) {
-            event.preventDefault();
-            toggleMenu();
-        });
-    } else {
-        hamburgerIcon.addEventListener('click', toggleMenu);
-    }
+    // if (isTouchDevice) {
+    //     hamburgerIcon.addEventListener('touchend', function(event) {
+    //         event.preventDefault();
+    //         toggleMenu();
+    //     });
+    // } else {
+    //     hamburgerIcon.addEventListener('click', toggleMenu);
+    // }
 
 });
 
@@ -100,23 +100,23 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-     // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-     const menuLinks = document.querySelectorAll('#slide-menu a');
-     menuLinks.forEach(link => {
-         link.style.pointerEvents = 'none';
-     });
+    //  // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    //  const menuLinks = document.querySelectorAll('#slide-menu a');
+    //  menuLinks.forEach(link => {
+    //      link.style.pointerEvents = 'none';
+    //  });
 
-    // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    hamburgerIcon.style.pointerEvents = 'none';
+    // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+    // const hamburgerIcon = document.getElementById('hamburger-icon');
+    // hamburgerIcon.style.pointerEvents = 'none';
 
     // Wait for the menu open animation to complete, then re-enable the links
-    setTimeout(() => {
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-        });
-        hamburgerIcon.style.pointerEvents = 'auto';
-    }, 300); // Assuming the menu open animation duration is 300ms
+    // setTimeout(() => {
+    //     menuLinks.forEach(link => {
+    //         link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+    //     });
+    //     hamburgerIcon.style.pointerEvents = 'auto';
+    // }, 300); // Assuming the menu open animation duration is 300ms
 }
 
 // Function to close the slide menu
@@ -125,9 +125,9 @@ function closeSlideMenu(callback) {
     const overlay = document.getElementById('overlay');
     overlay.style.opacity = '0'; // Fade out the overlay
 
-    // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    hamburgerIcon.style.pointerEvents = 'none';
+    // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+    // const hamburgerIcon = document.getElementById('hamburger-icon');
+    // hamburgerIcon.style.pointerEvents = 'none';
 
     setTimeout(() => {
         overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
@@ -135,8 +135,8 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
 
-        // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
-        hamburgerIcon.style.pointerEvents = 'auto';
+        // // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
+        // hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
     }, 300); // Wait for the fade out animation to complete
