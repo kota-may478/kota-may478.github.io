@@ -102,20 +102,20 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-     // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-     menuLinks.forEach(link => {
-         link.style.pointerEvents = 'none';
-     });
+    //  // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    //  menuLinks.forEach(link => {
+    //      link.style.pointerEvents = 'none';
+    //  });
 
-    // Add a transitionend event listener to the slide menu
-    slideMenu.addEventListener('transitionend', function handleTransitionEnd() {
-        // Re-enable the links after the transition completes
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';
-        });
-        // Remove the event listener after it's executed once
-        slideMenu.removeEventListener('transitionend', handleTransitionEnd);
-    });
+    // // Add a transitionend event listener to the slide menu
+    // slideMenu.addEventListener('transitionend', function handleTransitionEnd() {
+    //     // Re-enable the links after the transition completes
+    //     menuLinks.forEach(link => {
+    //         link.style.pointerEvents = 'auto';
+    //     });
+    //     // Remove the event listener after it's executed once
+    //     slideMenu.removeEventListener('transitionend', handleTransitionEnd);
+    // });
 
     // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
     // const hamburgerIcon = document.getElementById('hamburger-icon');
