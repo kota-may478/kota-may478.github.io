@@ -87,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to open the slide menu
 function openSlideMenu() {
+    const slideMenu = document.getElementById('slide-menu');
+    const menuLinks = document.querySelectorAll('#slide-menu a');
+
     document.getElementById('slide-menu').style.right = '0'; // Move the slide menu to the right
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'block'; // Display the overlay
@@ -100,22 +103,31 @@ function openSlideMenu() {
     closeBtn.style.left = '-40px';
 
      // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-     const menuLinks = document.querySelectorAll('#slide-menu a');
      menuLinks.forEach(link => {
          link.style.pointerEvents = 'none';
      });
+
+    // Add a transitionend event listener to the slide menu
+    slideMenu.addEventListener('transitionend', function handleTransitionEnd() {
+        // Re-enable the links after the transition completes
+        menuLinks.forEach(link => {
+            link.style.pointerEvents = 'auto';
+        });
+        // Remove the event listener after it's executed once
+        slideMenu.removeEventListener('transitionend', handleTransitionEnd);
+    });
 
     // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
     // const hamburgerIcon = document.getElementById('hamburger-icon');
     // hamburgerIcon.style.pointerEvents = 'none';
 
     // Wait for the menu open animation to complete, then re-enable the links
-    setTimeout(() => {
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-        });
-        hamburgerIcon.style.pointerEvents = 'auto';
-    }, 300); // Assuming the menu open animation duration is 300ms
+    // setTimeout(() => {
+    //     menuLinks.forEach(link => {
+    //         link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+    //     });
+    //     hamburgerIcon.style.pointerEvents = 'auto';
+    // }, 300); // Assuming the menu open animation duration is 300ms
 }
 
 // Function to close the slide menu
