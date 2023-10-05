@@ -134,32 +134,6 @@ function openSlideMenu() {
         }, 300); // Assuming the menu open animation duration is 300ms
     }
 
-    //  // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-    //  menuLinks.forEach(link => {
-    //      link.style.pointerEvents = 'none';
-    //  });
-    
-    // // Add a transitionend event listener to the slide menu
-    // slideMenu.addEventListener('transitionend', function handleTransitionEnd() {
-    //     // Re-enable the links after the transition completes
-    //     menuLinks.forEach(link => {
-    //         link.style.pointerEvents = 'auto';
-    //     });
-    //     // Remove the event listener after it's executed once
-    //     slideMenu.removeEventListener('transitionend', handleTransitionEnd);
-    // });
-
-    // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
-    // const hamburgerIcon = document.getElementById('hamburger-icon');
-    // hamburgerIcon.style.pointerEvents = 'none';
-
-    // Wait for the menu open animation to complete, then re-enable the links
-    // setTimeout(() => {
-    //     menuLinks.forEach(link => {
-    //         link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-    //     });
-    //     hamburgerIcon.style.pointerEvents = 'auto';
-    // }, 300); // Assuming the menu open animation duration is 300ms
 }
 
 // Function to close the slide menu
@@ -185,25 +159,6 @@ function closeSlideMenu(callback) {
     }, 300); // Wait for the fade out animation to complete
 }
 
-// // Event listener for clicking the hamburger icon
-// document.getElementById('hamburger-icon').addEventListener('click', function() {
-//     const menu = document.getElementById('slide-menu');
-//     if (menu.style.right === '0px') {
-//         closeSlideMenu(); // Close the slide menu if it's open
-//     } else {
-//         openSlideMenu(); // Open the slide menu if it's closed
-//     }
-// });
-
-// document.getElementById('hamburger-icon').addEventListener('touchend', function() {
-//     const menu = document.getElementById('slide-menu');
-//     if (menu.style.right === '0px') {
-//         closeSlideMenu(); // Close the slide menu if it's open
-//     } else {
-//         openSlideMenu(); // Open the slide menu if it's closed
-//     }
-// });
-
 // Event listeners for touch interactions with the slide menu
 let startX = 0; // Initial touch X-coordinate
 let currentX = 0; // Current touch X-coordinate
@@ -226,19 +181,12 @@ slideMenu.addEventListener('touchmove', function(event) {
     if (newRight < -280) {
         newRight = -280;
     }
-    // if (newLeft < -90) {
-    //     newLeft = -90;
-    // }
     if (newRight > 0) newRight = 0;
     if (newLeft > 0) newLeft = 0;
     // if (newLeft > 40) newLeft = 40;
 
     slideMenu.style.right = newRight + 'px';
     closeBtn.style.left = newLeft + 'px';
-
-    // Make the close button follow the slide menu
-    // const closeBtn = document.getElementById('slide-menu-close');
-    // closeBtn.style.left = (0 + newRight) + 'px';
 }, false);
 
 slideMenu.addEventListener('touchend', function(event) {
