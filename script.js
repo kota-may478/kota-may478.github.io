@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMenu();
         });
     } else {
-        // hamburgerIcon.addEventListener('click', toggleMenu);
+        hamburgerIcon.addEventListener('click', toggleMenu);
     }
 
 });
@@ -103,11 +103,42 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
+    if (isTouchDevice) {
+        // Wait for the menu open animation to complete, then re-enable the links
+        setTimeout(() => {
+            // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+            menuLinks.forEach(link => {
+                link.style.pointerEvents = 'none';
+            });
+        }, 300); // Assuming the menu open animation duration is 300ms
+
+        // Wait for the menu open animation to complete, then re-enable the links
+        setTimeout(() => {
+            menuLinks.forEach(link => {
+                link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+            });
+            hamburgerIcon.style.pointerEvents = 'auto';
+        }, 300); // Assuming the menu open animation duration is 300ms
+    } else {
+        // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+        menuLinks.forEach(link => {
+            link.style.pointerEvents = 'none';
+        });
+
+        // Wait for the menu open animation to complete, then re-enable the links
+        setTimeout(() => {
+            menuLinks.forEach(link => {
+                link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+            });
+            hamburgerIcon.style.pointerEvents = 'auto';
+        }, 300); // Assuming the menu open animation duration is 300ms
+    }
+
     //  // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
     //  menuLinks.forEach(link => {
     //      link.style.pointerEvents = 'none';
     //  });
-
+    
     // // Add a transitionend event listener to the slide menu
     // slideMenu.addEventListener('transitionend', function handleTransitionEnd() {
     //     // Re-enable the links after the transition completes
