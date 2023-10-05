@@ -175,7 +175,7 @@ slideMenu.addEventListener('touchmove', function(event) {
     let touchX = event.touches[0].clientX;
     let diffX = startX - touchX;
     let newRight = currentX + 4*diffX;
-    let newLeft = currentX_Btn;  // ×ボタンの位置を更新
+    let newLeft = currentX_Btn;
 
     // Restrict the position of the slide menu
     if (newRight < -280) {
@@ -199,7 +199,6 @@ slideMenu.addEventListener('touchend', function(event) {
 }, false);
 
 // slideMenu.addEventListener('touchend', function(event) {
-//     // スワイプ動作が起こった後、指が離れるとメニュータブが閉じる
 //     closeSlideMenu();
 // }, false);
 
