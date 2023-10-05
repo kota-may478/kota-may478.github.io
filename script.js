@@ -26,6 +26,8 @@ function navigateAndClose(sectionId) {
     closeSlideMenu(); // Close the slide menu and start fading out the overlay
 }
 
+const isTouchDevice = 'ontouchstart' in window;
+
 // Event listener for when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Get all sections with the 'fade-in' class
@@ -73,14 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    const isTouchDevice = 'ontouchstart' in window;
     if (isTouchDevice) {
         hamburgerIcon.addEventListener('touchend', function(event) {
             event.preventDefault();
             toggleMenu();
         });
     } else {
-        hamburgerIcon.addEventListener('click', toggleMenu);
+        // hamburgerIcon.addEventListener('click', toggleMenu);
     }
 
 });
