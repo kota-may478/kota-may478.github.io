@@ -20,17 +20,13 @@ function navigateTo(sectionId, adjustForHeader = false) {
     }
 }
 
-const isTouchDevice = 'ontouchstart' in window;
-
-// Function to toggle between Japanese and English pages
-function toggleLanguage() {
-    const currentURL = window.location.href;
-    if (currentURL.includes('index_en.html')) {
-        window.location.href = 'index.html'; // Redirect to the Japanese page
-    } else {
-        window.location.href = 'index_en.html'; // Redirect to the English page
-    }
+// Function to navigate to a section and close the slide menu
+function navigateAndClose(sectionId) {
+    navigateTo(sectionId, true); // Navigate to the section immediately
+    closeSlideMenu(); // Close the slide menu and start fading out the overlay
 }
+
+const isTouchDevice = 'ontouchstart' in window;
 
 // Event listener for when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -56,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for clicking outside the menu
     menuOverlay.addEventListener("click", closeSlideMenu);
-    menuOverlay.addEventListener("touchend", closeSlideMenu);
+    // menuOverlay.addEventListener("touchend", closeSlideMenu);
 
 
     // Event listener for clicking the header title
@@ -117,7 +113,7 @@ function openSlideMenu() {
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
         menuLinks.forEach(link => {
-            link.style.pointerEvents = 'initial';  // Change 'auto' to 'initial'
+            link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
         });
         hamburgerIcon.style.pointerEvents = 'auto';
     }, 300); // Assuming the menu open animation duration is 300ms
@@ -165,15 +161,6 @@ function closeSlideMenu(callback) {
 //     }
 // });
 
-// Event listener for clicking the close button of the slide menu
-document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
-
-// Function to navigate to a section and close the slide menu
-function navigateAndClose(sectionId) {
-    navigateTo(sectionId, true); // Navigate to the section immediately
-    closeSlideMenu(); // Close the slide menu and start fading out the overlay
-}
-
 // Event listeners for touch interactions with the slide menu
 let startX = 0; // Initial touch X-coordinate
 let currentX = 0; // Current touch X-coordinate
@@ -211,7 +198,6 @@ slideMenu.addEventListener('touchmove', function(event) {
     // closeBtn.style.left = (0 + newRight) + 'px';
 }, false);
 
-
 slideMenu.addEventListener('touchend', function(event) {
     // Decide whether to open or close the slide menu based on its position
     if (parseInt(slideMenu.style.right) < -50) { // center: -115
@@ -226,3 +212,15 @@ slideMenu.addEventListener('touchend', function(event) {
 //     closeSlideMenu();
 // }, false);
 
+// Event listener for clicking the close button of the slide menu
+document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
+
+// Function to toggle between Japanese and English pages
+function toggleLanguage() {
+    const currentURL = window.location.href;
+    if (currentURL.includes('index_en.html')) {
+        window.location.href = 'index.html'; // Redirect to the Japanese page
+    } else {
+        window.location.href = 'index_en.html'; // Redirect to the English page
+    }
+}
