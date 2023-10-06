@@ -110,6 +110,9 @@ function openSlideMenu() {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'none';
             });
+            // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            hamburgerIcon.style.pointerEvents = 'none';
         }, 300); // Assuming the menu open animation duration is 300ms
 
         // Wait for the menu open animation to complete, then re-enable the links
@@ -152,8 +155,8 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
 
-        // // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
-        // hamburgerIcon.style.pointerEvents = 'auto';
+        // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
+        hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
     }, 300); // Wait for the fade out animation to complete
