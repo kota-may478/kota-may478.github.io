@@ -105,45 +105,45 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-    if (isTouchDevice) {
-        // Wait for the menu open animation to complete, then re-enable the links
-        setTimeout(() => {
-            // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
-            menuLinks.forEach(link => {
-                link.style.pointerEvents = 'none';
-            });
-            // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
-            // const hamburgerIcon = document.getElementById('hamburger-icon');
-            // hamburgerIcon.style.pointerEvents = 'none';
-        }, 200); // Assuming the menu open animation duration is 200ms
+    // if (isTouchDevice) {
+    //     // Wait for the menu open animation to complete, then re-enable the links
+    //     setTimeout(() => {
+    //         // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    //         menuLinks.forEach(link => {
+    //             link.style.pointerEvents = 'none';
+    //         });
+    //         // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+    //         // const hamburgerIcon = document.getElementById('hamburger-icon');
+    //         // hamburgerIcon.style.pointerEvents = 'none';
+    //     }, 200); // Assuming the menu open animation duration is 200ms
 
-        // Wait for the menu open animation to complete, then re-enable the links
-        setTimeout(() => {
-            menuLinks.forEach(link => {
-                link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-            });
-            // Event listener for clicking outside the menu
-            menuOverlay.addEventListener("click", closeSlideMenu);
-            // menuOverlay.addEventListener("touchend", closeSlideMenu);
-            // hamburgerIcon.style.pointerEvents = 'auto';
-            flag_open = 1;
-        }, 200); // Assuming the menu open animation duration is 200ms
-    } else {
-        // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    //     // Wait for the menu open animation to complete, then re-enable the links
+    //     setTimeout(() => {
+    //         menuLinks.forEach(link => {
+    //             link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+    //         });
+    //         // Event listener for clicking outside the menu
+    //         menuOverlay.addEventListener("click", closeSlideMenu);
+    //         // menuOverlay.addEventListener("touchend", closeSlideMenu);
+    //         // hamburgerIcon.style.pointerEvents = 'auto';
+    //         flag_open = 1;
+    //     }, 200); // Assuming the menu open animation duration is 200ms
+    // } else {
+    // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
+    // menuLinks.forEach(link => {
+    //     link.style.pointerEvents = 'none';
+    // });
+
+    // Wait for the menu open animation to complete, then re-enable the links
+    setTimeout(() => {
         menuLinks.forEach(link => {
-            link.style.pointerEvents = 'none';
+            link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+        // menuOverlay.addEventListener("touchend", closeSlideMenu);
         });
-
-        // Wait for the menu open animation to complete, then re-enable the links
-        setTimeout(() => {
-            menuLinks.forEach(link => {
-                link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-            // menuOverlay.addEventListener("touchend", closeSlideMenu);
-            });
-            // hamburgerIcon.style.pointerEvents = 'auto';
-            flag_open = 1;
-        }, 200); // Assuming the menu open animation duration is 200ms
-    }
+        // hamburgerIcon.style.pointerEvents = 'auto';
+        flag_open = 1;
+    }, 200); // Assuming the menu open animation duration is 200ms
+    // }
 }
 
 // Function to close the slide menu
