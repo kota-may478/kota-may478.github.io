@@ -172,6 +172,17 @@ function closeSlideMenu(callback) {
     }, 200); // Wait for the fade out animation to complete
 }
 
+slideMenu.addEventListener('transitionend', function() {
+    if (slideMenu.style.right === '0px') { // メニューが開いている場合
+        menuLinks.forEach(link => {
+            link.style.pointerEvents = 'auto';
+        });
+        // hamburgerIcon.style.pointerEvents = 'auto';
+        flag_open = 1;
+    }
+});
+
+
 // Event listeners for touch interactions with the slide menu
 let startX = 0; // Initial touch X-coordinate
 let currentX = 0; // Current touch X-coordinate
