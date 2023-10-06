@@ -105,13 +105,15 @@ function openSlideMenu() {
     closeBtn.style.display = 'block'; // Display the close button
     closeBtn.style.left = '-40px';
 
-    // Wait for the menu open animation to complete, then re-enable the links
-    setTimeout(() => {
-        // menuLinks.forEach(link => {
-        //     link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-        // });
+    // // Wait for the menu open animation to complete, then re-enable the links
+    // setTimeout(() => {
+    //     flag_open = 1;
+    // }, 200); // Assuming the menu open animation duration is 200ms
+    waitForMenuToOpen(() => {
+        // console.log("メニューが開きました！");
         flag_open = 1;
-    }, 200); // Assuming the menu open animation duration is 200ms
+        // ここにメニューが開いた後に実行したいコードを書く
+    });
 }
 
 // Function to close the slide menu
@@ -131,14 +133,12 @@ function closeSlideMenu(callback) {
     }, 200); // Wait for the fade out animation to complete
 }
 
-// slideMenu.addEventListener('transitionend', function() {
+// slideMenu.addEventListener('transitionend', function(event) {
 //     if (slideMenu.style.right === '0px') { // メニューが開いている場合
-//         menuLinks.forEach(link => {
-//             link.style.pointerEvents = 'auto';
-//         });
+//         flag_open = 1;
 //     }
+//     flag_open = 1;
 // });
-
 
 // Event listeners for touch interactions with the slide menu
 let startX = 0; // Initial touch X-coordinate
@@ -189,5 +189,18 @@ function toggleLanguage() {
         window.location.href = 'index.html'; // Redirect to the Japanese page
     } else {
         window.location.href = 'index_en.html'; // Redirect to the English page
+    }
+}
+
+function waitForMenuToOpen(callback) {
+    const slideMenu = document.getElementById('slide-menu');
+    const computedStyle = getComputedStyle(slideMenu);
+
+    if (computedStyle.right === '0px') {
+        callback();
+    } else {
+        requestAnimationFrame(() => {
+            waitForMenuToOpen(callback);
+        });
     }
 }
