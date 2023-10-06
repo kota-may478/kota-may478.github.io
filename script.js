@@ -63,10 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Event listener for clicking outside the menu
     if (flag_open === 1) {
+        // Event listener for clicking outside the menu
         menuOverlay.addEventListener("click", closeSlideMenu);
     }
+    
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
     function toggleMenu() {
@@ -180,8 +181,10 @@ slideMenu.addEventListener('touchend', function(event) {
     }
 }, false);
 
-// Event listener for clicking the close button of the slide menu
-document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
+if (flag_open === 1) {
+    // Event listener for clicking the close button of the slide menu
+    document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
+}
 
 // Function to toggle between Japanese and English pages
 function toggleLanguage() {
