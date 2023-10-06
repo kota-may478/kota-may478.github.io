@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    if (isTouchDevice) {
-        hamburgerIcon.addEventListener('touchend', function(event) {
-            event.preventDefault();
-            toggleMenu();
-        });
-    } else {
-        hamburgerIcon.addEventListener('click', toggleMenu);
-    }
+    // if (isTouchDevice) {
+    //     hamburgerIcon.addEventListener('touchend', function(event) {
+    //         event.preventDefault();
+    //         toggleMenu();
+    //     });
+    // } else {
+    hamburgerIcon.addEventListener('click', toggleMenu);
+    // }
 
 });
 
