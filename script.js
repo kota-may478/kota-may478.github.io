@@ -108,7 +108,7 @@ function openSlideMenu() {
             // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
             // const hamburgerIcon = document.getElementById('hamburger-icon');
             // hamburgerIcon.style.pointerEvents = 'none';
-        }, 300); // Assuming the menu open animation duration is 300ms
+        }, 200); // Assuming the menu open animation duration is 200ms
 
         // Wait for the menu open animation to complete, then re-enable the links
         setTimeout(() => {
@@ -119,7 +119,7 @@ function openSlideMenu() {
             menuOverlay.addEventListener("click", closeSlideMenu);
             // menuOverlay.addEventListener("touchend", closeSlideMenu);
             // hamburgerIcon.style.pointerEvents = 'auto';
-        }, 300); // Assuming the menu open animation duration is 300ms
+        }, 200); // Assuming the menu open animation duration is 200ms
     } else {
         // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
         menuLinks.forEach(link => {
@@ -135,7 +135,7 @@ function openSlideMenu() {
             // menuOverlay.addEventListener("touchend", closeSlideMenu);
             });
             // hamburgerIcon.style.pointerEvents = 'auto';
-        }, 300); // Assuming the menu open animation duration is 300ms
+        }, 200); // Assuming the menu open animation duration is 200ms
     }
 
 }
@@ -161,7 +161,7 @@ function closeSlideMenu(callback) {
         // hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
-    }, 300); // Wait for the fade out animation to complete
+    }, 200); // Wait for the fade out animation to complete
 }
 
 // Event listeners for touch interactions with the slide menu
