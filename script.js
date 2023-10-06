@@ -143,7 +143,7 @@ function openSlideMenu() {
         // hamburgerIcon.style.pointerEvents = 'auto';
         flag_open = 1;
     }, 200); // Assuming the menu open animation duration is 200ms
-    flag_open = 1;
+    // flag_open = 1;
     // }
 }
 
