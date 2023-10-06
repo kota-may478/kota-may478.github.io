@@ -64,8 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Event listener for clicking outside the menu
-    menuOverlay.addEventListener("click", closeSlideMenu);
-
+    if (flag_open === 1) {
+        menuOverlay.addEventListener("click", closeSlideMenu);
+    }
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
     function toggleMenu() {
