@@ -110,7 +110,7 @@ function openSlideMenu() {
         menuLinks.forEach(link => {
             link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
         });
-        flag_open = 1;
+        // flag_open = 1;
     }, 200); // Assuming the menu open animation duration is 200ms
 }
 
