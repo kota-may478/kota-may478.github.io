@@ -20,10 +20,14 @@ function navigateTo(sectionId, adjustForHeader = false) {
     }
 }
 
+let flag_open = 0; 
+
 // Function to navigate to a section and close the slide menu
 function navigateAndClose(sectionId) {
-    navigateTo(sectionId, true); // Navigate to the section immediately
-    closeSlideMenu(); // Close the slide menu and start fading out the overlay
+    if (flag_open === 1) {
+        navigateTo(sectionId, true); // Navigate to the section immediately
+        closeSlideMenu(); // Close the slide menu and start fading out the overlay
+    }
 }
 
 const isTouchDevice = 'ontouchstart' in window;
@@ -58,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: "smooth" // Smooth scrolling effect
         });
     });
+
+    // Event listener for clicking outside the menu
+    menuOverlay.addEventListener("click", closeSlideMenu);
 
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
@@ -119,6 +126,7 @@ function openSlideMenu() {
             menuOverlay.addEventListener("click", closeSlideMenu);
             // menuOverlay.addEventListener("touchend", closeSlideMenu);
             // hamburgerIcon.style.pointerEvents = 'auto';
+            flag_open = 1;
         }, 200); // Assuming the menu open animation duration is 200ms
     } else {
         // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
@@ -130,14 +138,12 @@ function openSlideMenu() {
         setTimeout(() => {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-            // Event listener for clicking outside the menu
-            menuOverlay.addEventListener("click", closeSlideMenu);
             // menuOverlay.addEventListener("touchend", closeSlideMenu);
             });
             // hamburgerIcon.style.pointerEvents = 'auto';
+            flag_open = 1;
         }, 200); // Assuming the menu open animation duration is 200ms
     }
-
 }
 
 // Function to close the slide menu
@@ -159,6 +165,7 @@ function closeSlideMenu(callback) {
         // // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
         // const hamburgerIcon = document.getElementById('hamburger-icon');
         // hamburgerIcon.style.pointerEvents = 'auto';
+        flag_open = 0;
 
         if (callback) callback(); // Execute the callback if provided
     }, 200); // Wait for the fade out animation to complete
