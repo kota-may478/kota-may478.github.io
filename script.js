@@ -107,10 +107,10 @@ function openSlideMenu() {
 
     // Wait for the menu open animation to complete, then re-enable the links
     setTimeout(() => {
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
-        });
-        // flag_open = 1;
+        // menuLinks.forEach(link => {
+        //     link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+        // });
+        flag_open = 1;
     }, 200); // Assuming the menu open animation duration is 200ms
 }
 
@@ -131,13 +131,13 @@ function closeSlideMenu(callback) {
     }, 200); // Wait for the fade out animation to complete
 }
 
-slideMenu.addEventListener('transitionend', function() {
-    if (slideMenu.style.right === '0px') { // メニューが開いている場合
-        menuLinks.forEach(link => {
-            link.style.pointerEvents = 'auto';
-        });
-    }
-});
+// slideMenu.addEventListener('transitionend', function() {
+//     if (slideMenu.style.right === '0px') { // メニューが開いている場合
+//         menuLinks.forEach(link => {
+//             link.style.pointerEvents = 'auto';
+//         });
+//     }
+// });
 
 
 // Event listeners for touch interactions with the slide menu
