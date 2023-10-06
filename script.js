@@ -120,7 +120,7 @@ function openSlideMenu() {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
             });
-            hamburgerIcon.style.pointerEvents = 'auto';
+            // hamburgerIcon.style.pointerEvents = 'auto';
         }, 300); // Assuming the menu open animation duration is 300ms
     } else {
         // Disable all links inside the slide menu for both mouse and touch inputs while the menu is transitioning
@@ -133,7 +133,7 @@ function openSlideMenu() {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
             });
-            hamburgerIcon.style.pointerEvents = 'auto';
+            // hamburgerIcon.style.pointerEvents = 'auto';
         }, 300); // Assuming the menu open animation duration is 300ms
     }
 
@@ -156,6 +156,7 @@ function closeSlideMenu(callback) {
         closeBtn.style.display = 'none'; // Hide the close button
 
         // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
