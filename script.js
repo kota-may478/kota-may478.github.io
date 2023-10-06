@@ -178,7 +178,7 @@ slideMenu.addEventListener('transitionend', function() {
             link.style.pointerEvents = 'auto';
         });
         // hamburgerIcon.style.pointerEvents = 'auto';
-        flag_open = 1;
+        // flag_open = 1;
     }
 });
 
