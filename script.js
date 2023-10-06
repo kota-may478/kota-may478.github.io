@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Event listener for clicking outside the menu
         menuOverlay.addEventListener("click", closeSlideMenu);
     }
-    
+
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
     function toggleMenu() {
@@ -100,7 +100,7 @@ function openSlideMenu() {
     overlay.style.display = 'block'; // Display the overlay
     setTimeout(() => {
         overlay.style.opacity = '1'; // Fade in the overlay
-    }, 0);
+    }, 200);
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
 
     const closeBtn = document.getElementById('slide-menu-close');
