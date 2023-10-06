@@ -50,11 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const menuOverlay = document.getElementById('overlay');
 
-    // Event listener for clicking outside the menu
-    menuOverlay.addEventListener("click", closeSlideMenu);
-    // menuOverlay.addEventListener("touchend", closeSlideMenu);
-
-
     // Event listener for clicking the header title
     document.getElementById('header-title').addEventListener('click', function() {
         // Scroll to the top of the page
@@ -110,9 +105,9 @@ function openSlideMenu() {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'none';
             });
-            // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
-            const hamburgerIcon = document.getElementById('hamburger-icon');
-            hamburgerIcon.style.pointerEvents = 'none';
+            // // Disable the hamburger icon for both mouse and touch inputs while the menu is transitioning
+            // const hamburgerIcon = document.getElementById('hamburger-icon');
+            // hamburgerIcon.style.pointerEvents = 'none';
         }, 300); // Assuming the menu open animation duration is 300ms
 
         // Wait for the menu open animation to complete, then re-enable the links
@@ -120,6 +115,9 @@ function openSlideMenu() {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
             });
+            // Event listener for clicking outside the menu
+            menuOverlay.addEventListener("click", closeSlideMenu);
+            // menuOverlay.addEventListener("touchend", closeSlideMenu);
             // hamburgerIcon.style.pointerEvents = 'auto';
         }, 300); // Assuming the menu open animation duration is 300ms
     } else {
@@ -132,6 +130,9 @@ function openSlideMenu() {
         setTimeout(() => {
             menuLinks.forEach(link => {
                 link.style.pointerEvents = 'auto';  // Change 'auto' to 'initial'
+            // Event listener for clicking outside the menu
+            menuOverlay.addEventListener("click", closeSlideMenu);
+            // menuOverlay.addEventListener("touchend", closeSlideMenu);
             });
             // hamburgerIcon.style.pointerEvents = 'auto';
         }, 300); // Assuming the menu open animation duration is 300ms
@@ -155,9 +156,9 @@ function closeSlideMenu(callback) {
         // closeBtn.style.left = '-40px'; // Move the close button further out of view
         closeBtn.style.display = 'none'; // Hide the close button
 
-        // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        hamburgerIcon.style.pointerEvents = 'auto';
+        // // Re-enable the hamburger icon for both mouse and touch inputs after the menu close animation completes
+        // const hamburgerIcon = document.getElementById('hamburger-icon');
+        // hamburgerIcon.style.pointerEvents = 'auto';
 
         if (callback) callback(); // Execute the callback if provided
     }, 300); // Wait for the fade out animation to complete
