@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Event listener for clicking outside the menu
         menuOverlay.addEventListener("click", closeSlideMenu);
     }
-    
+
     if (flag_open === 0) {
         const hamburgerIcon = document.getElementById('hamburger-icon');
         hamburgerIcon.addEventListener('click', toggleMenu);
@@ -136,12 +136,13 @@ function openSlideMenu() {
     const menuLinks = document.querySelectorAll('#slide-menu a');
 
     document.getElementById('slide-menu').style.right = '0'; // Move the slide menu to the right
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'block'; // Display the overlay
-    setTimeout(() => {
-        overlay.style.opacity = '1'; // Fade in the overlay
-    }, 0);
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
+    const overlay = document.getElementById('overlay');
+    overlay.style.opacity = '1'; // Fade in the overlay
+    overlay.style.display = 'block'; // Display the overlay
+    // setTimeout(() => {
+    //     overlay.style.opacity = '1'; // Fade in the overlay
+    // }, 0);
 
     const closeBtn = document.getElementById('slide-menu-close');
     closeBtn.style.display = 'block'; // Display the close button
@@ -169,10 +170,13 @@ function closeSlideMenu(callback) {
         const closeBtn = document.getElementById('slide-menu-close');
         closeBtn.style.display = 'none'; // Hide the close button
 
-        flag_open = 0;
-
         if (callback) callback(); // Execute the callback if provided
     }, 200); // Wait for the fade out animation to complete
+    waitForMenuToClose(() => {
+        // console.log("メニューが開きました！");
+        flag_open = 0;
+        // ここにメニューが開いた後に実行したいコードを書く
+    });
 }
 
 // slideMenu.addEventListener('transitionend', function(event) {
@@ -201,6 +205,19 @@ function waitForMenuToOpen(callback) {
     } else {
         requestAnimationFrame(() => {
             waitForMenuToOpen(callback);
+        });
+    }
+}
+
+function waitForMenuToClose(callback) {
+    const slideMenu = document.getElementById('slide-menu');
+    const computedStyle = getComputedStyle(slideMenu);
+
+    if (computedStyle.right === '-280px') {
+        callback();
+    } else {
+        requestAnimationFrame(() => {
+            waitForMenuToClose(callback);
         });
     }
 }
