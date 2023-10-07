@@ -100,7 +100,7 @@ function openSlideMenu() {
     overlay.style.display = 'block'; // Display the overlay
     setTimeout(() => {
         overlay.style.opacity = '1'; // Fade in the overlay
-    }, 200);
+    }, 0);
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
 
     const closeBtn = document.getElementById('slide-menu-close');
