@@ -71,10 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
     function toggleMenu() {
-        const menu = document.getElementById('slide-menu');
-        if (menu.style.right === '0px') {
-            closeSlideMenu();
-        } else {
+        // const menu = document.getElementById('slide-menu');
+        if (flag_open === 0) {
+            flag_open === 0.5
             openSlideMenu();
         }
     }
