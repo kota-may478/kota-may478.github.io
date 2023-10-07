@@ -40,10 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Event listener for clicking outside the menu
         menuOverlay.addEventListener("click", closeSlideMenu);
     }
-
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    hamburgerIcon.addEventListener('click', toggleMenu);
-
+    
+    if (flag_open === 0) {
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        hamburgerIcon.addEventListener('click', toggleMenu);
+    }
     
     // if (isTouchDevice) {
     //     hamburgerIcon.addEventListener('touchend', function(event) {
