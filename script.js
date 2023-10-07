@@ -138,11 +138,11 @@ function openSlideMenu() {
     document.getElementById('slide-menu').style.right = '0'; // Move the slide menu to the right
     document.getElementById('slide-menu').classList.add('opened'); // Add 'opened' class to the slide menu
     const overlay = document.getElementById('overlay');
-    overlay.style.opacity = '1'; // Fade in the overlay
     overlay.style.display = 'block'; // Display the overlay
-    // setTimeout(() => {
-    //     overlay.style.opacity = '1'; // Fade in the overlay
-    // }, 0);
+    // overlay.style.opacity = '1'; // Fade in the overlay
+    setTimeout(() => {
+        overlay.style.opacity = '1'; // Fade in the overlay
+    }, 0);
 
     const closeBtn = document.getElementById('slide-menu-close');
     closeBtn.style.display = 'block'; // Display the close button
@@ -163,18 +163,18 @@ function openSlideMenu() {
 function closeSlideMenu(callback) {
     document.getElementById('slide-menu').style.right = '-280px'; // Move the slide menu to the left
     const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('slide-menu-close');
     overlay.style.opacity = '0'; // Fade out the overlay
 
-    setTimeout(() => {
-        overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
-        const closeBtn = document.getElementById('slide-menu-close');
-        closeBtn.style.display = 'none'; // Hide the close button
+    // setTimeout(() => {
 
-        if (callback) callback(); // Execute the callback if provided
-    }, 200); // Wait for the fade out animation to complete
+    //     if (callback) callback(); // Execute the callback if provided
+    // }, 200); // Wait for the fade out animation to complete
     waitForMenuToClose(() => {
         // console.log("メニューが開きました！");
-        flag_open = 0;
+        flag_open = 0
+        overlay.style.display = 'none'; // Hide the overlay after it's fully faded out
+        closeBtn.style.display = 'none'; // Hide the close button
         // ここにメニューが開いた後に実行したいコードを書く
     });
 }
