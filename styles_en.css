@@ -73,7 +73,7 @@ section h2::after {
     left: 0; /* Start from the left edge */
     right: 0; /* End at the right edge */
     height: 6px; /* Set a fixed height */
-    background-color: #80E7E8; /* Set a teal background color */
+    background-color: #54dbc2; /* Set a teal background color */
     z-index: -1; /* Place it behind the text */
 }
 
