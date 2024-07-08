@@ -366,7 +366,9 @@ header button:hover {
 .project-images {
     display: flex; /* Use flexbox for layout */
     flex-direction: row; /* Stack children horizontally */
-    justify-content: center; /* Center children horizontally */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /*justify-content: center; /* Center children horizontally */
     gap: 20px; /* Add space between children */
     align-items: flex-end; /* Align children to the end vertically */
 }
