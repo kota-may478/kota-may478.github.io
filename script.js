@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if a section is visible in the viewport
     function checkVisibility() {
-        const triggerBottom = window.innerHeight * 0.8; // Calculate the trigger position for visibility check
+        const triggerBottom = window.innerHeight * 0.9; // Calculate the trigger position for visibility check
 
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top; // Get the top position of the section relative to the viewport
