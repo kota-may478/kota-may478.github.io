@@ -30,6 +30,7 @@
             <ul>
                 <li><button onclick="navigateTo('about')">About Me</button></li>
                 <li><button onclick="navigateTo('projects')">Project</button></li>
+                <li><button onclick="navigateTo('tools')">Tools</button></li>
                 <li><button onclick="navigateTo('achievements')">Achievement</button></li>
                 <li><button onclick="navigateTo('contact')">Contact</button></li>
                 <li><button onclick="toggleLanguage('en')">Japanese/English</button></li>
@@ -42,6 +43,7 @@
         <div id="slide-menu-close" onclick="closeSlideMenu()"></div>
         <a onclick="navigateAndClose('about')">About Me</a>
         <a onclick="navigateAndClose('projects')">Projects</a>
+        <a onclick="navigateAndClose('tools')">Tools</a>
         <a onclick="navigateAndClose('achievements')">Achievements</a>
         <a onclick="navigateAndClose('contact')">Contacts</a>
         <a href="javascript:toggleLanguage();">Japanese/English</a>
@@ -86,6 +88,17 @@
                     <img src="./fig/SecurityMission.svg" alt="Security Mission Image" width="200" height="auto">
                     <p class="image-caption">Fig. 2</p>
                 </div>
+        </div>
+    </section>
+
+    <section id="tools" class="fade-in">
+        <h2>Tools</h2>
+        <div class="tool-card">
+            <div class="tool-card-info">
+                <h3 class="tool-card-title">Color Explorer with Constraint</h3>
+                <p class="tool-card-description">An interactive tool to design accessible color palettes. Visually explore color combinations on an S-V map while satisfying WCAG contrast ratio requirements and color vision simulation constraints (protanopia, deuteranopia, tritanopia, achromatopsia).</p>
+            </div>
+            <a href="https://kota-may478.github.io/color-explorer-with-constraint/?lang=en" target="_blank" class="tool-card-link">Open →</a>
         </div>
     </section>
 

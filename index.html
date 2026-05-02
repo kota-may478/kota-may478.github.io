@@ -31,6 +31,7 @@
             <ul>
                 <li><button onclick="navigateTo('about')">自己紹介</button></li>
                 <li><button onclick="navigateTo('projects')">プロジェクト</button></li>
+                <li><button onclick="navigateTo('tools')">ツール</button></li>
                 <li><button onclick="navigateTo('publications')">業績</button></li>
                 <li><button onclick="navigateTo('contact')">連絡先</button></li>
                 <li><button onclick="toggleLanguage('ja')">Japanese/English</button></li>
@@ -43,6 +44,7 @@
         <div id="slide-menu-close" onclick="closeSlideMenu()"></div>
         <a onclick="navigateAndClose('about')">自己紹介</a>
         <a onclick="navigateAndClose('projects')">プロジェクト</a>
+        <a onclick="navigateAndClose('tools')">ツール</a>
         <a onclick="navigateAndClose('publications')">業績</a>
         <a onclick="navigateAndClose('contact')">連絡先</a>
         <a href="javascript:toggleLanguage();">Japanese/English</a>
@@ -93,6 +95,17 @@
             </div>
         </div>
         <!-- <h3>ドローンの研究開発環境構築のオープンソース化</h3> -->
+    </section>
+
+    <section id="tools" class="fade-in">
+        <h2>ツール</h2>
+        <div class="tool-card">
+            <div class="tool-card-info">
+                <h3 class="tool-card-title">Color Explorer with Constraint</h3>
+                <p class="tool-card-description">アクセシブルなカラーパレット設計ツール。WCAG コントラスト比と色覚シミュレーション（色盲シミュレーション）の制約を満たしながら，S-V マップ上で配色を視覚的に探索できます。</p>
+            </div>
+            <a href="https://kota-may478.github.io/color-explorer-with-constraint/?lang=ja" target="_blank" class="tool-card-link">開く →</a>
+        </div>
     </section>
 
     <section id="publications" class="fade-in">
