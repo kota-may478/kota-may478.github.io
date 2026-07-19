@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(git -C \"c:\\\\Users\\\\thewi\\\\Dropbox\\\\00_kotaprivate\\\\Website\\\\MySite\\\\kota-may478.github.io\" diff HEAD)",
+      "PowerShell(git -C \"c:\\\\Users\\\\thewi\\\\Dropbox\\\\00_kotaprivate\\\\Website\\\\MySite\\\\kota-may478.github.io\" add index.html index_en.html)",
+      "PowerShell(git -C \"c:\\\\Users\\\\thewi\\\\Dropbox\\\\00_kotaprivate\\\\Website\\\\MySite\\\\kota-may478.github.io\" push origin master)"
+    ]
+  }
+}
