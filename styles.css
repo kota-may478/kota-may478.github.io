@@ -200,7 +200,41 @@ header button:hover {
 /* Styling to remove bullet points from lists */
 .no-bullet {
     list-style-type: none; /* Remove bullet points */
-    padding-left: 0; /* Remove default padding on the left */
+    display: inline-block; /* Shrink to fit the content so it stays centered */
+    text-align: left; /* Align every line to the same left edge */
+    padding-left: 1.1em; /* Reserve room for the bullet hanging indent */
+    margin-top: 16px; /* Image margin (10px) + this = 26px gap below the photo */
+    margin-bottom: 0; /* Drop the default bottom margin */
+    line-height: 1.5; /* Fix the line spacing so every row is identical */
+}
+
+/* Keep every row's spacing identical regardless of the bullet marker */
+.no-bullet li {
+    margin: 0; /* No per-row margin; line-height alone sets the rhythm */
+}
+
+/* Bullet marker for each affiliation's job title line.
+   The row keeps the list's padding, so its text starts at the same left
+   edge as every other row; the marker is positioned into that padding. */
+.affiliation-title {
+    position: relative; /* Anchor for the absolutely positioned marker */
+}
+
+.affiliation-title::before {
+    content: "\2022"; /* Bullet character */
+    font-size: 20pt; /* Fixed bullet size */
+    position: absolute; /* Take the marker out of the line box entirely */
+    left: 0; /* Left edge of the padding the list reserved for it */
+    top: 50%; /* Center it against the row */
+    transform: translate(-100%, -50%); /* Sit left of the text, centred on it */
+    padding-right: 0.28em; /* Gap between the marker and the text */
+    line-height: 1; /* Neutral box for the centering math */
+}
+
+/* Space above the second and later affiliations.
+   Specificity must beat `.no-bullet li` (0,1,1), hence the class pair. */
+.no-bullet li.affiliation-gap {
+    margin-top: 13px; /* Half of the 26px gap between the photo and the list */
 }
 
 /* Styling for the hamburger menu icon (hidden by default) */
