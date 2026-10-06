@@ -196,8 +196,15 @@ body {
     z-index: -1;
 }
 
-/* site: .lang-en section h2::after. UI headings follow the UI language;
-   README headings follow their own text (see viewer.js). */
+/* English, as on index_en.html: styles_en.css drops the h2 padding-bottom
+   (it is commented out there) and .lang-en moves the bar to bottom: 1px.
+   UI headings follow the UI language; README headings follow their own
+   text (see viewer.js). */
+html[lang="en"] .sv-card > h2,
+.sv-readme h2.sv-latin {
+    padding-bottom: 0;
+}
+
 html[lang="en"] .sv-card > h2::after,
 .sv-readme h2.sv-latin::after {
     bottom: 1px;
