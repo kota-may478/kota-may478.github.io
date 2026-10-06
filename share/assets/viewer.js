@@ -302,14 +302,14 @@ export function startViewer({ root, source, devBanner = false }) {
     const title = el("h1", { class: "sv-title" });
     const backButton = el("button", {
         type: "button",
-        class: "sv-button",
+        class: "sv-nav-button",
         i18n: "nav.back",
         hidden: true,
         onclick: () => goBack(),
     });
     const langButton = el("button", {
         type: "button",
-        class: "sv-button",
+        class: "sv-nav-button",
         i18n: "lang.toggle",
         i18nAttr: "aria-label:lang.toggleLabel",
         onclick: () => toggleLang(),
@@ -318,10 +318,10 @@ export function startViewer({ root, source, devBanner = false }) {
 
     const views = {
         form: el("section"),
-        status: el("p", { class: "sv-status", role: "status" }),
-        dir: el("section", { class: "sv-dir" }),
+        status: el("p", { class: "sv-card sv-status", role: "status" }),
+        dir: el("section", { class: "sv-card sv-dir" }),
         kicad: el("section", { class: "sv-kicad" }),
-        readme: el("article", { class: "sv-readme" }),
+        readme: el("article", { class: "sv-card sv-readme" }),
     };
     for (const view of Object.values(views)) {
         view.hidden = true;
@@ -330,8 +330,12 @@ export function startViewer({ root, source, devBanner = false }) {
 
     const app = el("div", { class: "sv-app" }, [
         ...(devBanner ? [el("div", { class: "sv-dev-banner", i18n: "dev.banner" })] : []),
-        el("header", { class: "sv-topbar" }, [backButton, title, langButton]),
+        el("header", { class: "sv-header" }, [
+            title,
+            el("nav", {}, [el("ul", {}, [el("li", {}, [backButton]), el("li", {}, [langButton])])]),
+        ]),
         main,
+        el("footer", { class: "sv-footer" }, [el("p", { i18n: "footer.copyright" })]),
     ]);
     root.replaceChildren(app);
 
@@ -395,14 +399,14 @@ export function startViewer({ root, source, devBanner = false }) {
         });
         const submit = el("button", {
             type: "submit",
-            class: "sv-button sv-button--primary",
+            class: "sv-button",
             i18n: "form.submit",
         });
 
         const form = el(
             "form",
             {
-                class: "sv-panel",
+                class: "sv-card sv-form",
                 novalidate: true,
                 onsubmit: async (event) => {
                     event.preventDefault();
@@ -466,10 +470,11 @@ export function startViewer({ root, source, devBanner = false }) {
             el("li", {}, [
                 el("button", { type: "button", class: "sv-entry", disabled: !available, onclick }, [
                     el("span", { class: "sv-entry-icon", "aria-hidden": "true" }, [icon]),
-                    el("span", {}, [
+                    el("span", { class: "sv-entry-text" }, [
                         el("span", { class: "sv-entry-name", i18n: nameKey }),
                         el("span", { class: "sv-entry-desc", i18n: available ? descKey : "dir.unavailable" }),
                     ]),
+                    el("span", { class: "sv-entry-chevron", "aria-hidden": "true" }, ["chevron_right"]),
                 ]),
             ]);
         views.dir.replaceChildren(

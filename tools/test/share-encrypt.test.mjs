@@ -369,3 +369,39 @@ test("source paths support ~ expansion", async () => {
     assert.equal(expandUserPath("~/kicad/x"), path.join(homedir(), "kicad", "x"));
     assert.equal(expandUserPath("relative/dir"), path.resolve("relative/dir"));
 });
+
+// --- --list / URLs -------------------------------------------------------------
+
+test("--list shows name, id-based URL from CNAME and update state, never passwords", async () => {
+    const root = makeRepo();
+    put(root, "CNAME", "example.org\n");
+    const p = await registerDemo(root);
+
+    const io1 = fakeIo();
+    const s1 = await run(["--list"], { rootDir: root, io: io1 });
+    assert.deepEqual(s1.results, {}, "--list alone does not encrypt");
+    assert.ok(!existsSync(path.join(root, "share", p.id, "data.bin")));
+    assert.match(io1.text(), new RegExp(`demo\\s+https://example\\.org/share/${p.id}/\\s+\\(not encrypted yet\\)`));
+    assert.match(io1.text(), /source: /);
+    assert.ok(!io1.text().includes(p.password));
+
+    await run([], { rootDir: root, io: fakeIo() });
+    const io2 = fakeIo();
+    const s2 = await run(["--list"], { rootDir: root, io: io2 });
+    assert.match(io2.text(), /updated \d{4}-\d{2}-\d{2} \d{2}:\d{2}/);
+    assert.equal(s2.list[0].url, `https://example.org/share/${p.id}/`);
+    assert.ok(!JSON.stringify(s2.list).includes(p.password));
+    assert.ok(!io2.text().includes(p.password));
+});
+
+test("URLs fall back to a site-relative path without CNAME; shown with --show-password and on creation", async () => {
+    const root = makeRepo();
+    const io = fakeIo();
+    await run(["--set-source", "demo", "/x"], { rootDir: root, io });
+    const p = manifest(root).projects.demo;
+    assert.ok(io.text().includes(`/share/${p.id}/`), "URL shown on creation");
+    const io2 = fakeIo();
+    await run(["--show-password", "demo"], { rootDir: root, io: io2 });
+    assert.ok(io2.text().includes(`url:      /share/${p.id}/`));
+    assert.ok(io2.text().includes(p.password));
+});

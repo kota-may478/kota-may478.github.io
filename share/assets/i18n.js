@@ -8,7 +8,7 @@ export const DEFAULT_LANG = "ja";
 export const MESSAGES = {
     ja: {
         "app.title": "共有プロジェクト",
-        "lang.toggle": "English",
+        "lang.toggle": "Japanese/English",
         "lang.toggleLabel": "Switch to English",
 
         "form.heading": "プロジェクトを開く",
@@ -50,10 +50,11 @@ export const MESSAGES = {
         "error.unknown": "予期しないエラーが発生しました。",
 
         "dev.banner": "開発用ページ：平文のファイルを直接読み込んでいます",
+        "footer.copyright": "© 2026 Kota Fujimoto. All rights reserved.",
     },
     en: {
         "app.title": "Shared project",
-        "lang.toggle": "日本語",
+        "lang.toggle": "Japanese/English",
         "lang.toggleLabel": "日本語に切り替え",
 
         "form.heading": "Open project",
@@ -94,6 +95,7 @@ export const MESSAGES = {
         "error.unknown": "An unexpected error occurred.",
 
         "dev.banner": "Development page: loading plaintext files directly",
+        "footer.copyright": "© 2026 Kota Fujimoto. All rights reserved.",
     },
 };
 

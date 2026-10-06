@@ -1,3 +1,11 @@
+/*
+ * Share viewer styles. The look follows the main site (../../styles.css):
+ * light grey page, dark #333 header and footer with a centred title and a row
+ * of nav buttons, white rounded cards, teal (#54dbc2) heading underline and
+ * "tool card" accents. The site stylesheet itself is not loaded so the two
+ * stay independent.
+ */
+
 /* Icon font used by KiCanvas (its upstream Google Fonts link is patched out). */
 @font-face {
     font-family: "Material Symbols Outlined";
@@ -8,32 +16,22 @@
 }
 
 :root {
-    --bg: #f6f7f9;
-    --surface: #ffffff;
-    --fg: #1d2330;
-    --muted: #5d6677;
-    --border: #d9dde5;
-    --accent: #2f6fde;
-    --accent-fg: #ffffff;
-    --danger: #b3261e;
-    --code-bg: #eef0f4;
-    --topbar-h: 52px;
+    --page-bg: #f4f4f4;
+    --card-bg: #ffffff;
+    --bar-bg: #333333;
+    --bar-hover: #555555;
+    --bar-fg: #ffffff;
+    --text: #222222;
+    --muted: #555555;
+    --border: #dddddd;
+    --teal: #54dbc2;
+    --teal-hover: #3cbfab;
+    --teal-text: #1f8f7c; /* teal dark enough for text/icons on white */
+    --teal-tint: #f7fefe;
+    --danger: #c0392b;
+    --code-bg: #f2f4f4;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #14171d;
-        --surface: #1c2028;
-        --fg: #e4e7ee;
-        --muted: #9aa3b5;
-        --border: #313744;
-        --accent: #6b9cff;
-        --accent-fg: #0d1117;
-        --danger: #ff8a80;
-        --code-bg: #262b35;
-        color-scheme: dark;
-    }
 }
 
 * {
@@ -43,15 +41,14 @@
 html,
 body {
     margin: 0;
-    height: 100%;
+    padding: 0;
+    min-height: 100%;
 }
 
 body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family:
-        system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
-        "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
     line-height: 1.6;
 }
 
@@ -62,7 +59,7 @@ body {
 .sv-app {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 .sv-dev-banner {
@@ -70,56 +67,153 @@ body {
     color: #fff;
     font-size: 13px;
     padding: 4px 16px;
+    text-align: center;
 }
 
-.sv-topbar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    height: var(--topbar-h);
-    padding: 0 16px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+/* --- header (same structure as the site header) ---------------------------- */
+
+.sv-header {
+    background-color: var(--bar-bg);
+    color: var(--bar-fg);
+    text-align: center;
+    padding: 1rem 16px 0;
 }
 
 .sv-title {
-    flex: 1;
-    min-width: 0;
     margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 2em;
+    overflow-wrap: anywhere;
 }
 
-.sv-button {
+.sv-header nav ul {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sv-nav-button {
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--bar-bg);
+    color: var(--bar-fg);
     font: inherit;
     font-size: 14px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--fg);
+    line-height: 20px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sv-nav-button:hover {
+    background-color: var(--bar-hover);
+}
+
+/* --- footer ------------------------------------------------------------------- */
+
+.sv-footer {
+    margin-top: auto;
+    background-color: var(--bar-bg);
+    color: var(--bar-fg);
+    text-align: center;
+    padding: 1rem 16px;
+}
+
+.sv-footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* --- cards (the site's <section> style) ----------------------------------------- */
+
+.sv-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0 16px;
+}
+
+.sv-card {
+    width: 100%;
+    max-width: 880px; /* site: 800px content + 2 x 40px padding */
+    margin: 20px auto;
+    padding: 20px 40px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    animation: sv-fade-in 0.6s ease-out;
+}
+
+@keyframes sv-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sv-card {
+        animation: none;
+    }
+}
+
+/* Teal underline behind h2, as on the site. */
+.sv-card > h2,
+.sv-readme h2 {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0 0;
+    padding-bottom: 3px;
+    z-index: 0;
+}
+
+.sv-card > h2::after,
+.sv-readme h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    height: 6px;
+    background-color: var(--teal);
+    z-index: -1;
+}
+
+html[lang="en"] .sv-card > h2::after {
+    bottom: 1px;
+}
+
+.sv-card > p {
+    margin: 20px 0;
+}
+
+/* --- buttons and inputs --------------------------------------------------------------- */
+
+.sv-button {
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--teal);
+    color: #fff;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .sv-button:hover {
-    border-color: var(--accent);
-}
-
-.sv-button:focus-visible,
-.sv-input:focus-visible,
-.sv-entry:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.sv-button--primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--accent-fg);
-    font-weight: 600;
+    background-color: var(--teal-hover);
 }
 
 .sv-button:disabled {
@@ -127,116 +221,118 @@ body {
     cursor: progress;
 }
 
-.sv-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
+.sv-nav-button:focus-visible,
+.sv-button:focus-visible,
+.sv-input:focus-visible,
+.sv-entry:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
 }
 
-.sv-panel {
-    width: 100%;
-    max-width: 440px;
-    margin: 48px auto;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+/* --- credentials form ---------------------------------------------------------------- */
+
+.sv-form {
+    max-width: 520px;
 }
 
-.sv-panel h2 {
-    margin: 0 0 8px;
-    font-size: 18px;
-}
-
-.sv-panel p {
-    margin: 0 0 16px;
+.sv-form > p {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.95rem;
 }
 
 .sv-field {
     display: block;
-    margin-bottom: 14px;
-    font-size: 14px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    font-weight: bold;
 }
 
 .sv-input {
     display: block;
     width: 100%;
-    margin-top: 4px;
-    padding: 8px 10px;
+    margin-top: 6px;
+    padding: 9px 12px;
     font: inherit;
+    font-weight: normal;
+    color: var(--text);
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    color: var(--fg);
+    border-radius: 4px;
+}
+
+.sv-input:focus {
+    border-color: var(--teal);
 }
 
 .sv-check {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 16px;
-    font-size: 13px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
     color: var(--muted);
+}
+
+.sv-check input {
+    accent-color: var(--teal-hover);
 }
 
 .sv-error {
-    margin: 0 0 14px;
+    margin: 0 0 16px;
+    padding: 8px 12px;
+    border-left: 4px solid var(--danger);
+    background: #fdf3f2;
     color: var(--danger);
-    font-size: 14px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+}
+
+.sv-form .sv-button {
+    margin-bottom: 20px;
 }
 
 .sv-status {
-    margin: 48px auto;
     color: var(--muted);
+    text-align: center;
 }
 
-.sv-dir {
-    width: 100%;
-    max-width: 640px;
-    margin: 32px auto;
-    padding: 0 16px;
+.sv-status.sv-error {
+    color: var(--danger);
 }
 
-.sv-dir h2 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--muted);
-    margin: 0 0 8px;
-}
+/* --- directory (the site's "tool card" style) ------------------------------------------ */
 
 .sv-dir ul {
     list-style: none;
-    margin: 0;
+    margin: 20px 0;
     padding: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
 }
 
 .sv-dir li + li {
-    border-top: 1px solid var(--border);
+    margin-top: 12px;
 }
 
 .sv-entry {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     width: 100%;
-    padding: 14px 16px;
+    padding: 16px 20px;
     font: inherit;
     text-align: left;
-    background: none;
-    border: 0;
-    color: var(--fg);
+    color: var(--text);
+    background-color: var(--teal-tint);
+    border: none;
+    border-left: 4px solid var(--teal);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
     cursor: pointer;
+    transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 .sv-entry:hover:not(:disabled) {
-    background: var(--bg);
+    background-color: #eafaf7;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sv-entry:disabled {
@@ -244,27 +340,46 @@ body {
     opacity: 0.55;
 }
 
-.sv-entry-icon {
+.sv-entry-icon,
+.sv-entry-chevron {
     font-family: "Material Symbols Outlined";
-    font-size: 26px;
+    font-weight: normal;
+    font-style: normal;
     line-height: 1;
-    color: var(--accent);
     font-feature-settings: "liga";
+    color: var(--teal-text);
+}
+
+.sv-entry-icon {
+    font-size: 28px;
+}
+
+.sv-entry-chevron {
+    font-size: 24px;
+    margin-left: auto;
+}
+
+.sv-entry-text {
+    flex: 1;
+    min-width: 0;
 }
 
 .sv-entry-name {
     display: block;
-    font-weight: 600;
+    margin-bottom: 2px;
+    font-weight: bold;
 }
 
 .sv-entry-desc {
     display: block;
-    font-size: 13px;
+    font-size: 0.92rem;
     color: var(--muted);
 }
 
+/* --- KiCanvas -------------------------------------------------------------------------- */
+
 /*
- * KiCanvas fills the area below the top bar. The app is pinned to the
+ * KiCanvas fills the area below the header. The app is pinned to the
  * viewport height and the embed is absolutely positioned, because KiCanvas
  * sizes its canvas from the container and would otherwise grow it in a loop.
  */
@@ -272,6 +387,14 @@ body {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
+}
+
+.sv-app:has(.sv-kicad:not([hidden])) .sv-footer {
+    display: none;
+}
+
+.sv-app:has(.sv-kicad:not([hidden])) .sv-main {
+    padding: 0;
 }
 
 .sv-kicad {
@@ -295,15 +418,28 @@ body {
         "Noto Sans JP", "Yu Gothic UI", sans-serif;
 }
 
+/* --- README ------------------------------------------------------------------------------ */
+
 .sv-readme {
-    width: 100%;
-    max-width: 920px;
-    margin: 24px auto 64px;
-    padding: 24px 32px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
     overflow-wrap: anywhere;
+}
+
+.sv-readme h1 {
+    margin: 20px 0 10px;
+    font-size: 1.6em;
+    line-height: 1.35;
+}
+
+.sv-readme h3 {
+    margin: 24px 0 8px;
+}
+
+.sv-readme p {
+    margin: 16px 0;
+}
+
+.sv-readme a {
+    color: var(--teal-text);
 }
 
 .sv-readme img {
@@ -321,6 +457,10 @@ body {
 .sv-readme td {
     border: 1px solid var(--border);
     padding: 6px 10px;
+}
+
+.sv-readme th {
+    background: var(--teal-tint);
 }
 
 .sv-readme code {
@@ -344,9 +484,17 @@ body {
 
 .sv-readme blockquote {
     margin: 1em 0;
-    padding: 0.2em 1em;
-    border-left: 4px solid var(--border);
+    padding: 0.4em 1em;
+    border-left: 4px solid var(--teal);
+    background: var(--teal-tint);
     color: var(--muted);
+    border-radius: 0 6px 6px 0;
+}
+
+.sv-readme hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
 }
 
 .sv-readme .sv-missing {
@@ -354,17 +502,23 @@ body {
     font-style: italic;
 }
 
-@media (max-width: 600px) {
-    .sv-panel {
-        margin: 24px 16px;
-        width: auto;
+/* --- small screens (matches the site's 768px breakpoint) ---------------------------------- */
+
+@media (max-width: 768px) {
+    .sv-main {
+        padding: 0 10px;
     }
 
-    .sv-readme {
-        padding: 16px;
-        margin: 12px 0 48px;
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
+    .sv-card {
+        margin: 20px 0;
+        padding: 16px 20px;
+    }
+
+    .sv-title {
+        font-size: 1.5em;
+    }
+
+    .sv-entry {
+        padding: 14px 16px;
     }
 }

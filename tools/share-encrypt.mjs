@@ -86,6 +86,7 @@ export const INDEX_HTML = `<!doctype html>
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Shared project</title>
 <link rel="stylesheet" href="../assets/viewer.css">
+<link rel="icon" href="../../fig/dolphin_circle.ico" type="image/x-icon">
 </head>
 <body>
 <div id="app"></div>
@@ -108,7 +109,9 @@ Options:
   --set-source <name> <path>    Register or change a project's source folder
                                 (registers the project if it is new).
   --rotate-password <name>      Issue a new password (same id) and re-encrypt.
-  --show-password <name>        Print the stored password of a project.
+  --show-password <name>        Print the share URL and stored password of a project.
+  --list                        List projects with id, share URL and last update
+                                (passwords are not shown).
   -h, --help                    Show this help.
 
 Names containing ! $ * etc. must be quoted in the shell, e.g. --only 'a!b'.`;
@@ -308,6 +311,7 @@ export function parseArgs(argv) {
         setSource: [],
         rotate: [],
         show: [],
+        list: false,
         help: false,
     };
     const take = (i, flag) => {
@@ -339,6 +343,9 @@ export function parseArgs(argv) {
             }
             case "--rotate-password":
                 opts.rotate.push(normalizeInput(take(++i, a)));
+                break;
+            case "--list":
+                opts.list = true;
                 break;
             case "--show-password":
                 opts.show.push(normalizeInput(take(++i, a)));
@@ -396,6 +403,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
     const forced = new Set();
 
     checkGitignore(rootDir, io);
+    const urlFor = (id) => shareUrl(rootDir, id);
 
     const usedIds = () => new Set(Object.values(projects).map((p) => p.id));
     const register = (name) => {
@@ -408,6 +416,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         summary.registered.push(name);
         io.log(`\n[new] ${name}`);
         io.log(`  id:       ${id}`);
+        io.log(`  url:      ${urlFor(id)}`);
         io.log(`  password: ${projects[name].password}`);
         io.log(`  (shown only now; use --show-password ${shellQuote(name)} to see it again)`);
     };
@@ -443,6 +452,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         forced.add(name);
         io.log(`\n[new password] ${name}`);
         io.log(`  id:       ${projects[name].id} (unchanged)`);
+        io.log(`  url:      ${urlFor(projects[name].id)} (unchanged)`);
         io.log(`  password: ${projects[name].password}`);
     }
 
@@ -451,12 +461,22 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         if (!projects[name]) {
             throw new Error(`--show-password: unknown project ${JSON.stringify(name)}`);
         }
-        io.log(`${name}: ${projects[name].password}`);
+        io.log(`${name}`);
+        io.log(`  url:      ${urlFor(projects[name].id)}`);
+        io.log(`  password: ${projects[name].password}`);
     }
 
-    // --set-source / --show-password on their own only manage the manifest.
+    // --list
+    if (opts.list) {
+        summary.list = listProjects(projects, urlFor);
+        for (const line of formatList(summary.list)) {
+            io.log(line);
+        }
+    }
+
+    // --set-source / --show-password / --list on their own only manage the manifest.
     const manageOnly =
-        (opts.setSource.length || opts.show.length) &&
+        (opts.setSource.length || opts.show.length || opts.list) &&
         !opts.sync &&
         !opts.force &&
         !opts.only.length &&
@@ -525,6 +545,46 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
     io.log("  git add share/");
     io.log("(local_share/ - plaintext, passwords, manifest - is git-ignored and must not be committed.)");
     return summary;
+}
+
+/**
+ * Public URL of a share, built from the repository's CNAME (custom domain).
+ * Without a CNAME the site-relative path is returned.
+ */
+export function shareUrl(rootDir, id) {
+    const cnameFile = path.join(rootDir, "CNAME");
+    const host = existsSync(cnameFile) ? readFileSync(cnameFile, "utf8").trim().split(/\s+/)[0] : "";
+    return host ? `https://${host}/share/${id}/` : `/share/${id}/`;
+}
+
+/** Rows for --list; never includes passwords. */
+export function listProjects(projects, urlFor) {
+    return Object.keys(projects)
+        .sort()
+        .map((name) => ({
+            name,
+            id: projects[name].id,
+            url: urlFor(projects[name].id),
+            updatedAt: projects[name].hash ? projects[name].updatedAt ?? null : null,
+            source: projects[name].source ?? null,
+        }));
+}
+
+function formatLocalTime(iso) {
+    const d = new Date(iso);
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function formatList(rows) {
+    if (!rows.length) {
+        return ["(no projects registered)"];
+    }
+    const width = Math.max(...rows.map((r) => r.name.length));
+    return rows.flatMap((r) => [
+        `${r.name.padEnd(width)}  ${r.url}  ${r.updatedAt ? `updated ${formatLocalTime(r.updatedAt)}` : "(not encrypted yet)"}`,
+        ...(r.source ? [`${" ".repeat(width)}  source: ${r.source}`] : []),
+    ]);
 }
 
 function shellQuote(s) {
