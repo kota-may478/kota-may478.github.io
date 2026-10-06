@@ -84,6 +84,12 @@ body {
     padding: 10px 16px;
     background-color: var(--bar-bg);
     color: var(--bar-fg);
+    /* Stays at the top while scrolling, with the same shadow as the site's
+       fixed header. */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sv-header-start {
@@ -95,6 +101,7 @@ body {
 }
 
 .sv-title {
+    cursor: pointer; /* click scrolls to the top, as on the site */
     margin: 0;
     line-height: 40px;
     font-size: 2em; /* same as the site's header title */
@@ -461,6 +468,11 @@ html[lang="en"] .sv-card > h2::after,
     line-height: 1.35;
 }
 
+/* In-page links (README table of contents) must not end under the sticky bar. */
+.sv-readme [id] {
+    scroll-margin-top: 76px;
+}
+
 .sv-readme h3 {
     margin: 24px 0 8px;
 }
@@ -552,9 +564,11 @@ html[lang="en"] .sv-card > h2::after,
     contain: paint;
 }
 
-.sv-readme .sv-mermaid svg {
+.sv-readme .sv-mermaid img {
+    display: inline-block;
     max-width: 100%;
     height: auto;
+    vertical-align: top;
 }
 
 /* Diagrams scaled down to fit can be toggled to their natural size. */

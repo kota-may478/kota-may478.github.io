@@ -14,6 +14,7 @@
 
 import {
     applyTranslations,
+    getLang,
     initLang,
     onLangChange,
     t,
@@ -51,13 +52,22 @@ export function isKicadPath(path) {
     return KICAD_EXTENSIONS.some((ext) => path.endsWith(ext));
 }
 
-export function findReadmePath(files) {
-    if (files.has("README.md")) {
-        return "README.md";
-    }
-    for (const path of files.keys()) {
-        if (!path.includes("/") && path.toLowerCase() === "readme.md") {
-            return path;
+/** README file names per UI language, most preferred first. */
+const README_NAMES = {
+    ja: ["README.md", "README.en.md"],
+    en: ["README.en.md", "README.md"],
+};
+
+/**
+ * README to show for a UI language: README.en.md for English when present,
+ * README.md otherwise (and vice versa). Root-level, case-insensitive.
+ */
+export function findReadmePath(files, lang = "ja") {
+    const rootFiles = [...files.keys()].filter((p) => !p.includes("/"));
+    for (const name of README_NAMES[lang] ?? README_NAMES.ja) {
+        const found = rootFiles.find((p) => p.toLowerCase() === name.toLowerCase());
+        if (found) {
+            return found;
         }
     }
     return null;
@@ -248,17 +258,35 @@ function renderMarkdown(text, files) {
 
 let mermaidPromise = null;
 let mermaidCounter = 0;
-
 /**
- * Load the vendored Mermaid bundle (a classic script defining
- * window.mermaid) once, only when a README actually contains a diagram.
+ * Load the vendored Mermaid bundle once, only when a README actually contains
+ * a diagram, inside a hidden same-origin about:blank iframe.
+ *
+ * Mermaid lays diagrams out in temporary DOM nodes before returning the SVG.
+ * Extensions that rewrite page content (e.g. "click to call" extensions that
+ * wrap phone-number-like digits, which also match numbers in Mermaid's CSS)
+ * would corrupt those nodes in the main document. Content scripts are not
+ * injected into about:blank frames unless an extension opts in, so Mermaid
+ * runs in such a frame and only its SVG string is used here.
  */
 function loadMermaid() {
     mermaidPromise ??= new Promise((resolve, reject) => {
-        const script = document.createElement("script");
+        const frame = el("iframe", { "aria-hidden": "true", tabindex: "-1", title: "" });
+        frame.style.cssText = "position:absolute;left:-100000px;top:0;width:1600px;height:1200px;border:0;visibility:hidden;";
+        document.body.append(frame);
+        const win = frame.contentWindow;
+        const doc = frame.contentDocument;
+        if (!win || !doc) {
+            reject(new Error("Mermaid frame unavailable"));
+            return;
+        }
+        doc.open();
+        doc.write("<!doctype html><html><head><meta charset=\"utf-8\"></head><body></body></html>");
+        doc.close();
+        const script = doc.createElement("script");
         script.src = new URL("./vendor/mermaid/mermaid.min.js", import.meta.url).href;
         script.onload = () => {
-            const mermaid = window.mermaid;
+            const mermaid = win.mermaid;
             if (!mermaid) {
                 reject(new Error("Mermaid did not load"));
                 return;
@@ -282,7 +310,7 @@ function loadMermaid() {
             resolve(mermaid);
         };
         script.onerror = () => reject(new Error("Mermaid failed to load"));
-        document.head.append(script);
+        doc.head.append(script);
     });
     return mermaidPromise.catch((err) => {
         mermaidPromise = null;
@@ -324,10 +352,10 @@ async function renderMermaidBlocks(root) {
                 HTML_INTEGRATION_POINTS: { "annotation-xml": true, foreignobject: true },
                 FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button", "textarea", "select"],
             });
-            const figure = el("div", { class: "sv-mermaid", role: "img" });
-            figure.append(fragment);
+            const { img, naturalWidth } = svgToImage(fragment);
+            const figure = el("div", { class: "sv-mermaid" }, [img]);
             pre.replaceWith(figure);
-            makeZoomable(figure);
+            makeZoomable(figure, img, naturalWidth);
         } catch (err) {
             console.warn("Mermaid diagram could not be rendered", err);
             pre.after(el("p", { class: "sv-missing", i18n: "readme.mermaidFailed" }));
@@ -336,13 +364,44 @@ async function renderMermaidBlocks(root) {
 }
 
 /**
+ * Show a rendered diagram as an <img> backed by a blob: SVG instead of inline
+ * SVG. Content scripts of browser extensions cannot reach into an image, so
+ * they cannot corrupt it (e.g. "click to call" extensions that wrap
+ * phone-number-like digits found in the diagram's CSS), and scripts or styles
+ * inside the image can never affect the page.
+ */
+function svgToImage(fragment) {
+    const svg = fragment.querySelector("svg");
+    if (!svg) {
+        throw new Error("Mermaid produced no SVG");
+    }
+    const [, , width, height] = (svg.getAttribute("viewBox") ?? "").split(/[\s,]+/).map(Number);
+    if (!(width > 0 && height > 0)) {
+        throw new Error("Mermaid SVG has no usable viewBox");
+    }
+    // An SVG image needs an intrinsic size; Mermaid emits width="100%".
+    svg.setAttribute("width", String(width));
+    svg.setAttribute("height", String(height));
+    svg.removeAttribute("style");
+    const xml = new XMLSerializer().serializeToString(svg);
+    const url = URL.createObjectURL(new Blob([xml], { type: "image/svg+xml" }));
+    readmeBlobUrls.add(url);
+    const img = el("img", {
+        src: url,
+        width: String(Math.round(width)),
+        height: String(Math.round(height)),
+        decoding: "async",
+        i18nAttr: "alt:readme.diagramAlt",
+    });
+    return { img, naturalWidth: width };
+}
+
+/**
  * Large diagrams are scaled down to the column width. Let the reader toggle
  * such a diagram between "fit to width" and its natural size (scrollable)
  * with a click or Enter/Space.
  */
-function makeZoomable(figure) {
-    const svg = figure.querySelector("svg");
-    const naturalWidth = parseFloat(svg?.style.maxWidth ?? "");
+function makeZoomable(figure, img, naturalWidth) {
     if (!(naturalWidth > figure.clientWidth)) {
         return; // already shown at full size
     }
@@ -352,8 +411,8 @@ function makeZoomable(figure) {
     figure.dataset.i18nAttr = "title:readme.diagramZoom;aria-label:readme.diagramZoom";
     const toggle = () => {
         const full = figure.classList.toggle("sv-mermaid--full");
-        svg.style.width = full ? `${naturalWidth}px` : "";
-        svg.style.maxWidth = full ? "none" : `${naturalWidth}px`;
+        img.style.width = full ? `${naturalWidth}px` : "";
+        img.style.maxWidth = full ? "none" : "";
     };
     figure.addEventListener("click", toggle);
     figure.addEventListener("keydown", (event) => {
@@ -447,7 +506,10 @@ export function startViewer({ root, source, devBanner = false }) {
         historyDepth: 0,
     };
 
-    const title = el("h1", { class: "sv-title" });
+    const title = el("h1", {
+        class: "sv-title",
+        onclick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+    });
     const backButton = el("button", {
         type: "button",
         class: "sv-nav-button",
@@ -521,6 +583,14 @@ export function startViewer({ root, source, devBanner = false }) {
     onLangChange(() => {
         applyTranslations(app);
         refreshTitle();
+        // Switch between README.md and README.en.md when both exist.
+        if (state.files && state.view === "readme") {
+            const before = state.readmePath;
+            renderReadme();
+            if (state.readmePath !== before) {
+                window.scrollTo(0, 0);
+            }
+        }
     });
 
     // --- credentials form ---------------------------------------------------
@@ -696,19 +766,32 @@ export function startViewer({ root, source, devBanner = false }) {
 
     // --- README -------------------------------------------------------------------
 
+    // Render the README for the current UI language (README.en.md / README.md)
+    // unless that file is already shown.
+    function renderReadme() {
+        const path = findReadmePath(state.files, getLang());
+        if (state.readmePath === path && views.readme.firstChild) {
+            return true;
+        }
+        try {
+            revokeReadmeBlobUrls();
+            const text = new TextDecoder("utf-8").decode(state.files.get(path));
+            views.readme.replaceChildren(renderMarkdown(text, state.files));
+            state.readmePath = path;
+            renderMermaidBlocks(views.readme).then(() => applyTranslations(views.readme));
+            return true;
+        } catch (err) {
+            console.error(err);
+            views.readme.replaceChildren();
+            state.readmePath = null;
+            showStatus("readme.failed");
+            return false;
+        }
+    }
+
     function openReadme() {
-        if (!views.readme.firstChild) {
-            try {
-                const path = findReadmePath(state.files);
-                const text = new TextDecoder("utf-8").decode(state.files.get(path));
-                views.readme.replaceChildren(renderMarkdown(text, state.files));
-                renderMermaidBlocks(views.readme).then(() => applyTranslations(views.readme));
-            } catch (err) {
-                console.error(err);
-                views.readme.replaceChildren();
-                showStatus("readme.failed");
-                return;
-            }
+        if (!renderReadme()) {
+            return;
         }
         show("readme");
         window.scrollTo(0, 0);
@@ -742,6 +825,7 @@ export function startViewer({ root, source, devBanner = false }) {
         views.kicad.replaceChildren();
         views.readme.replaceChildren();
         views.dir.replaceChildren();
+        state.readmePath = null;
         revokeReadmeBlobUrls();
     }
 

@@ -39,6 +39,7 @@ export const MESSAGES = {
         "readme.linkDisabled": "このリンク先は共有に含まれていません",
         "readme.mermaidFailed": "この図（Mermaid）を表示できませんでした",
         "readme.diagramZoom": "クリックで拡大／縮小",
+        "readme.diagramAlt": "図（Mermaid）",
 
         "error.credentials": "IDかパスワードが違います。",
         "error.network": "データを取得できませんでした。",
@@ -88,6 +89,7 @@ export const MESSAGES = {
         "readme.linkDisabled": "This link target is not part of the share",
         "readme.mermaidFailed": "Could not render this diagram (Mermaid)",
         "readme.diagramZoom": "Click to zoom in / out",
+        "readme.diagramAlt": "Diagram (Mermaid)",
 
         "error.credentials": "The ID or password is incorrect.",
         "error.network": "Could not fetch the data.",
