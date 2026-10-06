@@ -10,7 +10,7 @@ KiCad のプロジェクトを暗号化して GitHub Pages に置き、ID とパ
 
 `share/data/` に置かれる暗号化ファイルの名前（データファイル名）は ID とパスワードから自動的に決まる内部用の値で、相手に伝える必要はありません。
 
-入力すると「KiCADデータ」（KiCanvas で回路図・基板を表示）と「README.md」（Markdown のプレビュー。Mermaid の図にも対応）の 2 項目が表示されます。
+入力すると「KiCADデータ」（KiCanvas で回路図・基板を表示）と「README.md」（Markdown のプレビュー。Mermaid の図にも対応）の 2 項目が表示されます。英語版の `README.en.md` を置くと、画面の Japanese/English ボタンで README も切り替わります（片方しか無い場合はそれを表示）。
 
 ## ディレクトリ構成
 
@@ -23,7 +23,7 @@ tools/
 local_share/              ※ git の対象外。公開されない
 ├─ manifest.json          ID（プロジェクト名）・パスワード・データファイル名・ハッシュ・コピー元の対応表
 ├─ dev.html, dev.js       平文のまま表示を確認する開発用ページ
-└─ <ID>/                  KiCad ファイル一式と README.md（平文。フォルダ名がそのまま ID）
+└─ <ID>/                  KiCad ファイル一式と README.md・README.en.md（平文。フォルダ名がそのまま ID）
 share/                    公開される（暗号化済みのものと閲覧用のコードだけ）
 ├─ index.html             閲覧ページ（全プロジェクト共通。スクリプトが生成）
 ├─ assets/                閲覧ページのコード・スタイル・ライブラリ
@@ -77,7 +77,7 @@ node tools/share-encrypt.mjs --set-source myboard ~/KiCad/myboard   # コピー�
 node tools/share-encrypt.mjs --sync --only myboard                   # 取り込み → 暗号化
 ```
 
-- コピーするのは KiCad の 3 種類のファイル（サブフォルダの階層シートを含む）、`README.md`、README から参照されている画像だけです。
+- コピーするのは KiCad の 3 種類のファイル（サブフォルダの階層シートを含む）、`README.md`・`README.en.md`、README から参照されている画像だけです。
 - バックアップ（`*-backups/`、`*-bak`）、自動保存（`_autosave-*`）、ロック（`*.lck`）、`fp-info-cache`、`*.kicad_prl`、`.git/` などのドットフォルダ、`gerber/` などの製造データはコピーしません（除外パターンは `share-encrypt.mjs` の先頭）。
 - コピー前に追加・上書き・変更なしの一覧を表示して確認します（既定は No、`--yes` で省略）。コピー元から消えたファイルは警告するだけで、削除はしません。
 
