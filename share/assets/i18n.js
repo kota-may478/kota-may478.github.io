@@ -50,6 +50,7 @@ export const MESSAGES = {
         "error.noProject":
             "URLに ?project=<プロジェクト名> を指定してください（開発用ページ）。",
         "error.unknown": "予期しないエラーが発生しました。",
+        "error.framed": "このページは他のページに埋め込んだ状態では表示できません。アドレスを直接開いてください。",
 
         "dev.banner": "開発用ページ：平文のファイルを直接読み込んでいます",
         "footer.copyright": "© 2026 Kota Fujimoto. All rights reserved.",
@@ -97,6 +98,7 @@ export const MESSAGES = {
         "error.noProject":
             "Add ?project=<project name> to the URL (development page).",
         "error.unknown": "An unexpected error occurred.",
+        "error.framed": "This page cannot be shown inside another page. Please open its address directly.",
 
         "dev.banner": "Development page: loading plaintext files directly",
         "footer.copyright": "© 2026 Kota Fujimoto. All rights reserved.",

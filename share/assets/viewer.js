@@ -190,8 +190,16 @@ purifier.addHook("afterSanitizeAttributes", (node) => {
     }
 });
 
-// Blob URLs for README images live as long as the page; the README is
-// rendered once per unlock, so they are not revoked.
+// Blob URLs of README images, revoked when the decrypted content is wiped.
+const readmeBlobUrls = new Set();
+
+function revokeReadmeBlobUrls() {
+    for (const url of readmeBlobUrls) {
+        URL.revokeObjectURL(url);
+    }
+    readmeBlobUrls.clear();
+}
+
 function renderMarkdown(text, files) {
     purifyContext = {
         imageUrl(path) {
@@ -200,7 +208,9 @@ function renderMarkdown(text, files) {
             if (!data || !IMAGE_TYPES[ext]) {
                 return null;
             }
-            return URL.createObjectURL(new Blob([data], { type: IMAGE_TYPES[ext] }));
+            const url = URL.createObjectURL(new Blob([data], { type: IMAGE_TYPES[ext] }));
+            readmeBlobUrls.add(url);
+            return url;
         },
     };
     try {
@@ -416,6 +426,16 @@ async function preferSchematic(embed, timeoutMs = 30000) {
 export function startViewer({ root, source, devBanner = false }) {
     initLang();
 
+    // Refuse to run inside a frame (clickjacking): GitHub Pages cannot send
+    // X-Frame-Options / frame-ancestors, and a <meta> CSP cannot express it.
+    if (window.top !== window.self) {
+        const note = el("p", { class: "sv-card sv-status sv-error", i18n: "error.framed" });
+        root.replaceChildren(note);
+        applyTranslations(root);
+        onLangChange(() => applyTranslations(root));
+        return;
+    }
+
     const state = {
         view: "form",
         projectName: null,
@@ -467,7 +487,9 @@ export function startViewer({ root, source, devBanner = false }) {
         if (state.projectName) {
             title.removeAttribute("data-i18n");
             title.textContent = state.projectName;
-            document.title = `${state.projectName} - ${t("app.title")}`;
+            // The project name stays out of document.title, which browsers
+            // keep in their history.
+            document.title = t("app.title");
         } else {
             title.dataset.i18n = "app.title";
             title.textContent = t("app.title");
@@ -700,6 +722,29 @@ export function startViewer({ root, source, devBanner = false }) {
             // keep the raw fragment
         }
         document.getElementById(README_ID_PREFIX + id)?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // --- leaving the page ---------------------------------------------------------------
+
+    // Decrypted content must not survive in the back/forward cache: wipe it
+    // when the page is hidden, and start over if the page is restored.
+    function wipeDecryptedContent() {
+        if (!state.files) {
+            return;
+        }
+        state.files = null;
+        state.projectName = null;
+        views.kicad.replaceChildren();
+        views.readme.replaceChildren();
+        views.dir.replaceChildren();
+        revokeReadmeBlobUrls();
+    }
+
+    window.addEventListener("pagehide", wipeDecryptedContent);
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
     });
 
     // --- start -----------------------------------------------------------------------
