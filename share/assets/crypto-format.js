@@ -5,7 +5,14 @@
 // Only standard Web APIs are used (Web Crypto, CompressionStream,
 // TextEncoder, Blob/Response), which exist in modern browsers and Node >= 20.
 //
-// data.bin layout (format version 1):
+// Locating a project's file: share/data/<file id>.bin, where
+//   file id = hex(PBKDF2-SHA256(credentials, salt = LOCATOR_SALT, 600000 iterations))[0..32]
+// The salt is a fixed public string because the browser must compute the
+// file name before it has read any file. The encryption key below uses a
+// different, per-file random salt, so the public file id says nothing about
+// the key.
+//
+// File layout (format version 1):
 //   [0]       format version (1)
 //   [1..16]   PBKDF2 salt (16 random bytes, new on every encryption)
 //   [17..28]  AES-GCM nonce (12 random bytes, new on every encryption)
@@ -25,7 +32,10 @@ export const PASSWORD_ALPHABET =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" + SYMBOLS;
 export const PASSWORD_LENGTH = 20;
 export const PROJECT_NAME_PATTERN = /^[A-Za-z0-9!#$%*+\-=?@^_]{1,64}$/;
-export const ID_PATTERN = /^[a-z0-9]{16,64}$/;
+// File id: 32 lowercase hex characters (128 bits) derived from the credentials.
+export const ID_PATTERN = /^[0-9a-f]{32}$/;
+export const LOCATOR_SALT = "kicad-share/locator/v1";
+const LOCATOR_BYTES = 16;
 
 const KDF_DOMAIN = "kicad-share/v1";
 const ARCHIVE_MAGIC = [0x4b, 0x43, 0x53, 0x41]; // "KCSA"
@@ -117,6 +127,32 @@ export function encodeCredentials(projectName, password) {
         lengthPrefixed(encoder.encode(name)),
         lengthPrefixed(encoder.encode(pass)),
     ]);
+}
+
+/**
+ * File id of a project, computed from the credentials alone (slow PBKDF2 with
+ * the fixed LOCATOR_SALT), so the browser can find share/data/<id>.bin
+ * without any public name-to-file table.
+ */
+export async function deriveLocator(projectName, password) {
+    const base = await subtle().importKey(
+        "raw",
+        encodeCredentials(projectName, password),
+        "PBKDF2",
+        false,
+        ["deriveBits"],
+    );
+    const bits = await subtle().deriveBits(
+        {
+            name: "PBKDF2",
+            hash: "SHA-256",
+            salt: encoder.encode(LOCATOR_SALT),
+            iterations: PBKDF2_ITERATIONS,
+        },
+        base,
+        LOCATOR_BYTES * 8,
+    );
+    return [...new Uint8Array(bits)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 export async function deriveKey(projectName, password, salt) {

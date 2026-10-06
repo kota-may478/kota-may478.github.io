@@ -1,30 +1,36 @@
-// Production data source: fetches ./data.bin next to share/<id>/index.html,
-// decrypts it in memory with the entered project name and password, and
-// hands the files to the shared presentation layer. Nothing is persisted.
+// Production data source for share/index.html.
+//
+// From the entered project name and password it derives the file id (slow
+// PBKDF2 with a fixed public salt), fetches share/data/<id>.bin, decrypts it
+// in memory with a key derived from the same credentials and the file's own
+// random salt, and hands the files to the shared presentation layer.
+// Nothing is persisted.
 
 import {
     DecryptError,
     FormatError,
     decryptArchive,
+    deriveLocator,
     isSupported,
     normalizeInput,
 } from "./crypto-format.js";
 import { SourceError, startViewer } from "./viewer.js";
 
-let dataPromise = null;
-
-// data.bin is fetched once per page load and reused for every attempt.
-function loadData() {
-    dataPromise ??= fetch("data.bin", { cache: "no-cache" }).then(async (response) => {
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-        return new Uint8Array(await response.arrayBuffer());
-    });
-    return dataPromise.catch((err) => {
-        dataPromise = null; // allow a retry after a network failure
+async function fetchProjectFile(fileId) {
+    let response;
+    try {
+        response = await fetch(`data/${fileId}.bin`, { cache: "no-cache" });
+    } catch (err) {
         throw new SourceError("network", { cause: err });
-    });
+    }
+    if (response.status === 404) {
+        // No file for these credentials: the name or password is wrong.
+        throw new SourceError("credentials");
+    }
+    if (!response.ok) {
+        throw new SourceError("network", { cause: new Error(`HTTP ${response.status}`) });
+    }
+    return new Uint8Array(await response.arrayBuffer());
 }
 
 const encryptedSource = {
@@ -33,7 +39,8 @@ const encryptedSource = {
         if (!isSupported()) {
             throw new SourceError("unsupported");
         }
-        const data = await loadData();
+        const fileId = await deriveLocator(projectName, password);
+        const data = await fetchProjectFile(fileId);
         try {
             const files = await decryptArchive({ projectName, password, data });
             return { projectName: normalizeInput(projectName), files };
