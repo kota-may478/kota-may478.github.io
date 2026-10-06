@@ -27,7 +27,12 @@ import path from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-import {
+import { assertSupportedNode } from "./node-version.mjs";
+
+// Check the Node.js version before loading the browser-shared module: a static
+// import would be parsed (and fail) on old Node before any check could run.
+assertSupportedNode();
+const {
     ID_PATTERN,
     PASSWORD_ALPHABET,
     PASSWORD_LENGTH,
@@ -37,7 +42,7 @@ import {
     isValidProjectName,
     normalizeInput,
     sha256Hex,
-} from "../share/assets/crypto-format.js";
+} = await import("../share/assets/crypto-format.js");
 
 // ---------------------------------------------------------------------------
 // File selection rules (used both for --sync and for building data.bin)

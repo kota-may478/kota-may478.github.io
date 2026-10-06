@@ -405,3 +405,33 @@ test("URLs fall back to a site-relative path without CNAME; shown with --show-pa
     assert.ok(io2.text().includes(`url:      /share/${p.id}/`));
     assert.ok(io2.text().includes(p.password));
 });
+
+// --- Node.js version guard -------------------------------------------------------
+
+test("Node.js version guard accepts 22.7+, 23+ and 20.19+, rejects older versions", async () => {
+    const { isSupportedNodeVersion, missingFeatures } = await import("../node-version.mjs");
+    for (const ok of ["v22.7.0", "v22.23.2", "v23.0.0", "v24.1.0", "v26.0.0", "v20.19.0", "v20.20.1", "22.7.0"]) {
+        assert.ok(isSupportedNodeVersion(ok), ok);
+    }
+    for (const bad of ["v22.6.0", "v22.0.0", "v21.7.3", "v20.18.3", "v20.0.0", "v18.20.4", "v16.20.2", "v12.22.0", "", "garbage"]) {
+        assert.ok(!isSupportedNodeVersion(bad), bad);
+    }
+    assert.ok(isSupportedNodeVersion(process.version), "the running Node passes");
+    assert.deepEqual(missingFeatures(globalThis), []);
+    assert.equal(missingFeatures({}).length, 2);
+});
+
+test("an unsupported Node.js exits with a clear message before loading crypto-format.js", async () => {
+    const { spawnSync } = await import("node:child_process");
+    const { pathToFileURL } = await import("node:url");
+    const tool = pathToFileURL(path.join(import.meta.dirname, "..", "share-encrypt.mjs")).href;
+    // Pretend to be Node 18 by overriding process.version before the tool is loaded.
+    const r = spawnSync(process.execPath, [
+        "--input-type=module",
+        "-e",
+        `Object.defineProperty(process, "version", { value: "v18.20.4" }); await import(${JSON.stringify(tool)});`,
+    ], { encoding: "utf8" });
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /Node\.js 22\.7\.0 or later .* is required \(running v18\.20\.4\)/);
+    assert.ok(!/SyntaxError/.test(r.stderr));
+});

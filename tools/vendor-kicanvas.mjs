@@ -19,6 +19,10 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { assertSupportedNode } from "./node-version.mjs";
+
+assertSupportedNode();
+
 // Build of github.com/theacodes/kicanvas commit b031159eb74aaa7eef2b026fd85d35bc05ff2095.
 const UPSTREAM_SHA256 = "ca910f25276c3efb9aacb3a5d6341d4d9af4736d4c875fb0440d2cc856865ab7";
 
