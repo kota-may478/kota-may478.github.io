@@ -90,7 +90,7 @@ slideMenu.addEventListener('touchend', function(event) {
 document.getElementById('slide-menu-close').addEventListener('click', closeSlideMenu);
 
 // Function to navigate to a specific section on the page
-function navigateTo(sectionId, adjustForHeader = false) {
+function navigateTo(sectionId, adjustForHeader = true) { // the header stays on top, so skip past it by default
     const section = document.getElementById(sectionId); // Get the target section by its ID
     const headerHeight = document.querySelector("header").offsetHeight; // Get the height of the header
 

@@ -8,12 +8,14 @@ body {
 
 /* Styling for the header section */
 header {
-    position: relative; /* Set position context for child elements */
+    position: sticky; /* Stay at the top of the viewport while scrolling */
+    top: 0; /* Stick to the top edge */
     background-color: #333; /* Set a dark gray background color */
     color: #fff; /* Set text color to white */
     text-align: center; /* Center-align the text */
     padding: 1rem 0 0 0; /* Add padding to the top */
     z-index: 9999; /* Ensure the header is on top of other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 /* Styling for the main title in the header */
