@@ -461,17 +461,24 @@ header button:hover {
 .tool-card-link {
     display: inline-block;
     white-space: nowrap;
-    padding: 8px 16px;
+    padding: 8px 20px;
     background-color: #54dbc2;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    line-height: 1.6;
     transition: background-color 0.3s;
 }
 
 .tool-card-link:hover {
     background-color: #3cbfab;
+}
+
+.tool-card-link:focus-visible {
+    outline: 2px solid #54dbc2;
+    outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
