@@ -269,11 +269,12 @@ function loadMermaid() {
                 securityLevel: "strict",
                 theme: "default",
                 fontFamily: "Arial, sans-serif",
-                // SVG <text> labels instead of HTML in <foreignObject>, so the
-                // output survives the DOMPurify pass below (which removes HTML
-                // nested inside SVG).
-                htmlLabels: false,
-                flowchart: { htmlLabels: false },
+                // HTML labels (Mermaid's default): with SVG <text> labels,
+                // subgraph titles are not taken into account when sizing the
+                // subgraph and overflow its box. The DOMPurify pass below keeps
+                // the label HTML inside <foreignObject>.
+                htmlLabels: true,
+                flowchart: { htmlLabels: true },
                 // Keys that %%{init}%% directives inside a README may not change
                 // (Mermaid's defaults plus htmlLabels).
                 secure: ["secure", "securityLevel", "startOnLoad", "maxTextSize", "suppressErrorRendering", "maxEdges", "htmlLabels"],
@@ -314,10 +315,13 @@ async function renderMermaidBlocks(root) {
             const { svg } = await mermaid.render(`sv-mermaid-${++mermaidCounter}`, code.textContent);
             // Defence in depth: Mermaid already sanitises in strict mode;
             // strip scripts and event handlers again before inserting.
+            // <foreignObject> is declared an HTML integration point so the
+            // (sanitised) HTML labels inside it are kept.
             const fragment = purifier.sanitize(svg, {
                 RETURN_DOM_FRAGMENT: true,
                 USE_PROFILES: { svg: true, svgFilters: true, html: true },
-                ADD_TAGS: ["style"],
+                ADD_TAGS: ["foreignObject", "style"],
+                HTML_INTEGRATION_POINTS: { "annotation-xml": true, foreignobject: true },
                 FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button", "textarea", "select"],
             });
             const figure = el("div", { class: "sv-mermaid", role: "img" });
@@ -475,8 +479,9 @@ export function startViewer({ root, source, devBanner = false }) {
     const app = el("div", { class: "sv-app" }, [
         ...(devBanner ? [el("div", { class: "sv-dev-banner", i18n: "dev.banner" })] : []),
         el("header", { class: "sv-header" }, [
+            el("div", { class: "sv-header-start" }, [backButton]),
             title,
-            el("nav", {}, [el("ul", {}, [el("li", {}, [backButton]), el("li", {}, [langButton])])]),
+            el("div", { class: "sv-header-end" }, [langButton]),
         ]),
         main,
         el("footer", { class: "sv-footer" }, [el("p", { i18n: "footer.copyright" })]),
