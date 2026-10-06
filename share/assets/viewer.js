@@ -234,6 +234,123 @@ function renderMarkdown(text, files) {
 }
 
 // ---------------------------------------------------------------------------
+// Mermaid diagrams in README.md
+
+let mermaidPromise = null;
+let mermaidCounter = 0;
+
+/**
+ * Load the vendored Mermaid bundle (a classic script defining
+ * window.mermaid) once, only when a README actually contains a diagram.
+ */
+function loadMermaid() {
+    mermaidPromise ??= new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = new URL("./vendor/mermaid/mermaid.min.js", import.meta.url).href;
+        script.onload = () => {
+            const mermaid = window.mermaid;
+            if (!mermaid) {
+                reject(new Error("Mermaid did not load"));
+                return;
+            }
+            mermaid.initialize({
+                startOnLoad: false,
+                // "strict": labels are sanitised and click/script features are disabled.
+                securityLevel: "strict",
+                theme: "default",
+                fontFamily: "Arial, sans-serif",
+                // SVG <text> labels instead of HTML in <foreignObject>, so the
+                // output survives the DOMPurify pass below (which removes HTML
+                // nested inside SVG).
+                htmlLabels: false,
+                flowchart: { htmlLabels: false },
+                // Keys that %%{init}%% directives inside a README may not change
+                // (Mermaid's defaults plus htmlLabels).
+                secure: ["secure", "securityLevel", "startOnLoad", "maxTextSize", "suppressErrorRendering", "maxEdges", "htmlLabels"],
+            });
+            resolve(mermaid);
+        };
+        script.onerror = () => reject(new Error("Mermaid failed to load"));
+        document.head.append(script);
+    });
+    return mermaidPromise.catch((err) => {
+        mermaidPromise = null;
+        throw err;
+    });
+}
+
+/**
+ * Replace every ```mermaid code block under `root` with the rendered SVG.
+ * A block that fails to render is kept as code with a short note.
+ */
+async function renderMermaidBlocks(root) {
+    const blocks = [...root.querySelectorAll("pre > code.language-mermaid")];
+    if (!blocks.length) {
+        return;
+    }
+    let mermaid;
+    try {
+        mermaid = await loadMermaid();
+    } catch (err) {
+        console.error(err);
+        for (const code of blocks) {
+            code.parentElement.after(el("p", { class: "sv-missing", i18n: "readme.mermaidFailed" }));
+        }
+        return;
+    }
+    for (const code of blocks) {
+        const pre = code.parentElement;
+        try {
+            const { svg } = await mermaid.render(`sv-mermaid-${++mermaidCounter}`, code.textContent);
+            // Defence in depth: Mermaid already sanitises in strict mode;
+            // strip scripts and event handlers again before inserting.
+            const fragment = purifier.sanitize(svg, {
+                RETURN_DOM_FRAGMENT: true,
+                USE_PROFILES: { svg: true, svgFilters: true, html: true },
+                ADD_TAGS: ["style"],
+                FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button", "textarea", "select"],
+            });
+            const figure = el("div", { class: "sv-mermaid", role: "img" });
+            figure.append(fragment);
+            pre.replaceWith(figure);
+            makeZoomable(figure);
+        } catch (err) {
+            console.warn("Mermaid diagram could not be rendered", err);
+            pre.after(el("p", { class: "sv-missing", i18n: "readme.mermaidFailed" }));
+        }
+    }
+}
+
+/**
+ * Large diagrams are scaled down to the column width. Let the reader toggle
+ * such a diagram between "fit to width" and its natural size (scrollable)
+ * with a click or Enter/Space.
+ */
+function makeZoomable(figure) {
+    const svg = figure.querySelector("svg");
+    const naturalWidth = parseFloat(svg?.style.maxWidth ?? "");
+    if (!(naturalWidth > figure.clientWidth)) {
+        return; // already shown at full size
+    }
+    figure.classList.add("sv-mermaid--zoomable");
+    figure.tabIndex = 0;
+    figure.setAttribute("role", "button");
+    figure.dataset.i18nAttr = "title:readme.diagramZoom;aria-label:readme.diagramZoom";
+    const toggle = () => {
+        const full = figure.classList.toggle("sv-mermaid--full");
+        svg.style.width = full ? `${naturalWidth}px` : "";
+        svg.style.maxWidth = full ? "none" : `${naturalWidth}px`;
+    };
+    figure.addEventListener("click", toggle);
+    figure.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggle();
+        }
+    });
+}
+
+// ---------------------------------------------------------------------------
 // KiCanvas
 
 let kicanvasModule = null;
@@ -364,6 +481,7 @@ export function startViewer({ root, source, devBanner = false }) {
             node.hidden = name !== view;
         }
         backButton.hidden = !(view === "kicad" || view === "readme");
+        app.classList.toggle("sv-app--kicad", view === "kicad");
         refreshTitle();
         applyTranslations(app);
     }
@@ -557,6 +675,7 @@ export function startViewer({ root, source, devBanner = false }) {
                 const path = findReadmePath(state.files);
                 const text = new TextDecoder("utf-8").decode(state.files.get(path));
                 views.readme.replaceChildren(renderMarkdown(text, state.files));
+                renderMermaidBlocks(views.readme).then(() => applyTranslations(views.readme));
             } catch (err) {
                 console.error(err);
                 views.readme.replaceChildren();

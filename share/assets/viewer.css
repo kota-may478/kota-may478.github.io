@@ -400,18 +400,20 @@ html[lang="en"] .sv-card > h2::after,
  * KiCanvas fills the area below the header. The app is pinned to the
  * viewport height and the embed is absolutely positioned, because KiCanvas
  * sizes its canvas from the container and would otherwise grow it in a loop.
+ * viewer.js sets .sv-app--kicad while the KiCanvas view is shown (a class
+ * rather than :has(), so the layout also works in browsers without :has()).
  */
-.sv-app:has(.sv-kicad:not([hidden])) {
+.sv-app--kicad {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
 }
 
-.sv-app:has(.sv-kicad:not([hidden])) .sv-footer {
+.sv-app--kicad .sv-footer {
     display: none;
 }
 
-.sv-app:has(.sv-kicad:not([hidden])) .sv-main {
+.sv-app--kicad .sv-main {
     padding: 0;
 }
 
@@ -423,7 +425,10 @@ html[lang="en"] .sv-card > h2::after,
 
 .sv-kicad kicanvas-embed {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: auto;
     height: auto;
     max-height: none;
@@ -513,6 +518,40 @@ html[lang="en"] .sv-card > h2::after,
     border: none;
     border-top: 1px solid var(--border);
     margin: 24px 0;
+}
+
+/* Rendered Mermaid diagrams. `contain: paint` clips the drawing to its box
+   and makes it the containing block even for position: fixed, so diagram
+   styles cannot overlay the rest of the page. */
+.sv-readme .sv-mermaid {
+    margin: 1em 0;
+    padding: 12px;
+    overflow-x: auto;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    contain: paint;
+}
+
+.sv-readme .sv-mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Diagrams scaled down to fit can be toggled to their natural size. */
+.sv-readme .sv-mermaid--zoomable {
+    cursor: zoom-in;
+}
+
+.sv-readme .sv-mermaid--full {
+    cursor: zoom-out;
+    text-align: left;
+}
+
+.sv-readme .sv-mermaid--zoomable:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
 }
 
 .sv-readme .sv-missing {

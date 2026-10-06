@@ -37,6 +37,8 @@ export const MESSAGES = {
         "readme.failed": "README.md を表示できませんでした。",
         "readme.imageMissing": "画像が含まれていません",
         "readme.linkDisabled": "このリンク先は共有に含まれていません",
+        "readme.mermaidFailed": "この図（Mermaid）を表示できませんでした",
+        "readme.diagramZoom": "クリックで拡大／縮小",
 
         "error.credentials": "プロジェクト名かパスワードが違います。",
         "error.network": "データを取得できませんでした。",
@@ -83,6 +85,8 @@ export const MESSAGES = {
         "readme.failed": "Could not display README.md.",
         "readme.imageMissing": "Image not included",
         "readme.linkDisabled": "This link target is not part of the share",
+        "readme.mermaidFailed": "Could not render this diagram (Mermaid)",
+        "readme.diagramZoom": "Click to zoom in / out",
 
         "error.credentials": "The project name or password is incorrect.",
         "error.network": "Could not fetch the data.",
