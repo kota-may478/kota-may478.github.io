@@ -213,6 +213,13 @@ function renderMarkdown(text, files) {
             // stripped here instead (as GitHub does) to prevent UI overlays.
             FORBID_ATTR: ["style"],
         });
+        // The site offsets the h2 underline differently for Latin and
+        // Japanese text; pick per heading since README language varies.
+        for (const h2 of fragment.querySelectorAll("h2")) {
+            if (!/[\u3000-\u30ff\u3400-\u9fff\uf900-\ufaff\uff00-\uffef]/.test(h2.textContent)) {
+                h2.classList.add("sv-latin");
+            }
+        }
         for (const img of fragment.querySelectorAll("img[data-missing]")) {
             const note = el("span", { class: "sv-missing", i18n: "readme.imageMissing" });
             if (img.alt) {

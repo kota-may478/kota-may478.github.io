@@ -166,13 +166,21 @@ body {
     }
 }
 
-/* Teal underline behind h2, as on the site. */
+/*
+ * Teal underline behind h2, copied from the site's `section h2` rules:
+ * 24px Arial with line-height: normal (not the body's 1.6, which would move
+ * the bar down), padding-bottom 3px, and a 6px bar whose bottom sits 5px
+ * (Japanese) or 1px (English) above the heading box's bottom edge.
+ */
 .sv-card > h2,
 .sv-readme h2 {
     position: relative;
     display: inline-block;
-    margin: 20px 0 0;
+    margin-top: 20px;
+    margin-bottom: 0.83em; /* browser default for h2, as on the site */
     padding-bottom: 3px;
+    font-size: 1.5em;
+    line-height: normal;
     z-index: 0;
 }
 
@@ -182,13 +190,16 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 5px;
+    bottom: 5px; /* site: .lang-ja section h2::after */
     height: 6px;
     background-color: var(--teal);
     z-index: -1;
 }
 
-html[lang="en"] .sv-card > h2::after {
+/* site: .lang-en section h2::after. UI headings follow the UI language;
+   README headings follow their own text (see viewer.js). */
+html[lang="en"] .sv-card > h2::after,
+.sv-readme h2.sv-latin::after {
     bottom: 1px;
 }
 
