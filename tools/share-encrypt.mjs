@@ -53,8 +53,8 @@ const {
 
 /** Files taken anywhere in the project tree (hierarchical sheets included). */
 export const INCLUDE_EXTENSIONS = [".kicad_pro", ".kicad_sch", ".kicad_pcb"];
-/** Taken only at the project root. */
-export const README_NAME = "README.md";
+/** Taken only at the project root: README.md and its optional English version. */
+export const README_NAMES = ["README.md", "README.en.md"];
 /** Image types that may be referenced from README.md. */
 export const IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".avif", ".bmp"];
 /** Directories that are never entered: VCS, backups, fabrication outputs. */
@@ -257,9 +257,12 @@ export function selectProjectFiles(rootDir) {
     };
     walk(rootDir);
 
-    const readmePath = path.join(rootDir, README_NAME);
-    if (existsSync(readmePath) && lstatSync(readmePath).isFile()) {
-        selected.add(README_NAME);
+    for (const readmeName of README_NAMES) {
+        const readmePath = path.join(rootDir, readmeName);
+        if (!isRegularFileInside(rootDir, readmePath)) {
+            continue;
+        }
+        selected.add(readmeName);
         for (const ref of readmeImageRefs(readFileSync(readmePath, "utf8"))) {
             const rel = resolveReadmeRef(ref);
             if (!rel || !hasExt(rel, IMAGE_EXTENSIONS)) {

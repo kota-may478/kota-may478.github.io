@@ -501,3 +501,16 @@ test("Windows-reserved device names produce a warning", async () => {
     await run(["--set-source", "CON", "/x"], { rootDir: root, io });
     assert.match(io.text(), /reserved device name/);
 });
+
+// --- English README ----------------------------------------------------------------
+
+test("README.en.md (and images it references) is selected alongside README.md", () => {
+    const src = tempDir();
+    put(src, "b.kicad_sch", "(kicad_sch)");
+    put(src, "README.md", "# 日本語\n![j](img/ja.png)\n");
+    put(src, "README.en.md", "# English\n![e](img/en.png)\n");
+    put(src, "img/ja.png", "png");
+    put(src, "img/en.png", "png");
+    put(src, "docs/README.en.md", "not at the root");
+    assert.deepEqual(selectProjectFiles(src), ["README.en.md", "README.md", "b.kicad_sch", "img/en.png", "img/ja.png"]);
+});
