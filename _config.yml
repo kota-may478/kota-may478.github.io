@@ -1,2 +1,9 @@
 plugins:
   - jekyll-sitemap
+exclude:
+  - tools/
+defaults:
+  - scope:
+      path: "share"
+    values:
+      sitemap: false

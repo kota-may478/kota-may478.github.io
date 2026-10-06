@@ -1,0 +1,37 @@
+# Vendored third-party files
+
+All files are pinned copies; nothing is loaded from a CDN at runtime.
+
+| Library | Version | Source | License | Files |
+| --- | --- | --- | --- | --- |
+| KiCanvas | git `b031159eb74aaa7eef2b026fd85d35bc05ff2095` (2026-04-28, no tagged releases upstream) | https://kicanvas.org/kicanvas/kicanvas.js (built from https://github.com/theacodes/kicanvas at that commit), **modified** (see below) | MIT | `kicanvas/kicanvas.js`, `kicanvas/license.txt` |
+| ├ earcut (bundled in KiCanvas) | — | https://github.com/mapbox/earcut | ISC | `kicanvas/third_party/license-earcut.txt` |
+| └ Newstroke font data (bundled in KiCanvas) | — | https://vovanium.ru/sledy/newstroke | CC0 1.0 (see `kicanvas/license.txt`) | `kicanvas/third_party/readme-newstroke.txt` |
+| marked | 18.1.0 | npm `marked@18.1.0` (`lib/marked.esm.js`) | MIT | `marked/marked.esm.js`, `marked/license.txt` |
+| DOMPurify | 3.4.16 | npm `dompurify@3.4.16` (`dist/purify.es.mjs`) | Apache-2.0 OR MPL-2.0 | `dompurify/purify.es.mjs`, `dompurify/license.txt`, `dompurify/license-mpl.txt` |
+| Material Symbols Outlined | 0.47.6 | npm `material-symbols@0.47.6` | Apache-2.0 | `fonts/material-symbols-outlined.woff2`, `fonts/license-material-symbols.txt` |
+
+## Modifications to KiCanvas
+
+`kicanvas/kicanvas.js` is generated from the upstream file by
+`tools/vendor-kicanvas.mjs`, which applies these changes:
+
+1. The statement appending a `<link>` to `https://fonts.googleapis.com/...`
+   is removed, so the viewer makes no external requests. The icon font is
+   served from `fonts/`; the UI font is the system font (`../viewer.css`).
+2. The default canvas colour theme is KiCanvas' built-in "KiCad" theme
+   instead of "Witch Hazel".
+3. The default mouse controls follow KiCad (wheel zooms, Ctrl/Shift+wheel pans).
+4. A KiCad-like light UI palette is appended to the shared UI stylesheet,
+   replacing the purple/gradient colours.
+
+All of these are defaults only: the viewer's own Preferences panel can still
+switch theme and controls (KiCanvas stores that choice in `localStorage`
+under `kc:prefs`; it contains no project data).
+
+SHA-256:
+
+- upstream `kicanvas.js`: `ca910f25276c3efb9aacb3a5d6341d4d9af4736d4c875fb0440d2cc856865ab7`
+- generated `kicanvas/kicanvas.js`: `cd89550b4d2a3a9db12bfa0f2ab5ad84291e718778859c400a5f018268066143`
+- `marked/marked.esm.js`: `054d73b676031dc8e60e247ef228044fbeebe10af14bac1a6e53852f80f826e5`
+- `dompurify/purify.es.mjs`: `c44274a7959cfdd4da871fa78a5d5fbbef55db68d118c5c0833bc4b5cf9633ad`

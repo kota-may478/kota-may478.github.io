@@ -1,0 +1,370 @@
+/* Icon font used by KiCanvas (its upstream Google Fonts link is patched out). */
+@font-face {
+    font-family: "Material Symbols Outlined";
+    font-style: normal;
+    font-weight: 100 700;
+    font-display: block;
+    src: url("vendor/fonts/material-symbols-outlined.woff2") format("woff2");
+}
+
+:root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --fg: #1d2330;
+    --muted: #5d6677;
+    --border: #d9dde5;
+    --accent: #2f6fde;
+    --accent-fg: #ffffff;
+    --danger: #b3261e;
+    --code-bg: #eef0f4;
+    --topbar-h: 52px;
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #14171d;
+        --surface: #1c2028;
+        --fg: #e4e7ee;
+        --muted: #9aa3b5;
+        --border: #313744;
+        --accent: #6b9cff;
+        --accent-fg: #0d1117;
+        --danger: #ff8a80;
+        --code-bg: #262b35;
+        color-scheme: dark;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family:
+        system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
+        "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    line-height: 1.6;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.sv-app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.sv-dev-banner {
+    background: #8a5a00;
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 16px;
+}
+
+.sv-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: var(--topbar-h);
+    padding: 0 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.sv-title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sv-button {
+    font: inherit;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--fg);
+    cursor: pointer;
+}
+
+.sv-button:hover {
+    border-color: var(--accent);
+}
+
+.sv-button:focus-visible,
+.sv-input:focus-visible,
+.sv-entry:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.sv-button--primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-fg);
+    font-weight: 600;
+}
+
+.sv-button:disabled {
+    opacity: 0.6;
+    cursor: progress;
+}
+
+.sv-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.sv-panel {
+    width: 100%;
+    max-width: 440px;
+    margin: 48px auto;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.sv-panel h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.sv-panel p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.sv-field {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+.sv-input {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px 10px;
+    font: inherit;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.sv-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.sv-error {
+    margin: 0 0 14px;
+    color: var(--danger);
+    font-size: 14px;
+}
+
+.sv-status {
+    margin: 48px auto;
+    color: var(--muted);
+}
+
+.sv-dir {
+    width: 100%;
+    max-width: 640px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+.sv-dir h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 8px;
+}
+
+.sv-dir ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.sv-dir li + li {
+    border-top: 1px solid var(--border);
+}
+
+.sv-entry {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    text-align: left;
+    background: none;
+    border: 0;
+    color: var(--fg);
+    cursor: pointer;
+}
+
+.sv-entry:hover:not(:disabled) {
+    background: var(--bg);
+}
+
+.sv-entry:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.sv-entry-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: 26px;
+    line-height: 1;
+    color: var(--accent);
+    font-feature-settings: "liga";
+}
+
+.sv-entry-name {
+    display: block;
+    font-weight: 600;
+}
+
+.sv-entry-desc {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/*
+ * KiCanvas fills the area below the top bar. The app is pinned to the
+ * viewport height and the embed is absolutely positioned, because KiCanvas
+ * sizes its canvas from the container and would otherwise grow it in a loop.
+ */
+.sv-app:has(.sv-kicad:not([hidden])) {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.sv-kicad {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+.sv-kicad kicanvas-embed {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+    /* Upstream uses an aqua debug background and the Nunito font; use the
+       KiCad-like light panel colour and the system UI font instead. */
+    background-color: #f4f4f4;
+    font-family:
+        system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
+        "Noto Sans JP", "Yu Gothic UI", sans-serif;
+}
+
+.sv-readme {
+    width: 100%;
+    max-width: 920px;
+    margin: 24px auto 64px;
+    padding: 24px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+.sv-readme img {
+    max-width: 100%;
+}
+
+.sv-readme table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.sv-readme th,
+.sv-readme td {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+}
+
+.sv-readme code {
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.92em;
+}
+
+.sv-readme pre {
+    background: var(--code-bg);
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.sv-readme pre code {
+    background: none;
+    padding: 0;
+}
+
+.sv-readme blockquote {
+    margin: 1em 0;
+    padding: 0.2em 1em;
+    border-left: 4px solid var(--border);
+    color: var(--muted);
+}
+
+.sv-readme .sv-missing {
+    color: var(--muted);
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .sv-panel {
+        margin: 24px 16px;
+        width: auto;
+    }
+
+    .sv-readme {
+        padding: 16px;
+        margin: 12px 0 48px;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+}
