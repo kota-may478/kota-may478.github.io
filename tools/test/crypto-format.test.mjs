@@ -126,3 +126,14 @@ test("unknown version and truncated data are FormatErrors", async () => {
     await assert.rejects(decryptArchive({ projectName: NAME, password: PASS, data: v2 }), FormatError);
     await assert.rejects(decryptArchive({ projectName: NAME, password: PASS, data: data.slice(0, 20) }), FormatError);
 });
+
+test("file ids: deterministic, normalised, 32 hex chars, distinct per name and password", async () => {
+    const { deriveLocator, ID_PATTERN: FILE_ID } = await import("../../share/assets/crypto-format.js");
+    const a = await deriveLocator(NAME, PASS);
+    assert.match(a, FILE_ID);
+    assert.equal(a, await deriveLocator(` ${NAME} `, `　${PASS}`));
+    assert.notEqual(a, await deriveLocator(NAME.toLowerCase(), PASS));
+    assert.notEqual(a, await deriveLocator(NAME, PASS + "x"));
+    // length-prefixed credentials: shifting the boundary changes the id
+    assert.notEqual(await deriveLocator("ab", "c"), await deriveLocator("a", "bc"));
+});

@@ -7,10 +7,9 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { after, test } from "node:test";
 
-import { ID_PATTERN, PASSWORD_ALPHABET, decryptArchive } from "../../share/assets/crypto-format.js";
+import { ID_PATTERN, PASSWORD_ALPHABET, decryptArchive, deriveLocator } from "../../share/assets/crypto-format.js";
 import {
     INDEX_HTML,
-    generateId,
     generatePassword,
     readmeImageRefs,
     run,
@@ -67,7 +66,8 @@ async function registerDemo(root) {
 }
 
 const manifest = (root) => JSON.parse(readFileSync(path.join(root, "local_share", "manifest.json"), "utf8"));
-const dataBin = (root, id) => readFileSync(path.join(root, "share", id, "data.bin"));
+const dataPath = (root, id) => path.join(root, "share", "data", `${id}.bin`);
+const dataBin = (root, id) => readFileSync(dataPath(root, id));
 
 // ---------------------------------------------------------------------------
 
@@ -88,16 +88,14 @@ test("passwords: 20 chars from the allowed alphabet, all classes present", () =>
     assert.equal(PASSWORD_ALPHABET, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%*+-=?@^_");
 });
 
-test("ids: lowercase alphanumerics, >= 16 chars, random", () => {
-    const seen = new Set();
-    for (let i = 0; i < 500; i++) {
-        const id = generateId();
-        assert.match(id, /^[a-z0-9]{16,}$/);
-        assert.match(id, ID_PATTERN);
-        assert.ok(!id.startsWith("_") && !id.startsWith("."));
-        seen.add(id);
-    }
-    assert.equal(seen.size, 500);
+test("file ids are derived from name + password (32 hex chars), not random", async () => {
+    const root = makeRepo();
+    const p = await registerDemo(root);
+    assert.match(p.id, ID_PATTERN);
+    assert.match(p.id, /^[0-9a-f]{32}$/);
+    assert.equal(p.id, await deriveLocator("demo", p.password));
+    assert.notEqual(p.id, await deriveLocator("demo", p.password + "x"));
+    assert.notEqual(p.id, await deriveLocator("Demo", p.password));
 });
 
 test("first run creates id, password, index.html and a decryptable data.bin", async () => {
@@ -109,7 +107,9 @@ test("first run creates id, password, index.html and a decryptable data.bin", as
     assert.match(m.projects.demo.id, ID_PATTERN);
     assert.equal(m.projects.demo.id, p.id);
     assert.match(m.projects.demo.hash, /^[0-9a-f]{64}$/);
-    assert.equal(readFileSync(path.join(root, "share", p.id, "index.html"), "utf8"), INDEX_HTML);
+    assert.equal(readFileSync(path.join(root, "share", "index.html"), "utf8"), INDEX_HTML);
+    assert.ok(existsSync(dataPath(root, p.id)));
+    assert.ok(!existsSync(path.join(root, "share", p.id)), "no per-project directory");
     assert.ok(!INDEX_HTML.startsWith("---"), "no Jekyll front matter");
     const files = await decryptArchive({ projectName: "demo", password: p.password, data: dataBin(root, p.id) });
     assert.deepEqual([...files.keys()].sort(), ["README.md", "demo.kicad_pcb", "demo.kicad_pro", "demo.kicad_sch"]);
@@ -158,21 +158,27 @@ test("--only limits processing to the named project", async () => {
     await run(["--set-source", "other", "/nonexistent"], { rootDir: root, io: fakeIo() });
     const s = await run(["--only", "demo"], { rootDir: root, io: fakeIo() });
     assert.deepEqual(Object.keys(s.results), ["demo"]);
-    assert.ok(!existsSync(path.join(root, "share", manifest(root).projects.other.id, "data.bin")));
+    assert.ok(!existsSync(dataPath(root, manifest(root).projects.other.id)));
 });
 
-test("--rotate-password keeps the id, changes the password and re-encrypts", async () => {
+test("--rotate-password changes password and file id; the old file is kept until confirmed", async () => {
     const root = makeRepo();
     const p = await registerDemo(root);
     await run([], { rootDir: root, io: fakeIo() });
     const io = fakeIo();
-    await run(["--rotate-password", "demo"], { rootDir: root, io });
+    const s = await run(["--rotate-password", "demo"], { rootDir: root, io });
     const m = manifest(root).projects.demo;
-    assert.equal(m.id, p.id);
     assert.notEqual(m.password, p.password);
+    assert.notEqual(m.id, p.id);
+    assert.equal(m.id, await deriveLocator("demo", m.password));
+    assert.equal(s.results.demo, "new");
     assert.ok(io.text().includes(m.password), "new password is shown once");
-    await assert.rejects(decryptArchive({ projectName: "demo", password: p.password, data: dataBin(root, p.id) }));
-    await decryptArchive({ projectName: "demo", password: m.password, data: dataBin(root, p.id) });
+    await decryptArchive({ projectName: "demo", password: m.password, data: dataBin(root, m.id) });
+    assert.ok(existsSync(dataPath(root, p.id)), "old file not deleted without confirmation");
+    assert.ok(s.staleKept.includes(`data/${p.id}.bin`));
+    const s2 = await run([], { rootDir: root, io: fakeIo({ interactive: true, answers: [true] }) });
+    assert.deepEqual(s2.staleDeleted, [`data/${p.id}.bin`]);
+    assert.ok(!existsSync(dataPath(root, p.id)));
 });
 
 test("--show-password prints the stored password only when asked", async () => {
@@ -206,37 +212,61 @@ test("invalid project names are rejected", async () => {
     assert.ok(manifest(root).projects["a!#$%+-=@^_Z9"]);
 });
 
-test("stale ids are never deleted without an explicit yes", async () => {
+test("unused files are never deleted without an explicit yes", async () => {
     const root = makeRepo();
     await registerDemo(root);
-    const staleId = "zzzzzzzzzzzzzzzzzzzz";
-    put(root, `share/${staleId}/data.bin`, "old");
+    const staleFile = `data/${"a".repeat(32)}.bin`;
+    const legacyDir = "zzzzzzzzzzzzzzzzzzzz"; // old share/<id>/ layout
+    put(root, `share/${staleFile}`, "old");
+    put(root, `share/${legacyDir}/data.bin`, "old");
+    put(root, "share/data/notes.txt", "unexpected");
     put(root, "share/notes/readme.txt", "not an id");
     put(root, "share/assets/viewer.js", "//");
 
     const s1 = await run([], { rootDir: root, io: fakeIo() }); // non-interactive
-    assert.ok(existsSync(path.join(root, "share", staleId)));
-    assert.ok(s1.staleKept.includes(staleId));
+    assert.ok(existsSync(path.join(root, "share", staleFile)));
+    assert.ok(existsSync(path.join(root, "share", legacyDir)));
+    assert.ok(s1.staleKept.includes(staleFile) && s1.staleKept.includes(`${legacyDir}/`));
 
     const io2 = fakeIo({ interactive: true, answers: [] }); // default answer: No
     await run([], { rootDir: root, io: io2 });
-    assert.ok(existsSync(path.join(root, "share", staleId)));
+    assert.ok(existsSync(path.join(root, "share", staleFile)));
     assert.equal(io2.questions.length, 1);
 
     const s3 = await run(["--yes"], { rootDir: root, io: fakeIo({ interactive: true, answers: [true] }) });
-    assert.deepEqual(s3.staleDeleted, [staleId]);
-    assert.ok(!existsSync(path.join(root, "share", staleId)));
+    assert.deepEqual(s3.staleDeleted.sort(), [staleFile, `${legacyDir}/`].sort());
+    assert.ok(!existsSync(path.join(root, "share", staleFile)));
+    assert.ok(!existsSync(path.join(root, "share", legacyDir)));
+    assert.ok(existsSync(path.join(root, "share", "data", "notes.txt")), "unexpected files are never deleted");
     assert.ok(existsSync(path.join(root, "share", "notes")), "non-id directories are never deleted");
     assert.ok(existsSync(path.join(root, "share", "assets")));
-    assert.ok(existsSync(path.join(root, "share", manifest(root).projects.demo.id)));
+    assert.ok(existsSync(path.join(root, "share", "index.html")));
+    assert.ok(existsSync(dataPath(root, manifest(root).projects.demo.id)));
 });
 
-test("--yes alone does not delete stale ids", async () => {
+test("--yes alone does not delete unused files", async () => {
     const root = makeRepo();
     await registerDemo(root);
-    put(root, "share/yyyyyyyyyyyyyyyyyyyy/data.bin", "old");
+    put(root, `share/data/${"b".repeat(32)}.bin`, "old");
     await run(["--yes"], { rootDir: root, io: fakeIo() });
-    assert.ok(existsSync(path.join(root, "share", "yyyyyyyyyyyyyyyyyyyy")));
+    assert.ok(existsSync(path.join(root, "share", "data", `${"b".repeat(32)}.bin`)));
+});
+
+test("manifest entries of the old layout (random ids) are migrated to derived file ids", async () => {
+    const root = makeRepo();
+    const password = "Aa1!Aa1!Aa1!Aa1!Aa1!";
+    put(root, "local_share/manifest.json", JSON.stringify({ version: 1, projects: { demo: { id: "oldrandomid000000000", password, hash: "x".repeat(64) } } }));
+    put(root, "share/oldrandomid000000000/data.bin", "old");
+    put(root, "share/oldrandomid000000000/index.html", "old");
+    const io = fakeIo();
+    const s = await run([], { rootDir: root, io });
+    const m = manifest(root).projects.demo;
+    assert.equal(m.id, await deriveLocator("demo", password));
+    assert.equal(m.password, password, "password is kept");
+    assert.equal(s.results.demo, "new");
+    assert.match(io.text(), /\[file id\] demo: oldrandomid000000000 -> [0-9a-f]{32}/);
+    await decryptArchive({ projectName: "demo", password, data: dataBin(root, m.id) });
+    assert.ok(s.staleKept.includes("oldrandomid000000000/"), "old directory offered for deletion, not deleted");
 });
 
 // --- selection / sync ----------------------------------------------------------
@@ -372,7 +402,7 @@ test("source paths support ~ expansion", async () => {
 
 // --- --list / URLs -------------------------------------------------------------
 
-test("--list shows name, id-based URL from CNAME and update state, never passwords", async () => {
+test("--list shows the common URL from CNAME, file ids and update state, never passwords", async () => {
     const root = makeRepo();
     put(root, "CNAME", "example.org\n");
     const p = await registerDemo(root);
@@ -380,8 +410,9 @@ test("--list shows name, id-based URL from CNAME and update state, never passwor
     const io1 = fakeIo();
     const s1 = await run(["--list"], { rootDir: root, io: io1 });
     assert.deepEqual(s1.results, {}, "--list alone does not encrypt");
-    assert.ok(!existsSync(path.join(root, "share", p.id, "data.bin")));
-    assert.match(io1.text(), new RegExp(`demo\\s+https://example\\.org/share/${p.id}/\\s+\\(not encrypted yet\\)`));
+    assert.ok(!existsSync(dataPath(root, p.id)));
+    assert.match(io1.text(), /share URL \(all projects\): https:\/\/example\.org\/share\//);
+    assert.match(io1.text(), new RegExp(`demo\\s+share/data/${p.id}\\.bin\\s+\\(not encrypted yet\\)`));
     assert.match(io1.text(), /source: /);
     assert.ok(!io1.text().includes(p.password));
 
@@ -389,20 +420,22 @@ test("--list shows name, id-based URL from CNAME and update state, never passwor
     const io2 = fakeIo();
     const s2 = await run(["--list"], { rootDir: root, io: io2 });
     assert.match(io2.text(), /updated \d{4}-\d{2}-\d{2} \d{2}:\d{2}/);
-    assert.equal(s2.list[0].url, `https://example.org/share/${p.id}/`);
+    assert.equal(s2.list[0].id, p.id);
     assert.ok(!JSON.stringify(s2.list).includes(p.password));
     assert.ok(!io2.text().includes(p.password));
 });
 
-test("URLs fall back to a site-relative path without CNAME; shown with --show-password and on creation", async () => {
+test("the URL falls back to /share/ without CNAME; shown with --show-password and on creation", async () => {
     const root = makeRepo();
     const io = fakeIo();
     await run(["--set-source", "demo", "/x"], { rootDir: root, io });
     const p = manifest(root).projects.demo;
-    assert.ok(io.text().includes(`/share/${p.id}/`), "URL shown on creation");
+    assert.ok(io.text().includes("url:      /share/"), "URL shown on creation");
+    assert.ok(io.text().includes(`file id:  ${p.id}`));
     const io2 = fakeIo();
     await run(["--show-password", "demo"], { rootDir: root, io: io2 });
-    assert.ok(io2.text().includes(`url:      /share/${p.id}/`));
+    assert.ok(io2.text().includes("url:      /share/"));
+    assert.ok(io2.text().includes(`file id:  ${p.id}`));
     assert.ok(io2.text().includes(p.password));
 });
 
@@ -434,4 +467,32 @@ test("an unsupported Node.js exits with a clear message before loading crypto-fo
     assert.equal(r.status, 1);
     assert.match(r.stderr, /Node\.js 22\.7\.0 or later .* is required \(running v18\.20\.4\)/);
     assert.ok(!/SyntaxError/.test(r.stderr));
+});
+
+// --- symlink safety ----------------------------------------------------------------
+
+test("files reached through symlinks (files, folders or README image paths) are never selected", async () => {
+    const { symlinkSync } = await import("node:fs");
+    const base = tempDir();
+    const src = path.join(base, "src");
+    const outside = path.join(base, "outside");
+    put(outside, "secret.kicad_sch", "SECRET");
+    put(outside, "secret.png", "SECRET");
+    put(outside, "dir/x.kicad_sch", "SECRET");
+    put(src, "b.kicad_sch", "(kicad_sch)");
+    put(src, "real/ok.png", "png");
+    put(src, "README.md", "![a](link.png)\n![b](imgs/up/secret.png)\n![c](../outside/secret.png)\n![d](real/ok.png)\n");
+    symlinkSync(path.join(outside, "secret.kicad_sch"), path.join(src, "link.kicad_sch"));
+    symlinkSync(path.join(outside, "dir"), path.join(src, "linkdir"));
+    symlinkSync(path.join(outside, "secret.png"), path.join(src, "link.png"));
+    mkdirSync(path.join(src, "imgs"));
+    symlinkSync(outside, path.join(src, "imgs", "up"));
+    assert.deepEqual(selectProjectFiles(src), ["README.md", "b.kicad_sch", "real/ok.png"]);
+});
+
+test("Windows-reserved device names produce a warning", async () => {
+    const root = makeRepo();
+    const io = fakeIo();
+    await run(["--set-source", "CON", "/x"], { rootDir: root, io });
+    assert.match(io.text(), /reserved device name/);
 });

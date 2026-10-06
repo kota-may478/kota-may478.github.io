@@ -3,8 +3,10 @@
 //
 //   local_share/manifest.json      project name -> { id, password, hash, source }
 //   local_share/<project>/         plaintext (never committed)
-//   share/<id>/index.html          generated, identical for every id
-//   share/<id>/data.bin            encrypted archive (see share/assets/crypto-format.js)
+//   share/index.html               the single viewer page (generated)
+//   share/data/<id>.bin            encrypted archive; <id> is derived from the
+//                                  project name and password (deriveLocator in
+//                                  share/assets/crypto-format.js)
 //
 // Run `node tools/share-encrypt.mjs --help` for usage. This file must not
 // contain project names, passwords or source paths; those live only in the
@@ -18,6 +20,7 @@ import {
     mkdirSync,
     readFileSync,
     readdirSync,
+    realpathSync,
     renameSync,
     rmSync,
     writeFileSync,
@@ -37,6 +40,7 @@ const {
     PASSWORD_ALPHABET,
     PASSWORD_LENGTH,
     SYMBOLS,
+    deriveLocator,
     encodeArchive,
     encryptArchive,
     isValidProjectName,
@@ -76,10 +80,13 @@ export const EXCLUDED_FILES = [
     /^\./,
 ];
 
-const ID_LENGTH = 20;
-const ID_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
-const RESERVED_SHARE_DIRS = ["assets"];
+const DATA_DIR = "data";
+const RESERVED_SHARE_DIRS = ["assets", DATA_DIR];
+const DATA_FILE_PATTERN = /^[0-9a-f]{32}\.bin$/;
+// Directories of the previous layout (share/<random id>/index.html + data.bin).
+const LEGACY_ID_DIR_PATTERN = /^[a-z0-9]{16,64}$/;
 const WINDOWS_UNSAFE_NAME_CHARS = /[*?]/;
+const WINDOWS_RESERVED_NAMES = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$/i;
 
 export const INDEX_HTML = `<!doctype html>
 <html lang="ja">
@@ -90,20 +97,22 @@ export const INDEX_HTML = `<!doctype html>
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Shared project</title>
-<link rel="stylesheet" href="../assets/viewer.css">
-<link rel="icon" href="../../fig/dolphin_circle.ico" type="image/x-icon">
+<link rel="stylesheet" href="assets/viewer.css">
+<link rel="icon" href="../fig/dolphin_circle.ico" type="image/x-icon">
 </head>
 <body>
 <div id="app"></div>
-<script type="module" src="../assets/share-main.js"></script>
+<script type="module" src="assets/share-main.js"></script>
 </body>
 </html>
 `;
 
 const USAGE = `Usage: node tools/share-encrypt.mjs [options]
 
-Encrypts local_share/<project>/ into share/<id>/data.bin for every project in
+Encrypts local_share/<project>/ into share/data/<id>.bin for every project in
 local_share/manifest.json, skipping projects whose content is unchanged.
+All projects share one URL (share/); the file id is derived from the project
+name and password, so viewers only need those two.
 
 Options:
   --only <name>                 Process only this project (repeatable).
@@ -113,9 +122,10 @@ Options:
   --yes                         Do not ask before copying in --sync (never deletes).
   --set-source <name> <path>    Register or change a project's source folder
                                 (registers the project if it is new).
-  --rotate-password <name>      Issue a new password (same id) and re-encrypt.
-  --show-password <name>        Print the share URL and stored password of a project.
-  --list                        List projects with id, share URL and last update
+  --rotate-password <name>      Issue a new password and re-encrypt (the file id
+                                changes; the old file is offered for deletion).
+  --show-password <name>        Print the share URL, file id and password of a project.
+  --list                        List projects with file id and last update
                                 (passwords are not shown).
   -h, --help                    Show this help.
 
@@ -131,10 +141,6 @@ function randomString(alphabet, length) {
         out += alphabet[randomInt(alphabet.length)];
     }
     return out;
-}
-
-export function generateId() {
-    return randomString(ID_ALPHABET, ID_LENGTH);
 }
 
 /**
@@ -263,12 +269,31 @@ export function selectProjectFiles(rootDir) {
                 continue;
             }
             const full = path.join(rootDir, fromArchivePath(rel));
-            if (existsSync(full) && lstatSync(full).isFile()) {
+            if (isRegularFileInside(rootDir, full)) {
                 selected.add(rel);
             }
         }
     }
     return [...selected].sort();
+}
+
+/**
+ * True if `full` is a regular file whose real path (all symlinks resolved,
+ * including those in parent directories) lies inside `rootDir`.
+ */
+function isRegularFileInside(rootDir, full) {
+    if (!existsSync(full) || lstatSync(full).isSymbolicLink()) {
+        return false;
+    }
+    let realRoot;
+    let realFile;
+    try {
+        realRoot = realpathSync(rootDir);
+        realFile = realpathSync(full);
+    } catch {
+        return false;
+    }
+    return realFile.startsWith(realRoot + path.sep) && lstatSync(realFile).isFile();
 }
 
 export function readProjectFiles(rootDir) {
@@ -408,20 +433,17 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
     const forced = new Set();
 
     checkGitignore(rootDir, io);
-    const urlFor = (id) => shareUrl(rootDir, id);
+    const url = shareUrl(rootDir);
 
-    const usedIds = () => new Set(Object.values(projects).map((p) => p.id));
-    const register = (name) => {
-        let id;
-        do {
-            id = generateId();
-        } while (usedIds().has(id) || existsSync(path.join(shareDir, id)));
-        projects[name] = { id, password: generatePassword(), hash: null };
+    const register = async (name) => {
+        const password = generatePassword();
+        const id = await deriveLocator(name, password);
+        projects[name] = { id, password, hash: null };
         saveManifest(manifestFile, manifest);
         summary.registered.push(name);
         io.log(`\n[new] ${name}`);
-        io.log(`  id:       ${id}`);
-        io.log(`  url:      ${urlFor(id)}`);
+        io.log(`  url:      ${url}`);
+        io.log(`  file id:  ${id}`);
         io.log(`  password: ${projects[name].password}`);
         io.log(`  (shown only now; use --show-password ${shellQuote(name)} to see it again)`);
     };
@@ -434,13 +456,16 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         if (WINDOWS_UNSAFE_NAME_CHARS.test(name)) {
             io.warn(`warning: ${JSON.stringify(name)} contains * or ?, which cannot be used in folder names on Windows`);
         }
+        if (WINDOWS_RESERVED_NAMES.test(name)) {
+            io.warn(`warning: ${JSON.stringify(name)} is a reserved device name and cannot be used as a folder name on Windows`);
+        }
     };
 
     // --set-source
     for (const [name, source] of opts.setSource) {
         requireValidName(name);
         if (!projects[name]) {
-            register(name);
+            await register(name);
         }
         projects[name].source = source;
         saveManifest(manifestFile, manifest);
@@ -455,9 +480,28 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         projects[name].password = generatePassword();
         saveManifest(manifestFile, manifest);
         forced.add(name);
+    }
+
+    // The file id must always equal deriveLocator(name, password). This also
+    // migrates entries from the old layout (random ids) and follows password
+    // rotations; a changed id means the project is encrypted again as new.
+    for (const name of Object.keys(projects).sort()) {
+        const project = projects[name];
+        const expected = await deriveLocator(name, project.password);
+        if (project.id !== expected) {
+            if (!opts.rotate.includes(name)) {
+                io.log(`[file id] ${name}: ${project.id ?? "(none)"} -> ${expected}`);
+            }
+            project.id = expected;
+            project.hash = null;
+            saveManifest(manifestFile, manifest);
+        }
+    }
+
+    for (const name of opts.rotate) {
         io.log(`\n[new password] ${name}`);
-        io.log(`  id:       ${projects[name].id} (unchanged)`);
-        io.log(`  url:      ${urlFor(projects[name].id)} (unchanged)`);
+        io.log(`  url:      ${url} (unchanged)`);
+        io.log(`  file id:  ${projects[name].id} (new; the old file will be offered for deletion)`);
         io.log(`  password: ${projects[name].password}`);
     }
 
@@ -467,13 +511,15 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
             throw new Error(`--show-password: unknown project ${JSON.stringify(name)}`);
         }
         io.log(`${name}`);
-        io.log(`  url:      ${urlFor(projects[name].id)}`);
+        io.log(`  url:      ${url}`);
+        io.log(`  file id:  ${projects[name].id}`);
         io.log(`  password: ${projects[name].password}`);
     }
 
     // --list
     if (opts.list) {
-        summary.list = listProjects(projects, urlFor);
+        summary.list = listProjects(projects);
+        io.log(`share URL (all projects): ${url}`);
         for (const line of formatList(summary.list)) {
             io.log(line);
         }
@@ -508,7 +554,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         }
         if (await io.confirm(`local_share/${name}/ is not registered. Register it as a new project?`)) {
             requireValidName(name);
-            register(name);
+            await register(name);
         }
     }
 
@@ -531,6 +577,12 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
     }
 
     // Encrypt
+    mkdirSync(path.join(shareDir, DATA_DIR), { recursive: true });
+    const indexFile = path.join(shareDir, "index.html");
+    if (!existsSync(indexFile) || readFileSync(indexFile, "utf8") !== INDEX_HTML) {
+        writeFileAtomic(indexFile, INDEX_HTML);
+        io.log("wrote share/index.html");
+    }
     io.log("");
     for (const name of targets) {
         summary.results[name] = await encryptProject(name, projects[name], {
@@ -542,8 +594,8 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         saveManifest(manifestFile, manifest);
     }
 
-    // Stale ids
-    await handleStaleIds(shareDir, projects, io, summary);
+    // Stale files
+    await handleStaleFiles(shareDir, projects, io, summary);
 
     io.log("\nNext: review and stage only the encrypted output, e.g.");
     io.log("  git status --short share/");
@@ -553,23 +605,23 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
 }
 
 /**
- * Public URL of a share, built from the repository's CNAME (custom domain).
- * Without a CNAME the site-relative path is returned.
+ * Public URL of the viewer (common to all projects), built from the
+ * repository's CNAME (custom domain). Without a CNAME the site-relative path
+ * is returned.
  */
-export function shareUrl(rootDir, id) {
+export function shareUrl(rootDir) {
     const cnameFile = path.join(rootDir, "CNAME");
     const host = existsSync(cnameFile) ? readFileSync(cnameFile, "utf8").trim().split(/\s+/)[0] : "";
-    return host ? `https://${host}/share/${id}/` : `/share/${id}/`;
+    return host ? `https://${host}/share/` : "/share/";
 }
 
 /** Rows for --list; never includes passwords. */
-export function listProjects(projects, urlFor) {
+export function listProjects(projects) {
     return Object.keys(projects)
         .sort()
         .map((name) => ({
             name,
             id: projects[name].id,
-            url: urlFor(projects[name].id),
             updatedAt: projects[name].hash ? projects[name].updatedAt ?? null : null,
             source: projects[name].source ?? null,
         }));
@@ -587,7 +639,7 @@ function formatList(rows) {
     }
     const width = Math.max(...rows.map((r) => r.name.length));
     return rows.flatMap((r) => [
-        `${r.name.padEnd(width)}  ${r.url}  ${r.updatedAt ? `updated ${formatLocalTime(r.updatedAt)}` : "(not encrypted yet)"}`,
+        `${r.name.padEnd(width)}  share/data/${r.id}.bin  ${r.updatedAt ? `updated ${formatLocalTime(r.updatedAt)}` : "(not encrypted yet)"}`,
         ...(r.source ? [`${" ".repeat(width)}  source: ${r.source}`] : []),
     ]);
 }
@@ -618,27 +670,21 @@ async function encryptProject(name, project, { localDir, shareDir, force, io }) 
         io.warn(`warning: ${name}: no KiCad files found`);
     }
     const hash = await sha256Hex(encodeArchive(files));
-    const outDir = path.join(shareDir, project.id);
-    const dataFile = path.join(outDir, "data.bin");
-    const indexFile = path.join(outDir, "index.html");
-
-    mkdirSync(outDir, { recursive: true });
-    if (!existsSync(indexFile) || readFileSync(indexFile, "utf8") !== INDEX_HTML) {
-        writeFileAtomic(indexFile, INDEX_HTML);
-    }
+    const relFile = `share/${DATA_DIR}/${project.id}.bin`;
+    const dataFile = path.join(shareDir, DATA_DIR, `${project.id}.bin`);
 
     const isNew = !project.hash || !existsSync(dataFile);
     const status = isNew ? "new" : project.hash !== hash ? "updated" : force ? "forced" : "unchanged";
     const label = { new: "新規", updated: "更新", forced: "強制再暗号化", unchanged: "変更なし（スキップ）" }[status];
     if (status === "unchanged") {
-        io.log(`[${label}] ${name} -> share/${project.id}/`);
+        io.log(`[${label}] ${name} -> ${relFile}`);
         return status;
     }
     const data = await encryptArchive({ projectName: name, password: project.password, files });
     writeFileAtomic(dataFile, data);
     project.hash = hash;
     project.updatedAt = new Date().toISOString();
-    io.log(`[${label}] ${name} -> share/${project.id}/ (${files.size} files, ${data.length} bytes)`);
+    io.log(`[${label}] ${name} -> ${relFile} (${files.size} files, ${data.length} bytes)`);
     return status;
 }
 
@@ -706,22 +752,46 @@ async function syncProject(name, project, localDir, opts, io, summary) {
     io.log(`  copied ${plan.add.length + plan.overwrite.length} file(s)`);
 }
 
-async function handleStaleIds(shareDir, projects, io, summary) {
+/**
+ * Offer to delete encrypted files that no manifest entry points to any more
+ * (renamed/removed projects, rotated passwords) and directories of the old
+ * share/<id>/ layout. Nothing is deleted without an interactive "y".
+ */
+async function handleStaleFiles(shareDir, projects, io, summary) {
     if (!existsSync(shareDir)) {
         return;
     }
-    const known = new Set(Object.values(projects).map((p) => p.id));
-    const stale = readdirSync(shareDir, { withFileTypes: true })
-        .filter((e) => e.isDirectory() && !RESERVED_SHARE_DIRS.includes(e.name) && !known.has(e.name))
-        .map((e) => e.name)
-        .sort();
-    if (!stale.length) {
+    const known = new Set(Object.values(projects).map((p) => `${p.id}.bin`));
+    const deletable = [];
+    const other = [];
+    const dataDir = path.join(shareDir, DATA_DIR);
+    if (existsSync(dataDir)) {
+        for (const e of readdirSync(dataDir, { withFileTypes: true })) {
+            if (known.has(e.name)) {
+                continue;
+            }
+            const rel = `${DATA_DIR}/${e.name}`;
+            (e.isFile() && DATA_FILE_PATTERN.test(e.name) ? deletable : other).push(rel);
+        }
+    }
+    for (const e of readdirSync(shareDir, { withFileTypes: true })) {
+        if (RESERVED_SHARE_DIRS.includes(e.name) || e.name === "index.html") {
+            continue;
+        }
+        if (e.isDirectory() && LEGACY_ID_DIR_PATTERN.test(e.name)) {
+            deletable.push(`${e.name}/`);
+        } else {
+            other.push(e.isDirectory() ? `${e.name}/` : e.name);
+        }
+    }
+    deletable.sort();
+    other.sort();
+    if (!deletable.length && !other.length) {
         return;
     }
-    const deletable = stale.filter((n) => ID_PATTERN.test(n));
-    const other = stale.filter((n) => !ID_PATTERN.test(n));
-    io.warn("\nshare/ contains directories that are not in the manifest:");
-    for (const n of stale) io.warn(`  share/${n}/${ID_PATTERN.test(n) ? "" : "  (not an id; never deleted by this tool)"}`);
+    io.warn("\nshare/ contains entries that are not used by any project in the manifest:");
+    for (const rel of deletable) io.warn(`  share/${rel}`);
+    for (const rel of other) io.warn(`  share/${rel}  (unexpected; never deleted by this tool)`);
     summary.staleKept.push(...other);
     if (!deletable.length) {
         return;
@@ -731,11 +801,11 @@ async function handleStaleIds(shareDir, projects, io, summary) {
         summary.staleKept.push(...deletable);
         return;
     }
-    if (await io.confirm(`Delete ${deletable.length} stale id director${deletable.length === 1 ? "y" : "ies"}?`)) {
-        for (const n of deletable) {
-            rmSync(path.join(shareDir, n), { recursive: true, force: true });
-            summary.staleDeleted.push(n);
-            io.log(`  deleted share/${n}/`);
+    if (await io.confirm(`Delete ${deletable.length} unused entr${deletable.length === 1 ? "y" : "ies"} listed above?`)) {
+        for (const rel of deletable) {
+            rmSync(path.join(shareDir, rel), { recursive: true, force: true });
+            summary.staleDeleted.push(rel);
+            io.log(`  deleted share/${rel}`);
         }
     } else {
         summary.staleKept.push(...deletable);
