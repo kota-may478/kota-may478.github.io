@@ -111,8 +111,9 @@ const USAGE = `Usage: node tools/share-encrypt.mjs [options]
 
 Encrypts local_share/<project>/ into share/data/<id>.bin for every project in
 local_share/manifest.json, skipping projects whose content is unchanged.
-All projects share one URL (share/); the file id is derived from the project
-name and password, so viewers only need those two.
+All projects share one URL (share/). Viewers enter an ID (the project name,
+i.e. the folder name under local_share/) and the password; the data file name
+is derived from those two, so nothing else has to be shared.
 
 Options:
   --only <name>                 Process only this project (repeatable).
@@ -122,11 +123,11 @@ Options:
   --yes                         Do not ask before copying in --sync (never deletes).
   --set-source <name> <path>    Register or change a project's source folder
                                 (registers the project if it is new).
-  --rotate-password <name>      Issue a new password and re-encrypt (the file id
-                                changes; the old file is offered for deletion).
-  --show-password <name>        Print the share URL, file id and password of a project.
-  --list                        List projects with file id and last update
-                                (passwords are not shown).
+  --rotate-password <name>      Issue a new password and re-encrypt (the data file
+                                name changes; the old file is offered for deletion).
+  --show-password <name>        Print the URL, ID and password to give to viewers.
+  --list                        List projects (ID, data file, last update);
+                                passwords are not shown.
   -h, --help                    Show this help.
 
 Names containing ! $ * etc. must be quoted in the shell, e.g. --only 'a!b'.`;
@@ -442,9 +443,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         saveManifest(manifestFile, manifest);
         summary.registered.push(name);
         io.log(`\n[new] ${name}`);
-        io.log(`  url:      ${url}`);
-        io.log(`  file id:  ${id}`);
-        io.log(`  password: ${projects[name].password}`);
+        printShareInfo(io, url, name, projects[name]);
         io.log(`  (shown only now; use --show-password ${shellQuote(name)} to see it again)`);
     };
     const requireValidName = (name) => {
@@ -490,7 +489,7 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
         const expected = await deriveLocator(name, project.password);
         if (project.id !== expected) {
             if (!opts.rotate.includes(name)) {
-                io.log(`[file id] ${name}: ${project.id ?? "(none)"} -> ${expected}`);
+                io.log(`[data file] ${name}: ${project.id ?? "(none)"} -> ${expected}`);
             }
             project.id = expected;
             project.hash = null;
@@ -500,9 +499,8 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
 
     for (const name of opts.rotate) {
         io.log(`\n[new password] ${name}`);
-        io.log(`  url:      ${url} (unchanged)`);
-        io.log(`  file id:  ${projects[name].id} (new; the old file will be offered for deletion)`);
-        io.log(`  password: ${projects[name].password}`);
+        printShareInfo(io, url, name, projects[name]);
+        io.log("  (URL and ID unchanged; the old data file will be offered for deletion)");
     }
 
     // --show-password
@@ -511,15 +509,14 @@ export async function run(argv, { rootDir = defaultRootDir(), io = defaultIo() }
             throw new Error(`--show-password: unknown project ${JSON.stringify(name)}`);
         }
         io.log(`${name}`);
-        io.log(`  url:      ${url}`);
-        io.log(`  file id:  ${projects[name].id}`);
-        io.log(`  password: ${projects[name].password}`);
+        printShareInfo(io, url, name, projects[name]);
     }
 
     // --list
     if (opts.list) {
         summary.list = listProjects(projects);
         io.log(`share URL (all projects): ${url}`);
+        io.log("ID (give to viewers) / data file (internal) / last update:");
         for (const line of formatList(summary.list)) {
             io.log(line);
         }
@@ -642,6 +639,14 @@ function formatList(rows) {
         `${r.name.padEnd(width)}  share/data/${r.id}.bin  ${r.updatedAt ? `updated ${formatLocalTime(r.updatedAt)}` : "(not encrypted yet)"}`,
         ...(r.source ? [`${" ".repeat(width)}  source: ${r.source}`] : []),
     ]);
+}
+
+/** What to give to viewers (URL, ID, password) plus the internal data file. */
+function printShareInfo(io, url, name, project) {
+    io.log(`  url:       ${url}`);
+    io.log(`  id:        ${name}`);
+    io.log(`  password:  ${project.password}`);
+    io.log(`  data file: share/data/${project.id}.bin (internal; not shared)`);
 }
 
 function shellQuote(s) {

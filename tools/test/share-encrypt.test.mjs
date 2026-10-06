@@ -264,7 +264,7 @@ test("manifest entries of the old layout (random ids) are migrated to derived fi
     assert.equal(m.id, await deriveLocator("demo", password));
     assert.equal(m.password, password, "password is kept");
     assert.equal(s.results.demo, "new");
-    assert.match(io.text(), /\[file id\] demo: oldrandomid000000000 -> [0-9a-f]{32}/);
+    assert.match(io.text(), /\[data file\] demo: oldrandomid000000000 -> [0-9a-f]{32}/);
     await decryptArchive({ projectName: "demo", password, data: dataBin(root, m.id) });
     assert.ok(s.staleKept.includes("oldrandomid000000000/"), "old directory offered for deletion, not deleted");
 });
@@ -425,18 +425,23 @@ test("--list shows the common URL from CNAME, file ids and update state, never p
     assert.ok(!io2.text().includes(p.password));
 });
 
-test("the URL falls back to /share/ without CNAME; shown with --show-password and on creation", async () => {
+test("share info (URL, ID, password) is shown on creation and with --show-password; /share/ without CNAME", async () => {
     const root = makeRepo();
     const io = fakeIo();
     await run(["--set-source", "demo", "/x"], { rootDir: root, io });
     const p = manifest(root).projects.demo;
-    assert.ok(io.text().includes("url:      /share/"), "URL shown on creation");
-    assert.ok(io.text().includes(`file id:  ${p.id}`));
+    for (const text of [io.text()]) {
+        assert.ok(text.includes("url:       /share/"), "URL shown on creation");
+        assert.ok(text.includes("id:        demo"), "the ID given to viewers is the project name");
+        assert.ok(text.includes(`password:  ${p.password}`));
+        assert.ok(text.includes(`data file: share/data/${p.id}.bin (internal; not shared)`));
+    }
     const io2 = fakeIo();
     await run(["--show-password", "demo"], { rootDir: root, io: io2 });
-    assert.ok(io2.text().includes("url:      /share/"));
-    assert.ok(io2.text().includes(`file id:  ${p.id}`));
-    assert.ok(io2.text().includes(p.password));
+    assert.ok(io2.text().includes("url:       /share/"));
+    assert.ok(io2.text().includes("id:        demo"));
+    assert.ok(io2.text().includes(`password:  ${p.password}`));
+    assert.ok(!/file id/.test(io.text() + io2.text()), "no ambiguous 'file id' wording");
 });
 
 // --- Node.js version guard -------------------------------------------------------

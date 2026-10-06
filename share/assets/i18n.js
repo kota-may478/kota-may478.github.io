@@ -13,8 +13,8 @@ export const MESSAGES = {
 
         "form.heading": "プロジェクトを開く",
         "form.description":
-            "共有されたプロジェクト名とパスワードを入力してください。",
-        "form.projectName": "プロジェクト名",
+            "共有されたIDとパスワードを入力してください。",
+        "form.projectName": "ID",
         "form.password": "パスワード",
         "form.showPassword": "パスワードを表示",
         "form.submit": "開く",
@@ -40,7 +40,7 @@ export const MESSAGES = {
         "readme.mermaidFailed": "この図（Mermaid）を表示できませんでした",
         "readme.diagramZoom": "クリックで拡大／縮小",
 
-        "error.credentials": "プロジェクト名かパスワードが違います。",
+        "error.credentials": "IDかパスワードが違います。",
         "error.network": "データを取得できませんでした。",
         "error.format": "データの形式が正しくありません。",
         "error.unsupported":
@@ -62,8 +62,8 @@ export const MESSAGES = {
 
         "form.heading": "Open project",
         "form.description":
-            "Enter the project name and password you were given.",
-        "form.projectName": "Project name",
+            "Enter the ID and password you were given.",
+        "form.projectName": "ID",
         "form.password": "Password",
         "form.showPassword": "Show password",
         "form.submit": "Open",
@@ -89,7 +89,7 @@ export const MESSAGES = {
         "readme.mermaidFailed": "Could not render this diagram (Mermaid)",
         "readme.diagramZoom": "Click to zoom in / out",
 
-        "error.credentials": "The project name or password is incorrect.",
+        "error.credentials": "The ID or password is incorrect.",
         "error.network": "Could not fetch the data.",
         "error.format": "The data format is invalid.",
         "error.unsupported":
