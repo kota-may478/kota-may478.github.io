@@ -96,7 +96,7 @@ export const INDEX_HTML = `<!doctype html>
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
-<title>Shared project</title>
+<title>Shared folder</title>
 <link rel="stylesheet" href="assets/viewer.css">
 <link rel="icon" href="../fig/dolphin_circle.ico" type="image/x-icon">
 </head>
