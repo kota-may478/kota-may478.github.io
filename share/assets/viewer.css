@@ -94,6 +94,8 @@ body {
 
 .sv-header-start {
     justify-self: start;
+    display: flex;
+    gap: 4px;
 }
 
 .sv-header-end {
@@ -610,6 +612,20 @@ html[lang="en"] .sv-card > h2::after,
 
     .sv-title {
         font-size: 1.4em;
+    }
+
+    /* With no button on the left (credentials form), keep the title at the
+       left edge instead of crowding the language button. */
+    .sv-header--no-start {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .sv-header--no-start .sv-header-start {
+        display: none;
+    }
+
+    .sv-header--no-start .sv-title {
+        text-align: left;
     }
 
     .sv-nav-button {

@@ -510,6 +510,13 @@ export function startViewer({ root, source, devBanner = false }) {
         class: "sv-title",
         onclick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
     });
+    const homeButton = el("button", {
+        type: "button",
+        class: "sv-nav-button",
+        i18n: "nav.home",
+        hidden: true,
+        onclick: () => goHome(),
+    });
     const backButton = el("button", {
         type: "button",
         class: "sv-nav-button",
@@ -538,13 +545,14 @@ export function startViewer({ root, source, devBanner = false }) {
         main.append(view);
     }
 
+    const header = el("header", { class: "sv-header" }, [
+        el("div", { class: "sv-header-start" }, [homeButton, backButton]),
+        title,
+        el("div", { class: "sv-header-end" }, [langButton]),
+    ]);
     const app = el("div", { class: "sv-app" }, [
         ...(devBanner ? [el("div", { class: "sv-dev-banner", i18n: "dev.banner" })] : []),
-        el("header", { class: "sv-header" }, [
-            el("div", { class: "sv-header-start" }, [backButton]),
-            title,
-            el("div", { class: "sv-header-end" }, [langButton]),
-        ]),
+        header,
         main,
         el("footer", { class: "sv-footer" }, [el("p", { i18n: "footer.copyright" })]),
     ]);
@@ -570,6 +578,12 @@ export function startViewer({ root, source, devBanner = false }) {
             node.hidden = name !== view;
         }
         backButton.hidden = !(view === "kicad" || view === "readme");
+        // Home (back to the credentials form) is offered on the item list
+        // only; the item views have Back instead. The dev page has no form.
+        homeButton.hidden = !(source.requiresCredentials && state.files && view === "dir");
+        // Before a project is open (form, loading) nothing sits in the start
+        // column, so narrow layouts move the title to the left.
+        header.classList.toggle("sv-header--no-start", !state.files);
         app.classList.toggle("sv-app--kicad", view === "kicad");
         refreshTitle();
         applyTranslations(app);
@@ -726,6 +740,20 @@ export function startViewer({ root, source, devBanner = false }) {
         }
     }
 
+    // Close the project and return to the credentials form.
+    function goHome() {
+        const depth = state.historyDepth;
+        wipeDecryptedContent();
+        state.historyDepth = 0;
+        if (depth > 0) {
+            // Drop the item entries; popstate is ignored once files are gone.
+            history.go(-depth);
+        }
+        show("form");
+        window.scrollTo(0, 0);
+        views.form.querySelector("input")?.focus();
+    }
+
     window.addEventListener("popstate", (event) => {
         if (!state.files) {
             return;
@@ -751,7 +779,11 @@ export function startViewer({ root, source, devBanner = false }) {
         }
         showStatus("kicad.loading");
         try {
+            const files = state.files;
             await loadKicanvas();
+            if (state.files !== files) {
+                return; // the project was closed (Home) while loading
+            }
             views.kicad.innerHTML = kicanvasMarkup(state.files);
             show("kicad");
             preferSchematic(views.kicad.querySelector("kicanvas-embed")).catch((err) =>

@@ -7,7 +7,7 @@ export const DEFAULT_LANG = "ja";
 
 export const MESSAGES = {
     ja: {
-        "app.title": "共有プロジェクト",
+        "app.title": "共有フォルダー",
         "lang.toggle": "Japanese/English",
         "lang.toggleLabel": "Switch to English",
 
@@ -30,6 +30,7 @@ export const MESSAGES = {
         "dir.unavailable": "含まれていません",
 
         "nav.back": "戻る",
+        "nav.home": "Home",
 
         "kicad.loading": "KiCADデータを読み込んでいます…",
         "kicad.failed": "KiCADデータを表示できませんでした。",
@@ -57,7 +58,7 @@ export const MESSAGES = {
         "footer.copyright": "© 2026 Kota Fujimoto. All rights reserved.",
     },
     en: {
-        "app.title": "Shared project",
+        "app.title": "Shared folder",
         "lang.toggle": "Japanese/English",
         "lang.toggleLabel": "日本語に切り替え",
 
@@ -80,6 +81,7 @@ export const MESSAGES = {
         "dir.unavailable": "Not included",
 
         "nav.back": "Back",
+        "nav.home": "Home",
 
         "kicad.loading": "Loading KiCAD data…",
         "kicad.failed": "Could not display the KiCAD data.",
