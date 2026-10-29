@@ -8,6 +8,7 @@ RUN apt-get update \
         ca-certificates \
         fontconfig \
         fonts-font-awesome \
+        git \
         latexmk \
         lmodern \
         texlive-fonts-extra \
