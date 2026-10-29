@@ -12,6 +12,7 @@ RUN apt-get update \
         git \
         latexmk \
         lmodern \
+        poppler-utils \
         texlive-fonts-extra \
         texlive-fonts-recommended \
         texlive-xetex \
