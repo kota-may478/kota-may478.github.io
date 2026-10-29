@@ -7,8 +7,11 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         fontconfig \
+        fonts-font-awesome \
+        git \
         latexmk \
         lmodern \
         texlive-fonts-extra \
+        texlive-fonts-recommended \
         texlive-xetex \
     && rm -rf /var/lib/apt/lists/*
