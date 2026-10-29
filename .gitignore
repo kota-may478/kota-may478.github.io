@@ -1,1 +1,15 @@
 local_share/
+
+# CV workspace build output. pdf/AcademicCV.pdf stays tracked.
+pdf/workspace/tex/build/
+pdf/AcademicCV.pdf.tmp
+pdf/workspace/tex/**/*.aux
+pdf/workspace/tex/**/*.log
+pdf/workspace/tex/**/*.out
+pdf/workspace/tex/**/*.toc
+pdf/workspace/tex/**/*.fls
+pdf/workspace/tex/**/*.fdb_latexmk
+pdf/workspace/tex/**/*.synctex.gz
+pdf/workspace/tex/**/*.xdv
+
+pdf/Academic_CV.zip
