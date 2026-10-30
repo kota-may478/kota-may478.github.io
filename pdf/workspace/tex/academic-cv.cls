@@ -581,6 +581,7 @@
   \vspace{\acvSectionContentTopSkip}
     \vspace{-2mm}
     \paragraphstyle
+    \emergencystretch=1em
 }{%
     \par
     \vspace{1mm}
