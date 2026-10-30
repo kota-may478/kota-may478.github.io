@@ -67,7 +67,7 @@
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
 % Needed to deal hyperlink
-\RequirePackage[hidelinks,unicode]{hyperref}
+\RequirePackage[hidelinks,unicode,final]{hyperref}
 \hypersetup{%
   pdftitle={},
   pdfauthor={},
@@ -581,6 +581,7 @@
   \vspace{\acvSectionContentTopSkip}
     \vspace{-2mm}
     \paragraphstyle
+    \emergencystretch=1em
 }{%
     \par
     \vspace{1mm}
