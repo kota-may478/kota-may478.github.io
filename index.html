@@ -30,9 +30,10 @@
         <nav>
             <ul>
                 <li><button onclick="navigateTo('about')">自己紹介</button></li>
+                <li><button onclick="navigateTo('career')">経歴</button></li>
                 <li><button onclick="navigateTo('projects')">プロジェクト</button></li>
-                <li><button onclick="navigateTo('tools')">制作物</button></li>
                 <li><button onclick="navigateTo('publications')">業績</button></li>
+                <li><button onclick="navigateTo('tools')">制作物</button></li>
                 <li><button onclick="navigateTo('contact')">連絡先</button></li>
                 <li><button onclick="toggleLanguage('ja')">Japanese/English</button></li>
             </ul>
@@ -43,9 +44,10 @@
     <div id="slide-menu">
         <div id="slide-menu-close" onclick="closeSlideMenu()"></div>
         <a onclick="navigateAndClose('about')">自己紹介</a>
+        <a onclick="navigateAndClose('career')">経歴</a>
         <a onclick="navigateAndClose('projects')">プロジェクト</a>
-        <a onclick="navigateAndClose('tools')">制作物</a>
         <a onclick="navigateAndClose('publications')">業績</a>
+        <a onclick="navigateAndClose('tools')">制作物</a>
         <a onclick="navigateAndClose('contact')">連絡先</a>
         <a href="javascript:void(0)" onclick="toggleLanguage()">Japanese/English</a>
     </div>
@@ -67,12 +69,19 @@
             </ul>
         </div>
         <p class="bio-text">2021年に東京大学工学部航空宇宙工学科にて学士（工学）取得、2023年に同大学大学院新領域創成科学研究科先端エネルギー工学専攻にて修士（科学）取得、2026年に同大学大学院工学系研究科電気系工学専攻にて博士（工学）取得。現在は、京都府京都市の京都工芸繊維大学 KYOTO Design Lab・未来デザイン・工学機構にて特任研究員として勤務。研究興味は主にシステム設計にあり、ミッション計画から詳細なメカトロニクス・制御システムの統合まで幅広く取り組んでいる。具体的なトピックとして、UAVへの飛行中非接触給電、工作機械の高精度制御、建設現場における人・ロボット協調などを扱っている。藤本氏は、電気電子学会（IEEE）、電気学会（IEEJ）、日本航空宇宙学会（JSASS）、自動車技術会（JSAE）の会員である。</p>
-        <h3>経歴</h3>
-        <ul class="no-bullet">
-            <li>2024-05-16—2024-08-13：研究滞在（Project internship student），CNRS Sciences Informatiques，<a href="https://www.utc.fr/" target="_blank" rel="noopener noreferrer">Université de technologie de Compiègne</a>（フランス）</li>
-            <li>2023-08-16—2023-11-15：研究滞在（Project internship student），CNRS Sciences Informatiques，<a href="https://www.utc.fr/" target="_blank" rel="noopener noreferrer">Université de technologie de Compiègne</a>（フランス）</li>
-        </ul>
     </section>    
+
+    <section id="career" class="fade-in">
+        <h2>経歴</h2>
+        <ul class="no-bullet">
+            <li>Apr. 2026 -- present: Project Researcher, KYOTO Design Lab, Center for the Possible Futures, Kyoto Institute of Technology, Kyoto, Japan</li>
+            <li>Apr. 2026 -- present: Visiting Researcher, Ishizawa Lab, Institute of Industrial Science, The University of Tokyo, Tokyo, Japan</li>
+            <li>Apr. 2026 -- present: Visiting Researcher, e-Mobility and Control Lab, Graduate School of Frontier Sciences, The University of Tokyo, Tokyo, Japan</li>
+            <li>2024 May-Aug.: Project internship student, Université de technologie de Compiègne, France</li>
+            <li>2023 Aug.-Nov.: Project internship student, Université de technologie de Compiègne, France</li>
+            <li>2022: R&amp;D Mechatronics team, ACSL Ltd., Tokyo</li>
+        </ul>
+    </section>
 
     <section id="projects" class="fade-in clearfix">
         <h2>プロジェクト</h2>
@@ -119,16 +128,6 @@
         <!-- <h3>ドローンの研究開発環境構築のオープンソース化</h3> -->
     </section>
 
-    <section id="tools" class="fade-in">
-        <h2>制作物</h2>
-        <a class="tool-card" href="https://kota-may478.github.io/color-explorer-with-constraint/?lang=ja" target="_blank" rel="noopener noreferrer">
-            <div class="tool-card-info">
-                <h3 class="tool-card-title">Color Explorer with Constraint</h3>
-                <p class="tool-card-description">カラーパレット設計ツール。WCAG コントラスト比と色覚シミュレーション（色盲シミュレーション）の制約を満たしながら，S-V マップ上で配色を視覚的に探索できます。</p>
-            </div>
-            <svg class="tool-card-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </a>
-    </section>
 
     <section id="publications" class="fade-in">
         <h2>業績</h2>
@@ -212,6 +211,16 @@
         </ol>
     </section>
 
+    <section id="tools" class="fade-in">
+        <h2>制作物</h2>
+        <a class="tool-card" href="https://kota-may478.github.io/color-explorer-with-constraint/?lang=ja" target="_blank" rel="noopener noreferrer">
+            <div class="tool-card-info">
+                <h3 class="tool-card-title">Color Explorer with Constraint</h3>
+                <p class="tool-card-description">カラーパレット設計ツール。WCAG コントラスト比と色覚シミュレーション（色盲シミュレーション）の制約を満たしながら，S-V マップ上で配色を視覚的に探索できます。</p>
+            </div>
+            <svg class="tool-card-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </a>
+    </section>
     <section id="contact" class="fade-in">
         <!-- https://iconmonstr.com/?s=Github -->
         <h2>連絡先</h2>
