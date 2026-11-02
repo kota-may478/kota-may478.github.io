@@ -117,6 +117,12 @@ section ul:last-of-type {
     margin-bottom: 20px; /* Add margin to the bottom */
 }
 
+/* Achievements: fixed line spacing so English rows match Japanese rows */
+#publications ol > li,
+#achievements ol > li {
+    line-height: 1.5; /* 24px at 16px text, same as Japanese rows today */
+}
+
 /* Styling for the footer */
 footer {
     text-align: center; /* Center-align the text */
