@@ -30,6 +30,14 @@
 % If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
+% Footer month/year from build date (uppercase month name + year)
+\newcommand{\cvbuildmonthyear}{%
+  \ifcase\month\or
+  JANUARY\or FEBRUARY\or MARCH\or APRIL\or MAY\or JUNE\or
+  JULY\or AUGUST\or SEPTEMBER\or OCTOBER\or NOVEMBER\or DECEMBER\fi
+  \space\number\year
+}
+
 
 %-------------------------------------------------------------------------------
 %	PERSONAL INFORMATION
@@ -61,7 +69,7 @@
 % Print the footer with 3 arguments(<left>, <center>, <right>)
 % Leave any of these blank if they are not needed
 \makecvfooter
-  {October 2026}
+  {\cvbuildmonthyear}
   {Kota FUJIMOTO ~~~·~~~ Curriculum Vitae}
   {\thepage}
 
