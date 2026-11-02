@@ -228,7 +228,7 @@ header button:hover {
     position: absolute; /* Take the marker out of the line box entirely */
     left: 0; /* Left edge of the padding the list reserved for it */
     top: 0.5lh; /* Align to the first line, not the full multi-line row */
-    transform: translate(-100%, -50%); /* Sit left of the text, centred on the first line */
+    transform: translate(-100%, calc(-50% - 0.07em)); /* Centre the glyph on the first line's cap/x-height */
     padding-right: 0.28em; /* Gap between the marker and the text */
     line-height: 1; /* Neutral box for the centering math */
 }
