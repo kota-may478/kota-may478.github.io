@@ -119,8 +119,7 @@ section ul:last-of-type {
 
 /* Achievements: fixed line spacing so English rows match Japanese rows */
 #publications ol > li,
-#achievements ol > li,
-#tools ol > li {
+#achievements ol > li {
     line-height: 1.5; /* 24px at 16px text, same as Japanese rows today */
 }
 
@@ -149,7 +148,6 @@ section ul:last-of-type {
 #career .no-bullet li a,
 #publications ol > li a,
 #achievements ol > li a,
-#tools ol > li a,
 #projects .project-description a,
 .tool-card-description a {
     overflow-wrap: anywhere;
@@ -468,9 +466,45 @@ header button:hover {
     clear: both; /* Clear both left and right floats */
 }
 
-/* Tools list: same typography as publications (no card chrome) */
-#tools ol > li > .tool-card-description {
+/* Tools card: bordered block, publications typography (no decorative chrome) */
+.tool-card {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    color: inherit;
+    text-decoration: none;
+}
+
+.tool-card:hover {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.tool-card:focus-visible {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+.tool-card-info {
+    display: block;
+}
+
+.tool-card-title {
+    margin: 0 0 8px 0;
+    font-size: inherit;
+    font-weight: normal;
+    color: inherit;
+}
+
+.tool-card-description {
     margin: 0 !important;
+    font-size: inherit;
+    color: inherit;
 }
 
 /* Styling for responsive video embeds */
