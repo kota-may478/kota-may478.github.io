@@ -149,6 +149,25 @@ section ul:last-of-type {
     overflow-wrap: anywhere;
 }
 
+/* English runs in justified body copy (JP page); Japanese text is not hyphenated */
+#about p.bio-text [lang="en"],
+#career .no-bullet li [lang="en"],
+#publications ol > li [lang="en"],
+#achievements ol > li [lang="en"],
+#projects .project-description [lang="en"],
+.tool-card-description [lang="en"],
+#about p.bio-text[lang="en"],
+#career .no-bullet li[lang="en"],
+#publications ol > li[lang="en"],
+#achievements ol > li[lang="en"],
+#projects .project-description[lang="en"],
+.tool-card-description[lang="en"] {
+    hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 2;
+    hyphenate-limit-chars: 6 3 2;
+}
+
 /* Styling for the footer */
 footer {
     text-align: center; /* Center-align the text */
