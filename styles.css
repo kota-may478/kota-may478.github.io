@@ -123,6 +123,51 @@ section ul:last-of-type {
     line-height: 1.5; /* 24px at 16px text, same as Japanese rows today */
 }
 
+/* Body copy: justified rag (headings/nav excluded via selectors) */
+#about p.bio-text,
+#career .no-bullet li,
+#publications ol > li,
+#achievements ol > li,
+#projects .project-description,
+.tool-card-description {
+    text-align: justify;
+    text-wrap: pretty;
+    text-align-last: left; /* do not stretch the last (or only) line */
+}
+
+/* About affiliation rows stay rag-right (short lines; JP would expand inter-character gaps if justified) */
+#about .no-bullet li {
+    text-align: left;
+}
+
+#about p.bio-text a,
+#career .no-bullet li a,
+#publications ol > li a,
+#achievements ol > li a,
+#projects .project-description a,
+.tool-card-description a {
+    overflow-wrap: anywhere;
+}
+
+/* English runs in justified body copy (JP page); Japanese text is not hyphenated */
+#about p.bio-text [lang="en"],
+#career .no-bullet li [lang="en"],
+#publications ol > li [lang="en"],
+#achievements ol > li [lang="en"],
+#projects .project-description [lang="en"],
+.tool-card-description [lang="en"],
+#about p.bio-text[lang="en"],
+#career .no-bullet li[lang="en"],
+#publications ol > li[lang="en"],
+#achievements ol > li[lang="en"],
+#projects .project-description[lang="en"],
+.tool-card-description[lang="en"] {
+    hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 2;
+    hyphenate-limit-chars: 6 3 2;
+}
+
 /* Styling for the footer */
 footer {
     text-align: center; /* Center-align the text */
