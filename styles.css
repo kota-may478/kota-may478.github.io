@@ -125,7 +125,6 @@ section ul:last-of-type {
 
 /* Body copy: justified rag (headings/nav excluded via selectors) */
 #about p.bio-text,
-#about .no-bullet li,
 #career .no-bullet li,
 #publications ol > li,
 #achievements ol > li,
@@ -133,6 +132,21 @@ section ul:last-of-type {
 .tool-card-description {
     text-align: justify;
     text-wrap: pretty;
+    text-align-last: left; /* do not stretch the last (or only) line */
+}
+
+/* About affiliation rows stay rag-right (short lines; JP would expand inter-character gaps if justified) */
+#about .no-bullet li {
+    text-align: left;
+}
+
+#about p.bio-text a,
+#career .no-bullet li a,
+#publications ol > li a,
+#achievements ol > li a,
+#projects .project-description a,
+.tool-card-description a {
+    overflow-wrap: anywhere;
 }
 
 /* Styling for the footer */
