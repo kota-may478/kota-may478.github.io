@@ -19,14 +19,21 @@
 
     function createFadeInWatch(hyphenSelectors) {
         function hyphenateWithin(root) {
-            if (!global.Hyphenopoly || !Hyphenopoly.hyphenators || !Hyphenopoly.hyphenators.HTML) {
+            // Hyphenopoly_Loader stores hyphenators in a Map of deferred Promises
+            // (defProm). hyphenators.HTML resolves to the DOM hyphenator function.
+            var htmlHyphenator = global.Hyphenopoly &&
+                Hyphenopoly.hyphenators &&
+                Hyphenopoly.hyphenators.HTML;
+            if (!htmlHyphenator || typeof htmlHyphenator.then !== "function") {
                 return;
             }
             hyphenSelectors.forEach(function (sel) {
                 root.querySelectorAll(sel).forEach(function (el) {
-                    if (countSoftHyphens(el) === 0) {
-                        Hyphenopoly.hyphenators.HTML(el, sel);
-                    }
+                    htmlHyphenator.then(function (fn) {
+                        if (typeof fn === "function" && countSoftHyphens(el) === 0) {
+                            fn(el, sel);
+                        }
+                    });
                 });
             });
         }
