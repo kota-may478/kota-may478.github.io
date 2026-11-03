@@ -119,7 +119,8 @@ section ul:last-of-type {
 
 /* Achievements: fixed line spacing so English rows match Japanese rows */
 #publications ol > li,
-#achievements ol > li {
+#achievements ol > li,
+#tools ol > li {
     line-height: 1.5; /* 24px at 16px text, same as Japanese rows today */
 }
 
@@ -144,6 +145,7 @@ section ul:last-of-type {
 #career .no-bullet li a,
 #publications ol > li a,
 #achievements ol > li a,
+#tools ol > li a,
 #projects .project-description a,
 .tool-card-description a {
     overflow-wrap: anywhere;
@@ -481,55 +483,9 @@ header button:hover {
     clear: both; /* Clear both left and right floats */
 }
 
-/* Styling for tool cards */
-.tool-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    padding: 16px 20px;
-    border-left: 4px solid #54dbc2;
-    background-color: #f7fefe;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-    color: inherit;
-    text-decoration: none;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-/* The whole card is the link (same look as the item list on /share/). */
-.tool-card:hover {
-    background-color: #eafaf7;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tool-card:focus-visible {
-    outline: 2px solid #54dbc2;
-    outline-offset: 2px;
-}
-
-.tool-card-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.tool-card-title {
-    margin: 0 0 8px 0;
-    font-size: 1rem;
-}
-
-.tool-card-description {
+/* Tools list: same typography as publications (no card chrome) */
+#tools ol > li > .tool-card-description {
     margin: 0 !important;
-    font-size: 0.92rem;
-    color: #555;
-}
-
-.tool-card-chevron {
-    flex: none;
-    width: 24px;
-    height: 24px;
-    fill: #1f8f7c;
 }
 
 /* Styling for responsive video embeds */
