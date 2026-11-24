@@ -161,8 +161,10 @@ footer {
     color: #fff; /* Set text color to white */
 }
 
-/* Styling for buttons inside the navigation */
-nav ul li button {
+/* Styling for buttons inside the navigation.
+   The language switch is an anchor with the same box as these buttons. */
+nav ul li button,
+nav ul li a.lang-switch {
     background-color: #333; /* Set a dark gray background color */
     color: #fff; /* Set text color to white */
     border: none; /* Remove borders */
@@ -172,9 +174,20 @@ nav ul li button {
     transition: background-color 0.3s; /* Smooth transition for background color changes */
 }
 
+nav ul li a.lang-switch {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    line-height: normal;
+    font: 13.3333px Arial, sans-serif;
+    text-decoration: none;
+}
+
 /* Styling for buttons inside the navigation when hovered over */
-nav ul li button:hover {
+nav ul li button:hover,
+nav ul li a.lang-switch:hover {
     background-color: #555; /* Change background color to a medium gray on hover */
+    color: #fff;
 }
 
 /* Styling for buttons inside the header */

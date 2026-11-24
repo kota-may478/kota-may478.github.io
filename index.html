@@ -11,6 +11,17 @@
     <script src="script.js" defer></script>
     <link rel="icon" href="./fig/dolphin_circle.ico" type="image/x-icon">
     <link rel="canonical" href="https://kota-fujimoto.com/" />
+    <meta name="description" content="藤本浩太は，京都府京都市の京都工芸繊維大学 KYOTO Design Lab・未来デザイン・工学機構にて特任研究員として勤務。研究興味は主にシステム設計にあり，ミッション計画から詳細なメカトロニクス・制御システムの統合まで幅広く取り組んでいる。" />
+    <meta property="og:title" content="藤本 浩太 - ホーム" />
+    <meta property="og:description" content="藤本浩太は，京都府京都市の京都工芸繊維大学 KYOTO Design Lab・未来デザイン・工学機構にて特任研究員として勤務。研究興味は主にシステム設計にあり，ミッション計画から詳細なメカトロニクス・制御システムの統合まで幅広く取り組んでいる。" />
+    <meta property="og:url" content="https://kota-fujimoto.com/" />
+    <meta property="og:image" content="https://kota-fujimoto.com/fig/myself.JPG" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" hreflang="ja" href="https://kota-fujimoto.com/" />
+    <link rel="alternate" hreflang="en" href="https://kota-fujimoto.com/index_en.html" />
+    <link rel="alternate" hreflang="x-default" href="https://kota-fujimoto.com/" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F30FVP1M1J"></script>
     <script>
@@ -27,6 +38,9 @@
     {
       "@type": "Person",
       "@id": "https://kota-fujimoto.com/#kota-fujimoto",
+      "mainEntityOfPage": {
+        "@id": "https://kota-fujimoto.com/#website"
+      },
       "name": "藤本浩太",
       "alternateName": "Kota Fujimoto",
       "jobTitle": "特任研究員",
@@ -79,6 +93,19 @@
         "https://www.linkedin.com/in/kota-fujimoto-2576b8184/",
         "https://github.com/kota-may478"
       ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kota-fujimoto.com/#website",
+      "name": "藤本 浩太",
+      "url": "https://kota-fujimoto.com/",
+      "inLanguage": [
+        "ja",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://kota-fujimoto.com/#kota-fujimoto"
+      }
     },
     {
       "@type": "ScholarlyArticle",
@@ -297,7 +324,10 @@
         "name": "The 2nd InterAI Workshop: Interactive AI for Human-Centered Robotics (InterAI) at the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI)"
       },
       "datePublished": "2026-03",
-      "url": "https://drive.google.com/file/d/1US7t63YTRU-nYoee_TLSf3pT6ezVLALD/view"
+      "url": "https://drive.google.com/file/d/1US7t63YTRU-nYoee_TLSf3pT6ezVLALD/view",
+      "sameAs": [
+        "https://arxiv.org/abs/2604.05896"
+      ]
     },
     {
       "@type": "ScholarlyArticle",
@@ -520,7 +550,8 @@
         "@type": "CreativeWork",
         "name": "The 7th International Electric Vehicle Technology Conference (EVTeC)"
       },
-      "datePublished": "2025-05"
+      "datePublished": "2025-05",
+      "url": "https://tech.jsae.or.jp/paperinfo/en/content/conf2025-01.063/"
     },
     {
       "@type": "ScholarlyArticle",
@@ -1323,7 +1354,7 @@
     }
   ]
 }
-    </script>
+</script>
 </head>
 <body class="lang-ja">
     <div id="overlay" onclick="closeSlideMenu()"></div>
@@ -1342,7 +1373,7 @@
                 <li><button onclick="navigateTo('publications')">業績</button></li>
                 <li><button onclick="navigateTo('tools')">制作物</button></li>
                 <li><button onclick="navigateTo('contact')">連絡先</button></li>
-                <li><button onclick="toggleLanguage('ja')">Japanese/English</button></li>
+                <li><a class="lang-switch" href="index_en.html">Japanese/English</a></li>
             </ul>
         </nav>
 
@@ -1356,7 +1387,7 @@
         <a onclick="navigateAndClose('publications')">業績</a>
         <a onclick="navigateAndClose('tools')">制作物</a>
         <a onclick="navigateAndClose('contact')">連絡先</a>
-        <a href="javascript:void(0)" onclick="toggleLanguage()">Japanese/English</a>
+        <a href="index_en.html">Japanese/English</a>
     </div>
 
     <section id="about" class="fade-in">
@@ -1398,7 +1429,7 @@
 
             <div class="project-description">
                 　博士研究では<span lang="en">Fig. 1</span>に示す通り磁界共振方式の無線電力伝送を飛行中のドローンに対して適用することで，ドローンの航続時間を延長する研究を行っています。
-                現在（2023年10月）バッテリー駆動のロータ型ドローンの駆動時間は最大で40分程度であり，20分程度が相場だと言われています。
+                2023年10月時点で，バッテリー駆動のロータ型ドローンの駆動時間は最大で40分程度であり，20分程度が相場だと言われています。
                 一方，警備や点検，運送用途などにおけるドローンの産業利用を考えるとき，この航続時間は十分なものと言えません。
                 私の研究はこの問題を抜本的に解決し，理論的には無限の航続時間を有するドローンを実現するものとなっています。
                 <br>
@@ -1449,7 +1480,7 @@
         <h3>国際会議（査読あり）</h3>
         <ol>
             <li lang="en">Yifan Xu, Clara Cheung, Ming Shan Ng, Akilu Yunusa Kaltungo, Tsukasa Ishizawa, <u>Kota Fujimoto</u>, “Analysing Construction Robotics Safety Standards for Safety Modelling and Simulation,” <i>in 43rd International Symposium on Automation and Robotics in Construction (ISARC)</i>, pp. 810-817, Singapore, Jun. 2026, doi: <a href="https://doi.org/10.22260/ISARC2026/0104" target="_blank" rel="noopener noreferrer">10.22260/ISARC2026/0104</a>.</li>
-            <li lang="en">Yifan Xu, Xiao Zhan, Akilu Yunusa Kaltungo, Ming Shan Ng, Tsukasa Ishizawa, <u>Kota Fujimoto</u>, Clara Cheung, “Dialogue based Interactive Explanations for Safety Decisions in Human Robot Collaboration,” <i>in The 2nd InterAI Workshop: Interactive AI for Human-Centered Robotics (InterAI) at the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI)</i>, Edinburgh, UK, Mar. 2026. <a href="https://drive.google.com/file/d/1US7t63YTRU-nYoee_TLSf3pT6ezVLALD/view" target="_blank" rel="noopener noreferrer">[PDF]</a></li>
+            <li lang="en">Yifan Xu, Xiao Zhan, Akilu Yunusa Kaltungo, Ming Shan Ng, Tsukasa Ishizawa, <u>Kota Fujimoto</u>, Clara Cheung, “Dialogue based Interactive Explanations for Safety Decisions in Human Robot Collaboration,” <i>in The 2nd InterAI Workshop: Interactive AI for Human-Centered Robotics (InterAI) at the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI)</i>, Edinburgh, UK, Mar. 2026. <a href="https://drive.google.com/file/d/1US7t63YTRU-nYoee_TLSf3pT6ezVLALD/view" target="_blank" rel="noopener noreferrer">[PDF]</a> <a href="https://arxiv.org/abs/2604.05896" target="_blank" rel="noopener noreferrer">[arXiv]</a></li>
             <li lang="en">Ami Kumaki, <u>Kota Fujimoto</u>, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Jerk-Timing-Based Polynomial Trajectory Optimization for Vibration Suppression in Machine Tool Base,” <i>in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC)</i>, pp. 1-6, Daegu, Korea, Mar. 2026, doi: <a href="https://doi.org/10.1109/AMC67705.2026.11435830" target="_blank" rel="noopener noreferrer">10.1109/AMC67705.2026.11435830</a>.</li>
             <li lang="en">Yusei Fujishima, <u>Kota Fujimoto</u>, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Modeling and Analysis of Coupled System for Circular Motion in Machine Tools with XY-Axis Stage,” <i>in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC)</i>, pp. 1-6, Daegu, Korea, Mar. 2026, doi: <a href="https://doi.org/10.1109/AMC67705.2026.11435863" target="_blank" rel="noopener noreferrer">10.1109/AMC67705.2026.11435863</a>.</li>
             <li lang="en">Yuki Tanaka, <u>Kota Fujimoto</u>, Sakahisa Nagai, Hiroshi Fujimoto, “Altitude Optimization above Transmitter Coil for In-flight Inductive Power Transfer Using Dynamic Programming,” <i>in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC)</i>, pp. 1-6, Daegu, Korea, Mar. 2026, doi: <a href="https://doi.org/10.1109/AMC67705.2026.11435825" target="_blank" rel="noopener noreferrer">10.1109/AMC67705.2026.11435825</a>.</li>
@@ -1507,7 +1538,7 @@
         <h3>受賞</h3>
         <ol>
             <li>電気学会 2024年部門優秀論文発表賞（国際ワークショップ）（2025年8月）</li>
-            <li><a href="https://sites.google.com/g.ecc.u-tokyo.ac.jp/apet/home" target="_blank" rel="noopener noreferrer">先端電力エネルギー・環境技術教育研究アライアンス APET優秀ポスター発表賞3位（2022年）</a></li>
+            <li>先端電力エネルギー・環境技術教育研究アライアンス APET優秀ポスター発表賞3位（2022年）</li>
             <li><a href="https://www.iee.jp/ias/about/award/paper2021/" target="_blank" rel="noopener noreferrer">2021年産業応用部門大会 電気学会優秀論文発表賞A（2022年8月）</a></li>
         </ol>
         <h3>支援等</h3>
@@ -1525,7 +1556,7 @@
     
     <section id="tools" class="fade-in">
         <h2>制作物</h2>
-        <a class="tool-card" href="https://kota-may478.github.io/color-explorer-with-constraint/?lang=ja" target="_blank" rel="noopener noreferrer">
+        <a class="tool-card" href="https://kota-fujimoto.com/color-explorer-with-constraint/?lang=ja" target="_blank" rel="noopener noreferrer">
             <div class="tool-card-info">
                 <h3 class="tool-card-title" lang="en">Color Explorer with Constraint</h3>
                 <p class="tool-card-description">カラーパレット設計ツール。<span lang="en">WCAG</span> コントラスト比と色覚シミュレーション（色盲シミュレーション）の制約を満たしながら，<span lang="en">S-V</span> マップ上で配色を視覚的に探索できます。</p>

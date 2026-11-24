@@ -161,18 +161,6 @@ function closeSlideMenu(callback) {
     });
 }
 
-// Function to toggle between Japanese and English pages
-function toggleLanguage() {
-    const currentURL = window.location.href; // Get the current URL
-
-    // Check the current page and redirect to the other language version
-    if (currentURL.includes('index_en.html')) {
-        window.location.href = 'index.html'; // Redirect to the Japanese page
-    } else {
-        window.location.href = 'index_en.html'; // Redirect to the English page
-    }
-}
-
 // Function to wait for the slide menu to fully open
 function waitForMenuToOpen(callback) {
     const slideMenu = document.getElementById('slide-menu');
