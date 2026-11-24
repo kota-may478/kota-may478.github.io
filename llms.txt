@@ -9,6 +9,7 @@ Kota Fujimoto is currently a Project Researcher at KYOTO Design Lab, Center for 
 - [日本語](https://kota-fujimoto.com/): 自己紹介，経歴，プロジェクト，業績，制作物
 - [English](https://kota-fujimoto.com/index_en.html): About Me, Career, Project, Achievement, Tool
 - [Academic CV (PDF)](https://kota-fujimoto.com/pdf/AcademicCV.pdf): Curriculum vitae
+- [Full text](https://kota-fujimoto.com/llms-full.txt): プロフィール，経歴，業績の全文（メールアドレスは含まない）
 
 業績の一覧は各言語のトップページにある。独立した業績ページはない。
 

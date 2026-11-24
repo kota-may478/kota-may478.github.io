@@ -2,11 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kota-fujimoto.com/</loc>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://kota-fujimoto.com/index_en.html</loc>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://kota-fujimoto.com/pdf/AcademicCV.pdf</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://kota-fujimoto.com/color-explorer-with-constraint/</loc>
+    <lastmod>2026-05-04</lastmod>
   </url>
 </urlset>

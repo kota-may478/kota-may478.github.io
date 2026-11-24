@@ -1,0 +1,203 @@
+# Kota Fujimoto（藤本浩太）
+
+このファイルは kota-fujimoto.com の自己紹介、経歴、業績をテキストにしたものです。メールアドレスは含みません。
+
+# 日本語
+
+## 自己紹介
+- 特任研究員 (CV / ORCiD / researchmap)，
+- KYOTO Design Lab，
+- 未来デザイン・工学機構，京都工芸繊維大学．
+- 協力研究員，
+- 石澤研究室，
+- 生産技術研究所，東京大学．
+- 客員連携研究員，
+- e-Mobility and Control Lab，
+- 新領域創成科学研究科，東京大学．
+藤本浩太は，京都府京都市の京都工芸繊維大学 KYOTO Design Lab・未来デザイン・工学機構にて特任研究員として勤務。研究興味は主にシステム設計にあり，ミッション計画から詳細なメカトロニクス・制御システムの統合まで幅広く取り組んでいる。2021年に東京大学工学部航空宇宙工学科にて学士（工学）取得，2023年に同大学大学院新領域創成科学研究科先端エネルギー工学専攻にて修士（科学）取得，2026年に同大学大学院工学系研究科電気系工学専攻にて博士（工学）取得。具体的なトピックとして，UAVへの飛行中非接触給電，工作機械の高精度制御，建設現場における人・ロボット協調などを扱っている。藤本氏は，IEEE，電気学会（IEEJ），日本航空宇宙学会（JSASS），自動車技術会（JSAE）の会員である。
+
+## 経歴
+- 2026年4月 – 現在：特任研究員，KYOTO Design Lab，未来デザイン・工学機構，京都工芸繊維大学，京都，日本．
+- 2026年4月 – 現在：協力研究員，石澤研究室，生産技術研究所，東京大学，東京，日本．
+- 2026年4月 – 現在：客員連携研究員，e-Mobility and Control Lab，新領域創成科学研究科，東京大学，東京，日本．
+- 2024年5月 – 8月：研究滞在（インターン），Heudiasyc Lab，コンピエーニュ工科大学，コンピエーニュ，フランス．
+- 2023年8月 – 11月：研究滞在（インターン），Heudiasyc Lab，コンピエーニュ工科大学，コンピエーニュ，フランス．
+- 2023年4月 – 2026年3月：プロジェクト生，グリーントランスフォーメーション（GX）を先導する高度人材育成 (SPRING GX)，東京大学，東京，日本．
+- 2022年2月 – 2023年3月：R&Dメカトロニクスチーム，株式会社ACSL，東京，日本．
+
+## 業績
+
+### 国際論文誌（査読あり）
+- Kota Fujimoto, Hiroshi Fujimoto, “Beat Switching Receiving Power Control Focusing on Vehicle-Side Circuit Dynamics for In-flight Inductive Power Transfer Systems of UAVs,” IEEJ Journal of Industry Applications, Advance online publication, Oct. 2026, doi: 10.1541/ieejjia.20260133.
+- Yifan Xu, Clara Cheung, Ming Shan Ng, Akilu Yunusa Kaltungo, Tsukasa Ishizawa, Kota Fujimoto, “Construction robotics: a systematic review of robot types, applications and human robot collaborations,” Results in Engineering, Vol. 30, 110406, Jun. 2026, doi: 10.1016/j.rineng.2026.110406.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive Machine Tool Based on Mode Decoupling With Virtual Viscosity,” IEEE/ASME Transactions on Mechatronics, Vol. 30, No. 4, pp. 3054-3062, Aug. 2025, doi: 10.1109/TMECH.2025.3567273.
+- Takuma Katagiri, Kentaro Yokota, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Wind Tunnel Verification of Velocity Control in Wing Coordinate System using Acceleration-Based Disturbance Observer for Tilt-Wing eVTOL,” IEEJ Journal of Industry Applications, Vol. 14, No. 2, pp. 188-195, Mar. 2025, doi: 10.1541/ieejjia.24005235.
+
+### 国際会議（査読あり）
+- Yifan Xu, Clara Cheung, Ming Shan Ng, Akilu Yunusa Kaltungo, Tsukasa Ishizawa, Kota Fujimoto, “Analysing Construction Robotics Safety Standards for Safety Modelling and Simulation,” in 43rd International Symposium on Automation and Robotics in Construction (ISARC), pp. 810-817, Singapore, Jun. 2026, doi: 10.22260/ISARC2026/0104.
+- Yifan Xu, Xiao Zhan, Akilu Yunusa Kaltungo, Ming Shan Ng, Tsukasa Ishizawa, Kota Fujimoto, Clara Cheung, “Dialogue based Interactive Explanations for Safety Decisions in Human Robot Collaboration,” in The 2nd InterAI Workshop: Interactive AI for Human-Centered Robotics (InterAI) at the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI), Edinburgh, UK, Mar. 2026. [PDF] [arXiv]
+- Ami Kumaki, Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Jerk-Timing-Based Polynomial Trajectory Optimization for Vibration Suppression in Machine Tool Base,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435830.
+- Yusei Fujishima, Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Modeling and Analysis of Coupled System for Circular Motion in Machine Tools with XY-Axis Stage,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435863.
+- Yuki Tanaka, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Altitude Optimization above Transmitter Coil for In-flight Inductive Power Transfer Using Dynamic Programming,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435825.
+- Mayuko Hirota, Manto Kamiya, Yuto Naoki, Kota Fujimoto, Kentaro Yokota, Binh-Minh Nguyen, Sakahisa Nagai, Osamu Shimizu, Hiroshi Fujimoto, “Inertia Estimation About z-Axis Using Motor Torque for Multi-Rotors,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “Practical Implementation of High Precision Control Based on Mode Decoupling with Virtual Viscosity for Parallel Twin-Drive Machine Tool System,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Yutaka Shikauchi, Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, “Verification of Big Data Analysis on Dynamic Wireless Power Transfer for Electric Vehicles Focused on Traffic Signal GPS,” in The 7th International Electric Vehicle Technology Conference (EVTeC), pp. 1-5, Yokohama, Japan, May 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Parallel Twin-Drive Machine Tool System Based on Offline Parameter Identification Focusing on Differential Mode,” in The 11th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Matsue, Japan, Mar. 2025.
+- Takuma Katagiri, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Trajectory Tracking Control of Tilt-Wing eVTOL Using Aerodynamic Coupling Observer and Wing Angle Correction Method,” in 2025 IEEE International Conference on Mechatronics (ICM), pp. 1-6, Wollongong, Australia, Feb. 2025, doi: 10.1109/ICM62621.2025.10934770.
+- Pinzhe Feng, Yuto Naoki, Kota Fujimoto, Kentaro Yokota, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Short Distance Landing Control with Reverse Thrust of Variable Pitch Propeller for Fixed Wing Electric Aircraft,” in 2025 IEEE International Conference on Mechatronics (ICM), pp. 1-6, Wollongong, Australia, Feb. 2025, doi: 10.1109/ICM62621.2025.10934769.
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, Jin Katsuya, Tetsu Sato, “Feasibility Study for Dynamic Wireless Power Transfer in Simulation with Big Data Focusing on Battery Capacity Requirement of Electric Vehicles,” in 2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM), pp. 42-46, Ischia, Italy, Jun. 2024, doi: 10.1109/SPEEDAM61530.2024.10609208.
+- Sakahisa Nagai, Yusuke Satoh, Kota Fujimoto, Hiroshi Fujimoto, “Sensorless Drone Detection for In-Flight Inductive Power Transfer Using Transmitter-Side Voltage Pulses,” in 2024 IEEE Wireless Power Technology Conference and Expo (WPTCE), pp. 557-561, Kyoto, Japan, May 2024, doi: 10.1109/WPTCE59894.2024.10557296.
+- Takuma Katagiri, Kentaro Yokota, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Velocity Control in Wing Coordinate System Using Acceleration-based Disturbance Observer for Tilt-wing eVTOL,” in The 10th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Kyoto, Japan, Feb. 2024.
+- Shogo Yamada, Kota Fujimoto, Hiroshi Fujimoto, “Basic Study on Robust Perfect Tracking Control Based on Parameter Estimation Reducing Outlier Effects,” in The 10th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Optimal Energy Trajectory Generation Based on Pitch-Dependent Mutual Inductance Model for In-Flight Inductive Power Transfer of Drones,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), pp. 1-6, Kyoto, Japan, Feb. 2024, doi: 10.1109/AMC58169.2024.10505445.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System Based on Mode Decoupling with Virtual Viscosity: Equivalent Controller Transform for Machine Tool,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), pp. 1-6, Kyoto, Japan, Feb. 2024, doi: 10.1109/AMC58169.2024.10505638.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), pp. 1-6, Singapore, Oct. 2023, doi: 10.1109/IECON51785.2023.10312055. [arXiv]
+- Yusuke Satoh, Kota Fujimoto, Ryo Matsumoto, Binh-Minh Nguyen, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Received Power Control of In-Flight Inductive Power Transfer for Drones by Active Rectifier Switching and Altitude Regulation,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), pp. 1-6, Singapore, Oct. 2023, doi: 10.1109/IECON51785.2023.10312000.
+- Kota Fujimoto, Takumi Hamada, Hiroshi Fujimoto, “Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System,” in 2022 Wireless Power Week (WPW), pp. 235-239, Bordeaux, France, Jul. 2022, doi: 10.1109/WPW54272.2022.9854039. [arXiv]
+
+### 国内会議（査読なし）
+- 田中優樹，藤本浩太，猶木雄登，永井栄寿，藤本博志：「実飛行データに基づく前進飛行ドローンの地面効果による消費電力削減効果のモデル化の検討」，第64回飛行機シンポジウム，論文番号：JSASS-2026-5231，札幌，日本，2026年10月．
+- 熊木愛弥，藤本浩太，藤本博志，阪本将隆，伊佐岡慶浩，寺田祐貴：「速度依存加速度制約を考慮した減速時ジャーク設計による残留振動抑制軌道生成法とその工作機械への適用」，電気学会 産業応用部門 産業計測制御研究会（IIC），論文番号：IIC-26-016，pp. 89-94，東京，日本，2026年9月．
+- 藤島佑成，藤本浩太，藤本博志：「軸ねじれ系における2つの剛体モードに着目した物理座標加算型完全追従制御法の提案」，電気学会 産業応用部門 産業計測制御研究会（IIC），論文番号：IIC-26-011，pp. 61-66，東京，日本，2026年9月．
+- 新井天，松倉真帆，高崎大吾，森合勲武，山川憲信，寄田圭将，藤本浩太，小泉宏之，小紫公也：「無線電力伝送システムを搭載した推力スタンドにおける電磁気外乱抑制手法の提案と実証」，第65回航空原動機・宇宙推進講演会，大分，日本，2026年3月．
+- 廣田万由子，神谷万人，猶木雄登，藤本浩太，阮平明，永井栄寿，清水修，藤本博志，横田健太朗：「マルチロータ機における反トルクオブザーバを用いたz軸周りの慣性モーメント推定法の基礎研究」，電気学会 産業応用部門 メカトロニクス制御研究会（MEC），論文番号：MEC-25-007，東京，日本，2025年9月．
+- 藤本浩太，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系における仮想粘性のフィードフォワード的実現」，電気学会 産業応用部門 メカトロニクス制御研究会（MEC），論文番号：MEC-24-012，東京，日本，2024年9月．
+- 藤本浩太，永井栄寿，阮平明，藤本博志：「ドローンへの飛行中給電のための地面効果領域におけるモータ電流を用いた姿勢推定のベンチ検証」，2024年電気学会産業応用部門大会（JIASC），論文番号：1-60，水戸，日本，2024年8月．
+- 藤本浩太，佐藤悠介，永井栄寿，藤本博志：「重量制約を考慮したドローンの飛行中磁界共振型無線電力伝送のための受電側システム設計に関する基礎検討」，電気学会 電力技術/電力系統技術/半導体電力変換合同研究会（PE/PSE/SPC），論文番号：PE-24-059,PSE-24-071,SPC-24-113，五島，日本，2024年3月．
+- 藤本浩太，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系機構における基礎検討」，電気学会 産業応用部門 メカトロニクス制御研究会（MEC），論文番号：MEC-23-011，東京，日本，2023年9月．
+- 藤本浩太，清水修，藤本博志，勝谷仁，佐藤哲：「車両ビッグデータを活用した走行中給電への要求性能分析」，電気学会 電力技術/電力系統技術/半導体電力変換合同研究会（PE/PSE/SPC），論文番号：PE-23-084,PSE-23-090,SPC-23-140，名護，日本，2023年3月．
+- 佐藤悠介，藤本浩太，松本諒，永井栄寿，阮平明，藤本博志：「ドローンへの飛行中非接触給電における飛行高度とバッテリ電流の制御に関する基礎検討」，電気学会 電力技術/電力系統技術/半導体電力変換合同研究会（PE/PSE/SPC），論文番号：PE-23-085,PSE-23-091,SPC-23-141，名護，日本，2023年3月．
+- 藤本浩太，横田健太朗，永井栄寿，藤本博志：「飛行中ドローンへの無線電力伝送を想定した受電コイルのピッチ角依存の結合係数のモデル化とその検証」，2021年電気学会産業応用部門大会（JIASC），論文番号：4-8，長岡，日本，2021年8月．
+
+### 発表
+- Kota Fujimoto, “UAV-Oriented Control and System Design for In-flight Inductive Power Transfer Systems,” in Workshop on Advanced Aerial Robotics 2nd Edition, Tokyo, Japan, Oct. 2026. (Invited)
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “Practical Implementation of High Precision Control Based on Mode Decoupling with Virtual Viscosity for Parallel Twin-Drive Machine Tool System,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive Machine Tool Based on Mode Decoupling With Virtual Viscosity,” in IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM), Hangzhou, China, Jul. 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Parallel Twin-Drive Machine Tool System Based on Offline Parameter Identification Focusing on Differential Mode,” in The 11th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Matsue, Japan, Mar. 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Energy Maximum Trajectory Generation Focusing on Motion Dynamics for In-flight Inductive Power Transfer of Drones,” in Global Green Transformation Workshop at The University of Manchester and the University of Tokyo Joint Research Symposium, Manchester, UK, Oct. 2024.
+- 藤本浩太，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系における仮想粘性のフィードフォワード的実現」，電気学会 産業応用部門 メカトロニクス制御研究会（MEC），東京，日本，2024年9月．
+- 藤本浩太，永井栄寿，阮平明，藤本博志：「ドローンへの飛行中給電のための地面効果領域におけるモータ電流を用いた姿勢推定のベンチ検証」，2024年電気学会産業応用部門大会（JIASC），水戸，日本，2024年8月．
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, Jin Katsuya, Tetsu Sato, “Feasibility Study for Dynamic Wireless Power Transfer in Simulation with Big Data Focusing on Battery Capacity Requirement of Electric Vehicles,” in 2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM), Ischia, Italy, Jun. 2024.
+- 藤本浩太，佐藤悠介，永井栄寿，藤本博志：「重量制約を考慮したドローンの飛行中磁界共振型無線電力伝送のための受電側システム設計に関する基礎検討」，電気学会 電力技術/電力系統技術/半導体電力変換合同研究会（PE/PSE/SPC），五島，日本，2024年3月．
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System Based on Mode Decoupling with Virtual Viscosity: Equivalent Controller Transform for Machine Tool,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Optimal Energy Trajectory Generation Based on Pitch-Dependent Mutual Inductance Model for In-Flight Inductive Power Transfer of Drones,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), Singapore, Oct. 2023.
+- 藤本浩太，藤本博志，伊佐岡慶浩，寺田祐貴：「仮想粘性による和と差のモード分離に基づく工作機械のツインドライブ機構に対する高精密制御：2慣性系機構における基礎検討」，電気学会 産業応用部門 メカトロニクス制御研究会（MEC），東京，日本，2023年9月．
+- 藤本浩太，清水修，藤本博志，勝谷仁，佐藤哲：「車両ビッグデータを活用した走行中給電への要求性能分析」，電気学会 電力技術/電力系統技術/半導体電力変換合同研究会（PE/PSE/SPC），名護，日本，2023年3月．
+- Kota Fujimoto, Takumi Hamada, Hiroshi Fujimoto, “Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System,” in 2022 Wireless Power Week (WPW), Bordeaux, France, Jul. 2022.
+- 藤本浩太，横田健太朗，永井栄寿，藤本博志：「飛行中ドローンへの無線電力伝送を想定した受電コイルのピッチ角依存の結合係数のモデル化とその検証」，2021年電気学会産業応用部門大会（JIASC），長岡，日本，2021年8月．
+
+### 受賞
+- 電気学会 2024年部門優秀論文発表賞（国際ワークショップ）（2025年8月）
+- 先端電力エネルギー・環境技術教育研究アライアンス APET優秀ポスター発表賞3位（2022年）
+- 2021年産業応用部門大会 電気学会優秀論文発表賞A（2022年8月）
+
+### 支援等
+- グリーントランスフォーメーション（GX）を先導する高度人材育成 (SPRING GX)（2023年4月 – 2026年3月），東京大学
+- グリーントランスフォーメーション（GX）を先導する高度人材育成 (SPRING GX) 国際会議派遣プログラム（IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM)），2025
+- グリーントランスフォーメーション（GX）を先導する高度人材育成 (SPRING GX) 国際会議派遣プログラム（Global Green Transformation Workshop at The University of Manchester and the University of Tokyo Joint Research Symposium），2024
+- グリーントランスフォーメーション（GX）を先導する高度人材育成 (SPRING GX) 国際会議派遣プログラム（2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM)），2024
+- 公益財団法人電気通信普及財団 海外渡航旅費援助，2023
+- La Bourse de Mobilité Internationale de Sorbonne Universités, Sorbonne Université, 2023年9月 – 2024年8月
+- 公益財団法人スズキ財団 2022年度研究者海外研修助成
+
+# English
+
+## About Me
+- Project Researcher (CV / ORCiD / researchmap),
+- KYOTO Design Lab,
+- Center for the Possible Futures, Kyoto Institute of Technology.
+- Visiting Researcher,
+- Ishizawa Lab,
+- Institute of Industrial Science, The University of Tokyo.
+- Visiting Researcher,
+- e-Mobility and Control Lab,
+- Graduate School of Frontier Sciences, The University of Tokyo.
+Kota Fujimoto is currently a Project Researcher at KYOTO Design Lab, Center for the Possible Futures, Kyoto Institute of Technology, Kyoto, Japan. His research interests focus mainly on system design, ranging from mission planning to the detailed integration of mechatronics and control systems. He received the B.E. degree from the Department of Aeronautics and Astronautics in 2021, the M.S. degree from the Department of Advanced Energy in 2023, and the Ph.D. degree from the Department of Electrical Engineering and Information Systems in 2026, all from The University of Tokyo, Tokyo, Japan. His specific topics of interest include in-flight inductive power transfer for UAVs, high-precision control of machine tools, and human-robot interaction on construction sites. Dr. Fujimoto is a Member of The Institute of Electrical and Electronics Engineers, Incorporated (IEEE), the Institute of Electrical Engineers of Japan (IEEJ), the Japan Society for Aeronautical and Space Sciences (JSASS), and Society of Automotive Engineers of Japan, Inc. (JSAE).
+
+## Career
+- Apr. 2026 – present: Project Researcher, KYOTO Design Lab, Center for the Possible Futures, Kyoto Institute of Technology, Kyoto, Japan.
+- Apr. 2026 – present: Visiting Researcher, Ishizawa Lab, Institute of Industrial Science, The University of Tokyo, Tokyo, Japan.
+- Apr. 2026 – present: Visiting Researcher, e-Mobility and Control Lab, Graduate School of Frontier Sciences, The University of Tokyo, Tokyo, Japan.
+- May – Aug. 2024: Project internship student, Heudiasyc Lab, Université de technologie de Compiègne, Compiègne, France.
+- Aug. – Nov. 2023: Project internship student, Heudiasyc Lab, Université de technologie de Compiègne, Compiègne, France.
+- Apr. 2023 – Mar. 2026: Project Student, Fostering Advanced Human Resources to Lead Green Transformation (SPRING GX), The University of Tokyo, Tokyo, Japan.
+- Feb. 2022 – Mar. 2023: R&D Mechatronics team, ACSL Ltd., Tokyo, Japan.
+
+## Achievement
+
+### International Journal (Peer-reviewed)
+- Kota Fujimoto, Hiroshi Fujimoto, “Beat Switching Receiving Power Control Focusing on Vehicle-Side Circuit Dynamics for In-flight Inductive Power Transfer Systems of UAVs,” IEEJ Journal of Industry Applications, Advance online publication, Oct. 2026, doi: 10.1541/ieejjia.20260133.
+- Yifan Xu, Clara Cheung, Ming Shan Ng, Akilu Yunusa Kaltungo, Tsukasa Ishizawa, Kota Fujimoto, “Construction robotics: a systematic review of robot types, applications and human robot collaborations,” Results in Engineering, Vol. 30, 110406, Jun. 2026, doi: 10.1016/j.rineng.2026.110406.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive Machine Tool Based on Mode Decoupling With Virtual Viscosity,” IEEE/ASME Transactions on Mechatronics, Vol. 30, No. 4, pp. 3054-3062, Aug. 2025, doi: 10.1109/TMECH.2025.3567273.
+- Takuma Katagiri, Kentaro Yokota, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Wind Tunnel Verification of Velocity Control in Wing Coordinate System using Acceleration-Based Disturbance Observer for Tilt-Wing eVTOL,” IEEJ Journal of Industry Applications, Vol. 14, No. 2, pp. 188-195, Mar. 2025, doi: 10.1541/ieejjia.24005235.
+
+### International Conference (Peer-reviewed)
+- Yifan Xu, Clara Cheung, Ming Shan Ng, Akilu Yunusa Kaltungo, Tsukasa Ishizawa, Kota Fujimoto, “Analysing Construction Robotics Safety Standards for Safety Modelling and Simulation,” in 43rd International Symposium on Automation and Robotics in Construction (ISARC), pp. 810-817, Singapore, Jun. 2026, doi: 10.22260/ISARC2026/0104.
+- Yifan Xu, Xiao Zhan, Akilu Yunusa Kaltungo, Ming Shan Ng, Tsukasa Ishizawa, Kota Fujimoto, Clara Cheung, “Dialogue based Interactive Explanations for Safety Decisions in Human Robot Collaboration,” in The 2nd InterAI Workshop: Interactive AI for Human-Centered Robotics (InterAI) at the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI), Edinburgh, UK, Mar. 2026. [PDF] [arXiv]
+- Ami Kumaki, Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Jerk-Timing-Based Polynomial Trajectory Optimization for Vibration Suppression in Machine Tool Base,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435830.
+- Yusei Fujishima, Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Masataka Sakamoto, Yuki Terada, “Modeling and Analysis of Coupled System for Circular Motion in Machine Tools with XY-Axis Stage,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435863.
+- Yuki Tanaka, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Altitude Optimization above Transmitter Coil for In-flight Inductive Power Transfer Using Dynamic Programming,” in 2026 IEEE 19th International Conference on Advanced Motion Control (AMC), pp. 1-6, Daegu, Korea, Mar. 2026, doi: 10.1109/AMC67705.2026.11435825.
+- Mayuko Hirota, Manto Kamiya, Yuto Naoki, Kota Fujimoto, Kentaro Yokota, Binh-Minh Nguyen, Sakahisa Nagai, Osamu Shimizu, Hiroshi Fujimoto, “Inertia Estimation About z-Axis Using Motor Torque for Multi-Rotors,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “Practical Implementation of High Precision Control Based on Mode Decoupling with Virtual Viscosity for Parallel Twin-Drive Machine Tool System,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Yutaka Shikauchi, Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, “Verification of Big Data Analysis on Dynamic Wireless Power Transfer for Electric Vehicles Focused on Traffic Signal GPS,” in The 7th International Electric Vehicle Technology Conference (EVTeC), pp. 1-5, Yokohama, Japan, May 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Parallel Twin-Drive Machine Tool System Based on Offline Parameter Identification Focusing on Differential Mode,” in The 11th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Matsue, Japan, Mar. 2025.
+- Takuma Katagiri, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Trajectory Tracking Control of Tilt-Wing eVTOL Using Aerodynamic Coupling Observer and Wing Angle Correction Method,” in 2025 IEEE International Conference on Mechatronics (ICM), pp. 1-6, Wollongong, Australia, Feb. 2025, doi: 10.1109/ICM62621.2025.10934770.
+- Pinzhe Feng, Yuto Naoki, Kota Fujimoto, Kentaro Yokota, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Short Distance Landing Control with Reverse Thrust of Variable Pitch Propeller for Fixed Wing Electric Aircraft,” in 2025 IEEE International Conference on Mechatronics (ICM), pp. 1-6, Wollongong, Australia, Feb. 2025, doi: 10.1109/ICM62621.2025.10934769.
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, Jin Katsuya, Tetsu Sato, “Feasibility Study for Dynamic Wireless Power Transfer in Simulation with Big Data Focusing on Battery Capacity Requirement of Electric Vehicles,” in 2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM), pp. 42-46, Ischia, Italy, Jun. 2024, doi: 10.1109/SPEEDAM61530.2024.10609208.
+- Sakahisa Nagai, Yusuke Satoh, Kota Fujimoto, Hiroshi Fujimoto, “Sensorless Drone Detection for In-Flight Inductive Power Transfer Using Transmitter-Side Voltage Pulses,” in 2024 IEEE Wireless Power Technology Conference and Expo (WPTCE), pp. 557-561, Kyoto, Japan, May 2024, doi: 10.1109/WPTCE59894.2024.10557296.
+- Takuma Katagiri, Kentaro Yokota, Kota Fujimoto, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Velocity Control in Wing Coordinate System Using Acceleration-based Disturbance Observer for Tilt-wing eVTOL,” in The 10th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Kyoto, Japan, Feb. 2024.
+- Shogo Yamada, Kota Fujimoto, Hiroshi Fujimoto, “Basic Study on Robust Perfect Tracking Control Based on Parameter Estimation Reducing Outlier Effects,” in The 10th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Optimal Energy Trajectory Generation Based on Pitch-Dependent Mutual Inductance Model for In-Flight Inductive Power Transfer of Drones,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), pp. 1-6, Kyoto, Japan, Feb. 2024, doi: 10.1109/AMC58169.2024.10505445.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System Based on Mode Decoupling with Virtual Viscosity: Equivalent Controller Transform for Machine Tool,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), pp. 1-6, Kyoto, Japan, Feb. 2024, doi: 10.1109/AMC58169.2024.10505638.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), pp. 1-6, Singapore, Oct. 2023, doi: 10.1109/IECON51785.2023.10312055. [arXiv]
+- Yusuke Satoh, Kota Fujimoto, Ryo Matsumoto, Binh-Minh Nguyen, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Received Power Control of In-Flight Inductive Power Transfer for Drones by Active Rectifier Switching and Altitude Regulation,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), pp. 1-6, Singapore, Oct. 2023, doi: 10.1109/IECON51785.2023.10312000.
+- Kota Fujimoto, Takumi Hamada, Hiroshi Fujimoto, “Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System,” in 2022 Wireless Power Week (WPW), pp. 235-239, Bordeaux, France, Jul. 2022, doi: 10.1109/WPW54272.2022.9854039. [arXiv]
+
+### Domestic Conference (Not-reviewed)
+- Yuki Tanaka, Kota Fujimoto, Yuto Naoki, Sakahisa Nagai, Hiroshi Fujimoto, “Study on Modeling the Power Consumption Reduction Effect of Ground Effect for Forward Flight Drones Based on Actual Flight Data,” in The 64th Aircraft Symposium, No. JSASS-2026-5231, Sapporo, Japan, Oct. 2026.
+- Ami Kumaki, Kota Fujimoto, Hiroshi Fujimoto, Masataka Sakamoto, Yoshihiro Isaoka, Yuki Terada, “Trajectory Generation under Speed-Dependent Acceleration Constraints for Residual Vibration Suppression through Deceleration Jerk Design: Application to Machine Tools,” in IEE-Japan Technical Meeting on Industrial Instrumentation and Control (IIC), No. IIC-26-016, pp. 89-94, Tokyo, Japan, Sep. 2026.
+- Yusei Fujishima, Kota Fujimoto, Hiroshi Fujimoto, “Proposal of Physical-coordinate Additive Perfect Tracking Control Focusing on Rigid-body Modes in Torsional Vibration System,” in IEE-Japan Technical Meeting on Industrial Instrumentation and Control (IIC), No. IIC-26-011, pp. 61-66, Tokyo, Japan, Sep. 2026.
+- Ten Arai, Maho Matsukura, Daigo Takasaki, Isamu Moriai, Kenshin Yamakawa, Keisuke Yorita, Kota Fujimoto, Hiroyuki Koizumi, Kimiya Komurasaki, “Reduction of Electromagnetic Disturbances in a Wireless Power Transfer System Used in Thrust Stands for Micro Propulsion Systems,” in The 65th Conference on Aerospace Propulsion and Power, Oita, Japan, Mar. 2026.
+- Mayuko Hirota, Manto Kamiya, Yuto Naoki, Kota Fujimoto, Binh-Minh Nguyen, Sakahisa Nagai, Osamu Shimizu, Hiroshi Fujimoto, Kentaro Yokota, “Basic Study on Z-axis Inertia Estimation Method Using Counter-torque Observer in Multi-rotors,” in IEE-Japan Technical Meeting on Mechatronics Control (MEC), No. MEC-25-007, Tokyo, Japan, Sep. 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System of Machine Tool Based on Mode Decoupling with Virtual Viscosity: Feedforward Realization of Virtual Viscosity on Two-Inertia System,” in IEE-Japan Technical Meeting on Mechatronics Control (MEC), No. MEC-24-012, Tokyo, Japan, Sep. 2024.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Motor Current Based Attitude Estimation Considering Ground Effect for In-flight Inductive Power Transfer of Drones: Basic Concept and Test-Bench Evaluation,” in 2024 IEE-Japan Industry Applications Society Conference (JIASC), No. 1-60, Mito, Japan, Aug. 2024.
+- Kota Fujimoto, Yusuke Satoh, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Receiving-Side System Design of In-flight Inductive Power Transfer for Drones Considering Weight Limitation,” in IEE-Japan Joint Technical Meeting on Power Engineering/Power Systems Engineering/Semiconductor Power Converter (PE/PSE/SPC), No. PE-24-059,PSE-24-071,SPC-24-113, Goto, Japan, Mar. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System of Machine Tool Based on Mode Decoupling with Virtual Viscosity: Basic Study on Two-Inertia System,” in IEE-Japan Technical Meeting on Mechatronics Control (MEC), No. MEC-23-011, Tokyo, Japan, Sep. 2023.
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Jin Katsuya, Tetsu Sato, “Requirement Analysis for Dynamic Wireless Power Transfer with Big Data from Real Vehicles,” in IEE-Japan Joint Technical Meeting on Power Engineering/Power Systems Engineering/Semiconductor Power Converter (PE/PSE/SPC), No. PE-23-084,PSE-23-090,SPC-23-140, Nago, Japan, Mar. 2023.
+- Yusuke Satoh, Kota Fujimoto, Ryo Matsumoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Basic Study on Flight Altitude and Battery Current Control in In-flight Wireless Power Transfer for Drones,” in IEE-Japan Joint Technical Meeting on Power Engineering/Power Systems Engineering/Semiconductor Power Converter (PE/PSE/SPC), No. PE-23-085,PSE-23-091,SPC-23-141, Nago, Japan, Mar. 2023.
+- Kota Fujimoto, Kentaro Yokota, Sakahisa Nagai, Hiroshi Fujimoto, “Modeling and Verification of Pitch-Dependent Coupling Coefficient for WPT to Flying Drone,” in 2021 IEE-Japan Industry Applications Society Conference (JIASC), No. 4-8, Nagaoka, Japan, Aug. 2021.
+
+### Presentations
+- Kota Fujimoto, “UAV-Oriented Control and System Design for In-flight Inductive Power Transfer Systems,” in Workshop on Advanced Aerial Robotics 2nd Edition, Tokyo, Japan, Oct. 2026. (Invited)
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “Practical Implementation of High Precision Control Based on Mode Decoupling with Virtual Viscosity for Parallel Twin-Drive Machine Tool System,” in The 12th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Daegu, Korea, Mar. 2026.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive Machine Tool Based on Mode Decoupling With Virtual Viscosity,” in IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM), Hangzhou, China, Jul. 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Parallel Twin-Drive Machine Tool System Based on Offline Parameter Identification Focusing on Differential Mode,” in The 11th IEEJ International Workshop on Sensing, Actuation, Motion Control, and Optimization (SAMCON), Matsue, Japan, Mar. 2025.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Energy Maximum Trajectory Generation Focusing on Motion Dynamics for In-flight Inductive Power Transfer of Drones,” in Global Green Transformation Workshop at The University of Manchester and the University of Tokyo Joint Research Symposium, Manchester, UK, Oct. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System of Machine Tool Based on Mode Decoupling with Virtual Viscosity: Feedforward Realization of Virtual Viscosity on Two-Inertia System,” in IEE-Japan Technical Meeting on Mechatronics Control (MEC), Tokyo, Japan, Sep. 2024.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Motor Current Based Attitude Estimation Considering Ground Effect for In-flight Inductive Power Transfer of Drones: Basic Concept and Test-Bench Evaluation,” in 2024 IEE-Japan Industry Applications Society Conference (JIASC), Mito, Japan, Aug. 2024.
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Shuji Kawano, Jin Katsuya, Tetsu Sato, “Feasibility Study for Dynamic Wireless Power Transfer in Simulation with Big Data Focusing on Battery Capacity Requirement of Electric Vehicles,” in 2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM), Ischia, Italy, Jun. 2024.
+- Kota Fujimoto, Yusuke Satoh, Sakahisa Nagai, Hiroshi Fujimoto, “Basic Study on Receiving-Side System Design of In-flight Inductive Power Transfer for Drones Considering Weight Limitation,” in IEE-Japan Joint Technical Meeting on Power Engineering/Power Systems Engineering/Semiconductor Power Converter (PE/PSE/SPC), Goto, Japan, Mar. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System Based on Mode Decoupling with Virtual Viscosity: Equivalent Controller Transform for Machine Tool,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Hiroshi Fujimoto, Alessandro Correa Victorino, Pedro Castillo, “Optimal Energy Trajectory Generation Based on Pitch-Dependent Mutual Inductance Model for In-Flight Inductive Power Transfer of Drones,” in 2024 IEEE 18th International Conference on Advanced Motion Control (AMC), Kyoto, Japan, Feb. 2024.
+- Kota Fujimoto, Sakahisa Nagai, Binh-Minh Nguyen, Hiroshi Fujimoto, “Test Bench Study on Attitude Estimation in Ground Effect Region Based on Motor Current for In-Flight Inductive Power Transfer of Drones,” in 49th Annual Conference of the IEEE Industrial Electronics Society (IECON), Singapore, Oct. 2023.
+- Kota Fujimoto, Hiroshi Fujimoto, Yoshihiro Isaoka, Yuki Terada, “High Precision Control for Twin-Drive System of Machine Tool Based on Mode Decoupling with Virtual Viscosity: Basic Study on Two-Inertia System,” in IEE-Japan Technical Meeting on Mechatronics Control (MEC), Tokyo, Japan, Sep. 2023.
+- Kota Fujimoto, Osamu Shimizu, Hiroshi Fujimoto, Jin Katsuya, Tetsu Sato, “Requirement Analysis for Dynamic Wireless Power Transfer with Big Data from Real Vehicles,” in IEE-Japan Joint Technical Meeting on Power Engineering/Power Systems Engineering/Semiconductor Power Converter (PE/PSE/SPC), Nago, Japan, Mar. 2023.
+- Kota Fujimoto, Takumi Hamada, Hiroshi Fujimoto, “Proposal on Model Based Current Overshoot Suppression of Receiver Side Coil in Drone Wireless Power Transfer System,” in 2022 Wireless Power Week (WPW), Bordeaux, France, Jul. 2022.
+- Kota Fujimoto, Kentaro Yokota, Sakahisa Nagai, Hiroshi Fujimoto, “Modeling and Verification of Pitch-Dependent Coupling Coefficient for WPT to Flying Drone,” in 2021 IEE-Japan Industry Applications Society Conference (JIASC), Nagaoka, Japan, Aug. 2021.
+
+### Award
+- 2024 IEEJ Industry Applications Society Excellent Presentation Award (Aug. 2025), The Institute of Electrical Engineers of Japan
+- APET Excellent Poster Presentation Award 3rd Prize (2022), Alliance for Advanced Power & Environmental Technology
+- 2021 IEEJ Excellent Presentation Award (Aug. 2022), The Institute of Electrical Engineers of Japan
+
+### Fellowship
+- Fostering Advanced Human Resources to Lead Green Transformation (SPRING GX), Apr. 2023 – Mar. 2026, The University of Tokyo
+
+### Grant
+- The Dispatch for International Meetings Program (for IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM)), Fostering Advanced Human Resources to Lead Green Transformation (SPRING GX), 2025
+- The Dispatch for International Meetings Program (for Global Green Transformation Workshop at The University of Manchester and the University of Tokyo Joint Research Symposium), Fostering Advanced Human Resources to Lead Green Transformation (SPRING GX), 2024
+- The Dispatch for International Meetings Program (for 2024 International Symposium on Power Electronics, Electrical Drives, Automation and Motion (SPEEDAM)), Fostering Advanced Human Resources to Lead Green Transformation (SPRING GX), 2024
+- Overseas Travel Expense Assistance, The Telecommunications Advancement Foundation, 2023
+- La Bourse de Mobilité Internationale de Sorbonne Universités, Sorbonne Université, Sep. 2023 – Aug. 2024
+- Researcher Overseas Training Grant, Suzuki Foundation, 2022
