@@ -61,6 +61,7 @@
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
+\RequirePackage{academicons}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -253,6 +254,11 @@
 % Usage: \email{<email adress>}
 \newcommand*{\email}[1]{\def\@email{#1}}
 
+% Defines writer's ORCID iD (optional)
+% Usage: \orcid{<https://orcid.org/0000-0000-0000-0000>}
+\newcommand*{\orcid}[1]{\def\@orcid{#1}}
+\definecolor{orcidgreen}{HTML}{A6CE39}
+
 % Defines writer's homepage (optional)
 % Usage: \homepage{<url>}
 \newcommand*{\homepage}[1]{\def\@homepage{#1}}
@@ -382,6 +388,12 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{mailto:\@email}{\faEnvelope\acvHeaderIconSep\@email}%
+        }%
+      \ifthenelse{\isundefined{\@orcid}}%
+        {}%
+        {%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+          \href{\@orcid}{{\color{orcidgreen}\aiOrcid}\acvHeaderIconSep\@orcid}%
         }%
       \ifthenelse{\isundefined{\@homepage}}%
         {}%
