@@ -5,7 +5,7 @@
 # 日本語
 
 ## 自己紹介
-- 特任研究員 (CV / ORCiD / researchmap)，
+- 特任研究員 (CV / ORCID iD / researchmap)，
 - KYOTO Design Lab，
 - 未来デザイン・工学機構，京都工芸繊維大学．
 - 協力研究員，
@@ -104,7 +104,7 @@
 # English
 
 ## About Me
-- Project Researcher (CV / ORCiD / researchmap),
+- Project Researcher (CV / ORCID iD / researchmap),
 - KYOTO Design Lab,
 - Center for the Possible Futures, Kyoto Institute of Technology.
 - Visiting Researcher,
